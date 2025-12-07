@@ -1,0 +1,7 @@
+@import "tailwindcss";
+@plugin "daisyui";
+/* className="bg-linear-to-r from-[#C9E4DE] to-[#DFE3E7]" */
+.title-text {
+  color: #2a6877;
+  font-weight: bold;
+}
