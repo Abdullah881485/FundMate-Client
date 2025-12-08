@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const AvailableLoans = () => {
   return (
@@ -23,12 +24,12 @@ const AvailableLoans = () => {
             <div className="font-bold text-gray-900 mb-4">
               Max Loan: <span className="text-green-600">$10,000</span>
             </div>
-            <button
-              onClick={() => alert(`Redirect to Student Loan details`)}
-              className="mt-auto bg-[#2a6877] text-white py-2 font-medium cursor-pointer hover:bg-[#24555e] rounded-lg transition-colors duration-200"
+            <Link
+              to="/loan-details"
+              className="mt-auto text-center bg-[#2a6877] text-white py-2 font-medium cursor-pointer hover:bg-[#24555e] rounded-lg transition-colors duration-200"
             >
               View Details
-            </button>
+            </Link>
           </div>
         </div>
       </div>

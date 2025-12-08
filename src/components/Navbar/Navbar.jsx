@@ -1,6 +1,8 @@
-import React from "react";
-import { Link, NavLink } from "react-router-dom";
-import Home from "../../pages/Home/Home";
+import React, { use } from "react";
+import { Link, NavLink, useNavigate } from "react-router";
+import { AuthContext } from "../../Provider/AuthContext";
+import Swal from "sweetalert2";
+// import Home from "../../pages/Home/Home";
 
 // Active link style function
 const getLinkStyle = ({ isActive }) => {
@@ -12,6 +14,8 @@ const getLinkStyle = ({ isActive }) => {
 };
 
 const Navbar = () => {
+  const { user, signOutUser } = use(AuthContext);
+  const navigate = useNavigate();
   const links = (
     <>
       <li className=" hover:text-[#2a6877]">
@@ -24,18 +28,57 @@ const Navbar = () => {
           All-Loans
         </NavLink>
       </li>
-      <li className=" hover:text-[#2a6877]">
-        <NavLink to="/about-us" style={getLinkStyle}>
-          About Us
-        </NavLink>
-      </li>
-      <li className=" hover:text-[#2a6877]">
-        <NavLink to="/contact" style={getLinkStyle}>
-          Contact
-        </NavLink>
-      </li>
+      {user ? (
+        <li className=" hover:text-[#2a6877]">
+          <NavLink to="/dashboard-layout" style={getLinkStyle}>
+            Dashboard
+          </NavLink>
+        </li>
+      ) : (
+        <div className="flex flex-col md:flex-row md:items-center gap-0 md:gap-12">
+          <li className=" hover:text-[#2a6877]">
+            <NavLink to="/about-us" style={getLinkStyle}>
+              About Us
+            </NavLink>
+          </li>
+          <li className=" hover:text-[#2a6877]">
+            <NavLink to="/contact" style={getLinkStyle}>
+              Contact
+            </NavLink>
+          </li>
+        </div>
+      )}
     </>
   );
+
+  const handleSignOut = () => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You'll be logged out of your account.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, log out!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        signOutUser()
+          .then(() => {
+            Swal.fire({
+              title: "Logged out!",
+              text: "You have successfully logged out.",
+              icon: "success",
+              timer: 1500,
+              showConfirmButton: false,
+            });
+            navigate("/login");
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+    });
+  };
   return (
     <div className="w-[90%] mx-auto">
       <div className="navbar mx-auto">
@@ -72,14 +115,29 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <div className="flex items-center gap-3">
-            <button className="btn rounded-2xl bg-transparent border-2 border-[#2a6877] px-6 py-2 w-fit font-semibold text-[#2a6877] hover:bg-[#2a6877] hover:text-white transition duration-300 ">
-              Sign In
+          {user ? (
+            <button
+              onClick={handleSignOut}
+              className="btn rounded-2xl bg-[#2a6877] px-6 py-2 w-fit font-semibold text-white hover:bg-[#24545c] transition duration-300 "
+            >
+              Sign Out
             </button>
-            <button className="btn rounded-2xl bg-[#2a6877] px-6 py-2 w-fit font-semibold text-white hover:bg-[#24545c] transition duration-300">
-              Sign Up
-            </button>
-          </div>
+          ) : (
+            <div className="flex items-center gap-3">
+              <Link
+                to="/login"
+                className="btn rounded-2xl bg-transparent border-2 border-[#2a6877] px-6 py-2 w-fit font-semibold text-[#2a6877] hover:bg-[#2a6877] hover:text-white transition duration-300 "
+              >
+                Sign In
+              </Link>
+              <Link
+                to="/register"
+                className="btn rounded-2xl bg-[#2a6877] px-6 py-2 w-fit font-semibold text-white hover:bg-[#24545c] transition duration-300"
+              >
+                Sign Up
+              </Link>
+            </div>
+          )}
         </div>
       </div>
     </div>

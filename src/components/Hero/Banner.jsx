@@ -1,5 +1,6 @@
 // Banner.jsx
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Banner = () => {
   return (
@@ -15,9 +16,12 @@ const Banner = () => {
               experience, providing you with the funds you need in a timely
               manner to meet your financial requirements.
             </p>
-            <button className="btn rounded-2xl bg-transparent border-2 border-[#2a6877] px-6 py-2 w-fit font-semibold text-[#2a6877] hover:bg-[#2a6877] hover:text-white transition duration-300">
+            <Link
+              to="/application"
+              className="btn rounded-2xl bg-transparent border-2 border-[#2a6877] px-6 py-2 w-fit font-semibold text-[#2a6877] hover:bg-[#2a6877] hover:text-white transition duration-300"
+            >
               Apply Now
-            </button>
+            </Link>
           </div>
           <div className="flex-1">
             <img src="https://i.ibb.co.com/HLtxdb1d/bank-PNG24.png" alt="" />
