@@ -4,12 +4,12 @@ import { AuthContext } from "../../Provider/AuthContext";
 import Swal from "sweetalert2";
 // import Home from "../../pages/Home/Home";
 
-// Active link style function
+
 const getLinkStyle = ({ isActive }) => {
   return {
-    color: isActive ? "#2a6877" : "", // Blue color when active
+    color: isActive ? "#2a6877" : "",
     borderBottom: isActive ? "2px solid #2a6877" : "none",
-    borderRadius: isActive ? "0" : "0", // Underline when active
+    borderRadius: isActive ? "0" : "0", 
   };
 };
 

@@ -9,6 +9,16 @@ import Register from "../pages/Register/Register";
 import DashboardLayout from "../Layout/Dashboard/DashboardLayout";
 import Application from "../pages/Application Form/Application";
 import LoanDetails from "../pages/Loan Details/LoanDetails";
+import ManageUsers from "../pages/Dashboard Pages/Manage Users/ManageUsers";
+import AllDisplayedLoans from "../pages/Dashboard Pages/All Displayed Loans/AllDisplayedLoans";
+import PendingApplication from "../pages/Dashboard Pages/All Pending Application/PendingApplication";
+import PrivateRoute from "./PrivateRoute";
+import AllLoanApplication from "../pages/Dashboard Pages/All Loan Application/AllLoanApplication";
+import AddLoan from "../pages/Dashboard Pages/Add Loan/AddLoan";
+import ApprovedApplication from "../pages/Dashboard Pages/Approved Application/ApprovedApplication";
+import ManageLoans from "../pages/Dashboard Pages/Manage Loans/ManageLoans";
+import MyLoans from "../pages/Dashboard Pages/My Loans/MyLoans";
+import MyProfile from "../pages/Dashboard Pages/My Profile/MyProfile";
 
 export const router = createBrowserRouter([
   {
@@ -36,16 +46,70 @@ export const router = createBrowserRouter([
       },
       {
         path: "/application",
-        element: <Application></Application>,
+        element: (
+          <PrivateRoute>
+            <Application></Application>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/loan-details",
-        element: <LoanDetails></LoanDetails>,
+        element: (
+          <PrivateRoute>
+            <LoanDetails></LoanDetails>
+          </PrivateRoute>
+        ),
+      },
+    ],
+  },
+  {
+    path: "/dashboard-layout",
+    element: (
+      <PrivateRoute>
+        <DashboardLayout></DashboardLayout>
+      </PrivateRoute>
+    ),
+    children: [
+      {
+        path: "/dashboard-layout",
+        index: true,
+        element: <ManageUsers></ManageUsers>,
       },
       {
-        path: "dashboard-layout",
-        element: <DashboardLayout></DashboardLayout>,
-        children: [],
+        path: "manage-users",
+        element: <ManageUsers></ManageUsers>,
+      },
+      {
+        path: "allDisplayedLoans",
+        element: <AllDisplayedLoans></AllDisplayedLoans>,
+      },
+      {
+        path: "loanApplication",
+        element: <AllLoanApplication></AllLoanApplication>,
+      },
+      {
+        path: "addLoan",
+        element: <AddLoan></AddLoan>,
+      },
+      {
+        path: "pendingApplication",
+        element: <PendingApplication></PendingApplication>,
+      },
+      {
+        path: "approvedApplication",
+        element: <ApprovedApplication></ApprovedApplication>,
+      },
+      {
+        path: "manageLoan",
+        element: <ManageLoans></ManageLoans>,
+      },
+      {
+        path: "myLoans",
+        element: <MyLoans></MyLoans>,
+      },
+      {
+        path: "myProfile",
+        element: <MyProfile></MyProfile>,
       },
     ],
   },
