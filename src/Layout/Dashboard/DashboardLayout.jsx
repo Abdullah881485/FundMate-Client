@@ -12,6 +12,7 @@ import {
 } from "react-icons/gr";
 import { CgProfile } from "react-icons/cg";
 import { AuthContext } from "../../Provider/AuthContext";
+import Footer from "../../components/Footer/Footer";
 const DashboardLayout = () => {
   const { user } = use(AuthContext);
   console.log(user);
@@ -21,6 +22,7 @@ const DashboardLayout = () => {
       color: isActive ? "#2a6877" : "",
       borderLeft: isActive ? "3px solid #2a6877" : "none",
       borderRadius: isActive ? "0" : "0",
+      fontWeight: isActive && "600",
     };
   };
   return (
@@ -28,7 +30,7 @@ const DashboardLayout = () => {
       <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content">
         {/* Navbar */}
-        <nav className=" flex justify-between w-full">
+        <nav className=" w-[95%] mx-auto flex justify-between">
           <div className="flex items-center">
             <label
               htmlFor="my-drawer-4"
@@ -65,7 +67,11 @@ const DashboardLayout = () => {
           />
         </nav>
         {/* Page content here */}
-        <Outlet></Outlet>
+        <main className="w-[95%] mx-auto my-10">
+          <Outlet></Outlet>
+        </main>
+
+        <Footer></Footer>
       </div>
 
       <div className="drawer-side is-drawer-close:overflow-visible shadow-md">
@@ -74,9 +80,9 @@ const DashboardLayout = () => {
           aria-label="close sidebar"
           className="drawer-overlay"
         ></label>
-        <div className="flex min-h-full py-20 flex-col items-start is-drawer-close:w-14 is-drawer-open:w-64">
+        <div className="flex min-h-full py-20 flex-col items-start is-drawer-close:w-14 is-drawer-open:w-64 bg-white">
           {/* Sidebar content here */}
-          <ul className="menu w-full grow space-y-2">
+          <ul className="menu w-full grow space-y-2 text-gray-500 font-normal">
             {/* List item */}
             <li>
               <NavLink
@@ -85,7 +91,7 @@ const DashboardLayout = () => {
                 className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                 data-tip="Home Page"
               >
-                <FaHome size={18} />
+                <FaHome size={20} />
                 <span className="is-drawer-close:hidden">Home Page</span>
               </NavLink>
             </li>
@@ -96,7 +102,7 @@ const DashboardLayout = () => {
                 className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                 data-tip="Manage Users"
               >
-                <FaUsers size={18} />
+                <FaUsers size={20} />
                 <span className="is-drawer-close:hidden">Manage Users</span>
               </NavLink>
             </li>
@@ -108,7 +114,7 @@ const DashboardLayout = () => {
                 className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                 data-tip="All Loans"
               >
-                <GiReceiveMoney size={18}></GiReceiveMoney>
+                <GiReceiveMoney size={20}></GiReceiveMoney>
                 <span className="is-drawer-close:hidden">All Loans</span>
               </NavLink>
             </li>
@@ -119,7 +125,7 @@ const DashboardLayout = () => {
                 className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                 data-tip="Loan Application"
               >
-                <GrDocumentText size={18} />
+                <GrDocumentText size={20} />
                 <span className="is-drawer-close:hidden">Loan Application</span>
               </NavLink>
             </li>
@@ -130,7 +136,7 @@ const DashboardLayout = () => {
                 className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                 data-tip="Add Loan"
               >
-                <AiOutlineFileAdd size={18} />
+                <AiOutlineFileAdd size={20} />
                 <span className="is-drawer-close:hidden">Add Loan</span>
               </NavLink>
             </li>
@@ -141,7 +147,7 @@ const DashboardLayout = () => {
                 className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                 data-tip="Manage Loan"
               >
-                <GrDocumentConfig size={18} />
+                <GrDocumentConfig size={20} />
                 <span className="is-drawer-close:hidden">Manage Loan</span>
               </NavLink>
             </li>
@@ -152,7 +158,7 @@ const DashboardLayout = () => {
                 className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                 data-tip="Pending Application"
               >
-                <MdPendingActions size={18} />
+                <MdPendingActions size={20} />
                 <span className="is-drawer-close:hidden">
                   Pending Application
                 </span>
@@ -165,7 +171,7 @@ const DashboardLayout = () => {
                 className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                 data-tip="Approved Application"
               >
-                <GrDocumentVerified size={18} />
+                <GrDocumentVerified size={20} />
                 <span className="is-drawer-close:hidden">
                   Approved Application
                 </span>
@@ -178,7 +184,7 @@ const DashboardLayout = () => {
                 className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                 data-tip="My Profile"
               >
-                <CgProfile size={18} />
+                <CgProfile size={20} />
                 <span className="is-drawer-close:hidden">My Profile</span>
               </NavLink>
             </li>
@@ -189,7 +195,7 @@ const DashboardLayout = () => {
                 className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                 data-tip="My Loans"
               >
-                <FaMoneyCheckDollar size={18} />
+                <FaMoneyCheckDollar size={20} />
                 <span className="is-drawer-close:hidden">My Loans</span>
               </NavLink>
             </li>
