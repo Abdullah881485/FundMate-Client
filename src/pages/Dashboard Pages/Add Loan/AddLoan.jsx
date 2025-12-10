@@ -40,26 +40,26 @@ const AddLoan = () => {
       loanImage,
       email,
     };
-    axiosSecure
-      .post("/allLoan", newLoan)
-      .then((data) => {
-        // console.log(data.data);
-        if (data.data) {
-          Swal.fire({
-            title: "",
-            text: "Your Loan added successfully",
-            icon: "success",
-            confirmButtonText: "Close",
-          });
-          setLoading(false);
-          e.target.reset();
-        }
-      })
-      .catch((error) => {
-        console.error("Error adding transaction:", error);
-        setLoading(false);
-      });
-  };
+  //   axiosSecure
+  //     .post("/allLoan", newLoan)
+  //     .then((data) => {
+  //       // console.log(data.data);
+  //       if (data.data) {
+  //         Swal.fire({
+  //           title: "",
+  //           text: "Your Loan added successfully",
+  //           icon: "success",
+  //           confirmButtonText: "Close",
+  //         });
+  //         setLoading(false);
+  //         e.target.reset();
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error adding transaction:", error);
+  //       setLoading(false);
+  //     });
+  // };
   if (loading) {
     return <Loader1></Loader1>;
   }
