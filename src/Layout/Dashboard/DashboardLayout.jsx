@@ -1,4 +1,4 @@
-import React, { use } from "react";
+import React from "react";
 import { FaHome, FaUsers } from "react-icons/fa";
 import { FaMoneyCheckDollar } from "react-icons/fa6";
 import { GiReceiveMoney } from "react-icons/gi";
@@ -11,11 +11,13 @@ import {
   GrDocumentText,
 } from "react-icons/gr";
 import { CgProfile } from "react-icons/cg";
-import { AuthContext } from "../../Provider/AuthContext";
+
 import Footer from "../../components/Footer/Footer";
+import useRole from "../../Hooks/useRole";
+import { Loader1 } from "../../components/Loader/Loader";
 const DashboardLayout = () => {
-  const { user } = use(AuthContext);
-  console.log(user);
+  const { role, roleLoading } = useRole();
+  console.log(role);
 
   const getLinkStyle = ({ isActive }) => {
     return {
@@ -25,6 +27,9 @@ const DashboardLayout = () => {
       fontWeight: isActive && "600",
     };
   };
+  if (roleLoading) {
+    return <Loader1></Loader1>;
+  }
   return (
     <div className="w-[85%] py-5 mx-auto drawer lg:drawer-open">
       <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
@@ -95,110 +100,127 @@ const DashboardLayout = () => {
                 <span className="is-drawer-close:hidden">Home Page</span>
               </NavLink>
             </li>
-            <li>
-              <NavLink
-                style={getLinkStyle}
-                to="/dashboard-layout/manage-users"
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip="Manage Users"
-              >
-                <FaUsers size={20} />
-                <span className="is-drawer-close:hidden">Manage Users</span>
-              </NavLink>
-            </li>
-
-            <li>
-              <NavLink
-                style={getLinkStyle}
-                to="/dashboard-layout/allDisplayedLoans"
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip="All Loans"
-              >
-                <GiReceiveMoney size={20}></GiReceiveMoney>
-                <span className="is-drawer-close:hidden">All Loans</span>
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                style={getLinkStyle}
-                to="/dashboard-layout/loanApplication"
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip="Loan Application"
-              >
-                <GrDocumentText size={20} />
-                <span className="is-drawer-close:hidden">Loan Application</span>
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                style={getLinkStyle}
-                to="/dashboard-layout/addLoan"
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip="Add Loan"
-              >
-                <AiOutlineFileAdd size={20} />
-                <span className="is-drawer-close:hidden">Add Loan</span>
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                style={getLinkStyle}
-                to="/dashboard-layout/manageLoan"
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip="Manage Loan"
-              >
-                <GrDocumentConfig size={20} />
-                <span className="is-drawer-close:hidden">Manage Loan</span>
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                style={getLinkStyle}
-                to="/dashboard-layout/pendingApplication"
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip="Pending Application"
-              >
-                <MdPendingActions size={20} />
-                <span className="is-drawer-close:hidden">
-                  Pending Application
-                </span>
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                style={getLinkStyle}
-                to="/dashboard-layout/approvedApplication"
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip="Approved Application"
-              >
-                <GrDocumentVerified size={20} />
-                <span className="is-drawer-close:hidden">
-                  Approved Application
-                </span>
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                style={getLinkStyle}
-                to="/dashboard-layout/myProfile"
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip="My Profile"
-              >
-                <CgProfile size={20} />
-                <span className="is-drawer-close:hidden">My Profile</span>
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                style={getLinkStyle}
-                to="/dashboard-layout/myLoans"
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip="My Loans"
-              >
-                <FaMoneyCheckDollar size={20} />
-                <span className="is-drawer-close:hidden">My Loans</span>
-              </NavLink>
-            </li>
+            {role === "Admin" && (
+              <>
+                <li>
+                  <NavLink
+                    style={getLinkStyle}
+                    to="/dashboard-layout/manage-users"
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="Manage Users"
+                  >
+                    <FaUsers size={20} />
+                    <span className="is-drawer-close:hidden">Manage Users</span>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    style={getLinkStyle}
+                    to="/dashboard-layout/allDisplayedLoans"
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="All Loans"
+                  >
+                    <GiReceiveMoney size={20}></GiReceiveMoney>
+                    <span className="is-drawer-close:hidden">All Loans</span>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    style={getLinkStyle}
+                    to="/dashboard-layout/loanApplication"
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="Loan Application"
+                  >
+                    <GrDocumentText size={20} />
+                    <span className="is-drawer-close:hidden">
+                      Loan Application
+                    </span>
+                  </NavLink>
+                </li>
+              </>
+            )}
+            {role === "Manager" && (
+              <>
+                <li>
+                  <NavLink
+                    style={getLinkStyle}
+                    to="/dashboard-layout/addLoan"
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="Add Loan"
+                  >
+                    <AiOutlineFileAdd size={20} />
+                    <span className="is-drawer-close:hidden">Add Loan</span>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    style={getLinkStyle}
+                    to="/dashboard-layout/manageLoan"
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="Manage Loan"
+                  >
+                    <GrDocumentConfig size={20} />
+                    <span className="is-drawer-close:hidden">Manage Loan</span>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    style={getLinkStyle}
+                    to="/dashboard-layout/pendingApplication"
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="Pending Application"
+                  >
+                    <MdPendingActions size={20} />
+                    <span className="is-drawer-close:hidden">
+                      Pending Application
+                    </span>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    style={getLinkStyle}
+                    to="/dashboard-layout/approvedApplication"
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="Approved Application"
+                  >
+                    <GrDocumentVerified size={20} />
+                    <span className="is-drawer-close:hidden">
+                      Approved Application
+                    </span>
+                  </NavLink>
+                </li>
+              </>
+            )}
+            {role !== "Admin" && (
+              <>
+                <li>
+                  <NavLink
+                    style={getLinkStyle}
+                    to="/dashboard-layout/myProfile"
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="My Profile"
+                  >
+                    <CgProfile size={20} />
+                    <span className="is-drawer-close:hidden">My Profile</span>
+                  </NavLink>
+                </li>
+              </>
+            )}
+            {role === "Borrower" && (
+              <>
+                <li>
+                  <NavLink
+                    style={getLinkStyle}
+                    to="/dashboard-layout/myLoans"
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="My Loans"
+                  >
+                    <FaMoneyCheckDollar size={20} />
+                    <span className="is-drawer-close:hidden">My Loans</span>
+                  </NavLink>
+                </li>
+              </>
+            )}
           </ul>
         </div>
       </div>

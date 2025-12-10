@@ -1,32 +1,71 @@
 import React, { useRef, useState } from "react";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
+import Swal from "sweetalert2";
 
 const AllDisplayedLoans = () => {
   const [selectedLoan, setSelectedLoan] = useState(null);
-  const loansData = [
-    {
-      id: 1,
-      image: "/loan1.jpg",
-      title: "Small Business Loan",
-      interest: 10,
-      category: "Business",
-      createdBy: "Admin",
-      showOnHome: true,
+  const [emiPlans, setEmiPlans] = useState([]);
+  const axiosSecure = useAxiosSecure();
+  const handleEMIInput = (e) => {
+    const value = e.target.value;
+    const array = value.split(",").map((item) => item.trim());
+    setEmiPlans(array);
+  };
+
+  const { data: loans = [], refetch } = useQuery({
+    queryKey: ["allLoan"],
+    queryFn: async () => {
+      const res = await axiosSecure.get("/allLoan");
+      return res.data;
     },
-    {
-      id: 2,
-      image: "/loan2.jpg",
-      title: "Education Loan",
-      interest: 8,
-      category: "Education",
-      createdBy: "Manager",
-      showOnHome: false,
-    },
-  ];
+  });
   const loanModalRef = useRef();
   const loanModalOpen = (loan) => {
     setSelectedLoan(loan);
     loanModalRef.current.showModal();
   };
+
+  const handleUpdateLoan = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const loanTitle = form.loanTitle.value;
+    const interestRate = form.interestRate.value;
+    const description = form.description.value;
+    const category = form.category.value;
+    const maxLimit = form.maxLoanLimit.value;
+    const availableEMIPlans = emiPlans;
+    const loanImage = form.image.value;
+
+    const updatedLoan = {
+      loanTitle,
+      interestRate,
+      description,
+      category,
+      maxLimit,
+      availableEMIPlans,
+      loanImage,
+    };
+
+    axiosSecure
+      .patch(`/allLoan/${selectedLoan._id}`, updatedLoan)
+      .then((res) => {
+        const _data = res.data;
+        refetch();
+        loanModalRef.current.close();
+      });
+  };
+  const handleToggleShowOnHome = async (id, value) => {
+    // console.log(value);
+
+    axiosSecure
+      .patch(`/availableLoan/${id}`, { showOnHome: value })
+      .then((res) => {
+        const _data = res.data;
+        refetch();
+      });
+  };
+
   return (
     <div className="p-6 ">
       <h2 className="text-2xl font-bold mb-4 text-[#2a6877]">All Loans</h2>
@@ -58,25 +97,25 @@ const AllDisplayedLoans = () => {
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200">
-            {loansData.map((loan) => (
-              <tr key={loan.id} className="hover:bg-gray-50">
+            {loans.map((loan) => (
+              <tr key={loan._id} className="hover:bg-gray-50">
                 <td className="px-4 py-3">
                   <img
-                    src={loan.image}
-                    alt={loan.title}
+                    src={loan.loanImage}
+                    alt={loan.loanTitle}
                     className="w-16 h-16 object-cover rounded-md"
                   />
                 </td>
-                <td className="px-4 py-3">{loan.title}</td>
-                <td className="px-4 py-3">{loan.interest}%</td>
+                <td className="px-4 py-3">{loan.loanTitle}</td>
+                <td className="px-4 py-3">{loan.interestRate}</td>
                 <td className="px-4 py-3">{loan.category}</td>
                 <td className="px-4 py-3">{loan.createdBy}</td>
                 <td className="px-4 py-3 text-center">
                   <input
                     type="checkbox"
-                    checked={loan.showOnHome}
-                    onChange={() =>
-                      alert(`Toggle Show on Home for ${loan.title}`)
+                    defaultChecked={loan.showOnHome}
+                    onChange={(e) =>
+                      handleToggleShowOnHome(loan._id, e.target.checked)
                     }
                     className="w-5 h-5 text-[#2a6877] border-gray-300 rounded"
                   />
@@ -110,7 +149,10 @@ const AllDisplayedLoans = () => {
             Update Loan Information
           </h3>
 
-          <form className="py-4 flex flex-col gap-1 text-gray-600">
+          <form
+            onSubmit={handleUpdateLoan}
+            className="py-4 flex flex-col gap-1 text-gray-600"
+          >
             <div className="flex flex-col md:flex-row gap-6 mb-4">
               <div className="flex flex-col flex-1 gap-2">
                 <label>Loan Title</label>
@@ -118,6 +160,7 @@ const AllDisplayedLoans = () => {
                   name="loanTitle"
                   type="text"
                   placeholder="Enter Loan Title"
+                  defaultValue={selectedLoan?.loanTitle}
                   className="input w-full border border-[#2a6877] focus:outline-none focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-white rounded-md"
                   required
                 />
@@ -126,7 +169,7 @@ const AllDisplayedLoans = () => {
                 <label>Interest Rate (%)</label>
                 <input
                   name="interestRate"
-                  type="number"
+                  defaultValue={selectedLoan?.interestRate}
                   placeholder="Enter Interest Rate"
                   className="input w-full border border-[#2a6877] focus:outline-none focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-white rounded-md"
                   required
@@ -139,6 +182,7 @@ const AllDisplayedLoans = () => {
               <label>Description</label>
               <textarea
                 name="description"
+                defaultValue={selectedLoan?.description}
                 placeholder="Enter Loan Description"
                 className="textarea w-full border border-[#2a6877] focus:outline-none focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-white rounded-md"
                 required
@@ -152,6 +196,7 @@ const AllDisplayedLoans = () => {
                 <input
                   name="category"
                   type="text"
+                  defaultValue={selectedLoan?.category}
                   placeholder="Loan Category"
                   className="input w-full border border-[#2a6877] focus:outline-none focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-white rounded-md"
                   required
@@ -161,6 +206,7 @@ const AllDisplayedLoans = () => {
                 <label>Max Loan Limit</label>
                 <input
                   name="maxLoanLimit"
+                  defaultValue={selectedLoan?.maxLimit}
                   type="number"
                   placeholder="Enter Max Loan Limit"
                   className="input w-full border border-[#2a6877] focus:outline-none focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-white rounded-md"
@@ -175,6 +221,8 @@ const AllDisplayedLoans = () => {
               <input
                 defaultValue={selectedLoan?.emiPlans}
                 type="text"
+                onChange={handleEMIInput}
+                name="availableEmiPlans"
                 placeholder="e.g., 3 months, 6 months, 12 months"
                 className="input w-full border border-[#2a6877] focus:outline-none focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-white rounded-md"
               />
@@ -184,8 +232,8 @@ const AllDisplayedLoans = () => {
             <div className="flex flex-col gap-1">
               <label className="">Upload Images</label>
               <input
-                type="file"
-                multiple
+                name="image"
+                defaultValue={selectedLoan?.loanImage}
                 className="file-input input w-full border border-[#2a6877] focus:outline-none focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-white rounded-md"
               />
             </div>

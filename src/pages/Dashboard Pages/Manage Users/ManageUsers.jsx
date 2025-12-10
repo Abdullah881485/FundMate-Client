@@ -84,7 +84,7 @@ const ManageUsers = () => {
               </div>
               <div className="flex items-center gap-3">
                 <button
-                  onClick={() => userModalRef.current.closeModal()}
+                  onClick={() => userModalRef.current.close()}
                   className="btn rounded-xl bg-transparent border-2 border-[#2a6877] px-6 py-2 w-fit font-semibold text-[#2a6877] hover:bg-[#2a6877] hover:text-white transition duration-300 "
                 >
                   Close

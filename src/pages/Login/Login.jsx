@@ -4,9 +4,11 @@ import { Link, useLocation, useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import { FcGoogle } from "react-icons/fc";
 import { AuthContext } from "../../Provider/AuthContext";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const Login = () => {
   const { signInUser, signInWithGoogle, setUser } = use(AuthContext);
+  const axiosSecure = useAxiosSecure();
   const location = useLocation();
   const navigate = useNavigate();
   const handleSignIn = (e) => {
@@ -39,12 +41,24 @@ const Login = () => {
   const handleGoogleSignIn = () => {
     signInWithGoogle()
       .then((result) => {
-        const _user = result.user;
+        const user = result.user;
         Swal.fire({
           title: "",
           text: "You logged in Successfully",
           icon: "success",
           confirmButtonText: "Close",
+        });
+
+        const userInfo = {
+          email: user.email,
+          displayName: user.displayName,
+          photoURL: user.photoURL,
+          role: user.role || "Borrower",
+        };
+        axiosSecure.post("/users", userInfo).then((res) => {
+          if (res.data.insertedId) {
+            console.log("user created in the database");
+          }
         });
         navigate(`${location.state ? location.state : "/"}`);
         // console.log(result);

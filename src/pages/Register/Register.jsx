@@ -4,16 +4,19 @@ import { Link, useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import { FcGoogle } from "react-icons/fc";
 import { AuthContext } from "../../Provider/AuthContext";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const Register = () => {
   const { createUser, signInWithGoogle, setLoading, setUser, updateUser } =
     use(AuthContext);
+  const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
   const handleCreateUser = (e) => {
     e.preventDefault();
     const name = e.target.name.value;
     const email = e.target.email.value;
     const photo = e.target.photo.value;
+    const role = e.target.role.value;
     const password = e.target.password.value;
     if (password.length < 6) {
       Swal.fire({
@@ -47,6 +50,17 @@ const Register = () => {
       .then((result) => {
         const user = result.user;
 
+        const userInfo = {
+          email: email,
+          displayName: name,
+          photoURL: photo,
+          role: role,
+        };
+        axiosSecure.post("/users", userInfo).then((res) => {
+          if (res.data.insertedId) {
+            console.log("user created in the database");
+          }
+        });
         updateUser({ displayName: name, photoURL: photo })
           .then(() => {
             setUser({ ...user, displayName: name, photoURL: photo });
@@ -91,6 +105,18 @@ const Register = () => {
         const user = result.user;
         // console.log(result);
         setUser(user);
+
+        const userInfo = {
+          email: user.email,
+          displayName: user.displayName,
+          photoURL: user.photoURL,
+          role: user.role || "Borrower",
+        };
+        axiosSecure.post("/users", userInfo).then((res) => {
+          if (res.data.insertedId) {
+            console.log("user created in the database");
+          }
+        });
         navigate("/");
       })
       .catch((error) => {
@@ -144,18 +170,13 @@ const Register = () => {
             <div className="flex flex-col gap-2 mb-4">
               <label htmlFor="user"> Select Role</label>
               <select
+                name="role"
                 defaultValue="Borrower"
                 className="select text-gray-600 w-full text-lg rounded-none border-transparent border-b border-b-[#2a6877] focus:outline-none focus:ring-0 focus:border-b-2 focus:border-b-[#2a6877]"
               >
                 <option>Borrower</option>
                 <option>Manager</option>
               </select>
-              {/* <input
-                required
-                name="role"
-                type="text"
-                className="input w-full text-lg rounded-none bg-transparent border-transparent border-b border-b-[#2a6877] focus:outline-none focus:ring-0 focus:border-b-2 focus:border-b-[#2a6877]"
-              /> */}
             </div>
             <div className="flex flex-col gap-2 mb-4">
               <label htmlFor="user">Password (Use a strong password)</label>

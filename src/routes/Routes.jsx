@@ -20,6 +20,8 @@ import ManageLoans from "../pages/Dashboard Pages/Manage Loans/ManageLoans";
 import MyLoans from "../pages/Dashboard Pages/My Loans/MyLoans";
 import MyProfile from "../pages/Dashboard Pages/My Profile/MyProfile";
 import { Loader1 } from "../components/Loader/Loader";
+import AdminRoute from "./AdminRoute";
+import ManagerRoute from "./managerRoute";
 
 export const router = createBrowserRouter([
   {
@@ -82,31 +84,59 @@ export const router = createBrowserRouter([
       },
       {
         path: "manage-users",
-        element: <ManageUsers></ManageUsers>,
+        element: (
+          <AdminRoute>
+            <ManageUsers></ManageUsers>
+          </AdminRoute>
+        ),
       },
       {
         path: "allDisplayedLoans",
-        element: <AllDisplayedLoans></AllDisplayedLoans>,
+        element: (
+          <AdminRoute>
+            <AllDisplayedLoans></AllDisplayedLoans>
+          </AdminRoute>
+        ),
       },
       {
         path: "loanApplication",
-        element: <AllLoanApplication></AllLoanApplication>,
+        element: (
+          <AdminRoute>
+            <AllLoanApplication></AllLoanApplication>
+          </AdminRoute>
+        ),
       },
       {
         path: "addLoan",
-        element: <AddLoan></AddLoan>,
+        element: (
+          <ManagerRoute>
+            <AddLoan></AddLoan>,
+          </ManagerRoute>
+        ),
       },
       {
         path: "pendingApplication",
-        element: <PendingApplication></PendingApplication>,
+        element: (
+          <ManagerRoute>
+            <PendingApplication></PendingApplication>
+          </ManagerRoute>
+        ),
       },
       {
         path: "approvedApplication",
-        element: <ApprovedApplication></ApprovedApplication>,
+        element: (
+          <ManagerRoute>
+            <ApprovedApplication></ApprovedApplication>
+          </ManagerRoute>
+        ),
       },
       {
         path: "manageLoan",
-        element: <ManageLoans></ManageLoans>,
+        element: (
+          <ManagerRoute>
+            <ManageLoans></ManageLoans>
+          </ManagerRoute>
+        ),
       },
       {
         path: "myLoans",
