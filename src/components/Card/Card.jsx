@@ -1,39 +1,33 @@
-import React from 'react';
+import React from "react";
+import { Link } from "react-router-dom";
 
-const Card = () => {
-    return (
-        <div
-            className="bg-white rounded-2xl shadow-md hover:shadow-xl transition duration-300 overflow-hidden border border-gray-100"
-            data-aos="fade-up"
-        >
-
-            <img
-                src="insert your image url here"
-                alt=""
-                className="h-48 w-full object-cover hover:scale-105 transition duration-300"
-            />
-
-            <div className="p-4">
-                <p className="text-sm text-purple-500 font-medium mb-1">tag</p>
-                <h3 className="text-lg font-semibold mb-1">card Name</h3>
-                <p className="text-gray-600 text-sm mb-2">name</p>
-
-                <div className="flex justify-between items-center text-sm text-gray-700">
-                    <span>option 1</span>
-                    <span>option 2</span>
-                </div>
-
-                <Link
-                    to="insert your desired url here"
-                    className="block mt-4 w-full text-center bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition duration-200"
-                >
-                    Button text
-                </Link>
-            </div>
+const Card = ({ loan }) => {
+  return (
+    <div className="bg-white rounded-lg shadow-md overflow-hidden flex flex-col hover:shadow-lg transition-shadow duration-200 ">
+      <img
+        src={loan?.loanImage}
+        alt="Student Loan"
+        className="w-full h-45 object-cover"
+      />
+      <div className="p-4 flex flex-col grow">
+        <h3 className="text-lg font-semibold text-gray-800 mb-2">
+          {loan?.loanTitle}
+        </h3>
+        <p className="text-gray-600 text-sm mb-3 line-clamp-2">
+          {loan?.description}
+        </p>
+        <div className="font-bold text-gray-900 mb-4">
+          Max Loan: <span className="text-green-600">${loan?.maxLimit}</span>
         </div>
-
-
-    );
+        <Link
+          to={`/loan-details/${loan._id}`}
+          className="mt-auto text-center bg-[#2a6877] text-white py-2 font-medium cursor-pointer hover:bg-[#24555e] rounded-lg transition-colors duration-200"
+        >
+          View Details
+        </Link>
+      </div>
+    </div>
+  );
 };
 
 export default Card;

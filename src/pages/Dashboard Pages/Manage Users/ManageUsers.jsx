@@ -9,12 +9,13 @@ const ManageUsers = () => {
   ];
 
   const userModalRef = useRef();
+  const suspendModalRef = useRef();
   const userModalOpen = (user) => {
     setSelectedUser(user);
     userModalRef.current.showModal();
   };
   const suspendModalOpen = () => {
-    userModalRef.current.showModal();
+    suspendModalRef.current.showModal();
   };
   return (
     <div className="p-6 ">
@@ -82,7 +83,10 @@ const ManageUsers = () => {
                 </select>
               </div>
               <div className="flex items-center gap-3">
-                <button className="btn rounded-xl bg-transparent border-2 border-[#2a6877] px-6 py-2 w-fit font-semibold text-[#2a6877] hover:bg-[#2a6877] hover:text-white transition duration-300 ">
+                <button
+                  onClick={() => userModalRef.current.closeModal()}
+                  className="btn rounded-xl bg-transparent border-2 border-[#2a6877] px-6 py-2 w-fit font-semibold text-[#2a6877] hover:bg-[#2a6877] hover:text-white transition duration-300 "
+                >
                   Close
                 </button>
                 <button className="btn rounded-xl bg-[#2a6877] px-6 py-2 w-fit font-semibold text-white hover:bg-[#24545c] transition duration-300">
@@ -93,7 +97,10 @@ const ManageUsers = () => {
           </div>
         </div>
       </dialog>
-      <dialog ref={userModalRef} className="modal modal-bottom sm:modal-middle">
+      <dialog
+        ref={suspendModalRef}
+        className="modal modal-bottom sm:modal-middle"
+      >
         <div className="modal-box">
           <form>
             <div className="flex flex-col gap-2 mb-4">

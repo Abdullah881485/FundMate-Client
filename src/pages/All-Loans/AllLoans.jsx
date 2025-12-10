@@ -1,7 +1,18 @@
 import React from "react";
 import LoanCard from "./LoanCard";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
 
 const AllLoans = () => {
+  const axiosSecure = useAxiosSecure();
+
+  const { data: loans = [] } = useQuery({
+    queryKey: ["allLoan"],
+    queryFn: async () => {
+      const res = await axiosSecure.get("/allLoan");
+      return res.data;
+    },
+  });
   return (
     <div>
       <title>FundMate | All Loans</title>
@@ -9,29 +20,9 @@ const AllLoans = () => {
         All Available Loans
       </h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-8">
-        <LoanCard
-          image="https://i.ibb.co.com/5gqcBCzj/Student-Loans-Guide-1024x768.jpg"
-          title="Student Loan"
-          category="Education"
-          interest="5% Yearly"
-          maxLimit="$10,000"
-        />
-
-        <LoanCard
-          image="https://via.placeholder.com/400"
-          title="Small Business Loan"
-          category="Business"
-          interest="7% Yearly"
-          maxLimit="$25,000"
-        />
-
-        <LoanCard
-          image="https://via.placeholder.com/400"
-          title="Agriculture Loan"
-          category="Farming"
-          interest="4% Yearly"
-          maxLimit="$15,000"
-        />
+        {loans.map((loan) => (
+          <LoanCard key={loan._id} loan={loan}></LoanCard>
+        ))}
       </div>
     </div>
   );

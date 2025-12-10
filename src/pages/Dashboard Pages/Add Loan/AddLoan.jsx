@@ -1,10 +1,68 @@
-import React from "react";
+import React, { use, useState } from "react";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import { AuthContext } from "../../../Provider/AuthContext";
+import Swal from "sweetalert2";
+import { Loader1 } from "../../../components/Loader/Loader";
 
 const AddLoan = () => {
+  const axiosSecure = useAxiosSecure();
+  const [loading, setLoading] = useState(false);
+  const [emiPlans, setEmiPlans] = useState([]);
+
+  const handleEMIInput = (e) => {
+    const value = e.target.value;
+    const array = value.split(",").map((item) => item.trim());
+    setEmiPlans(array);
+  };
+
+  const { user } = use(AuthContext);
   const handleAddTransaction = (e) => {
     e.preventDefault();
-    alert("Form submitted"); // Replace with actual submit logic
+    const form = e.target;
+    const email = user.email;
+    const loanTitle = form.loanTitle.value;
+    const interestRate = form.interestRate.value;
+    const description = form.description.value;
+    const category = form.category.value;
+    const maxLimit = form.maxLoanLimit.value;
+    const requiredDocs = form.requiredDocs.value;
+    const availableEMIPlans = emiPlans;
+    const loanImage = form.images.value;
+    alert("Form submitted");
+    const newLoan = {
+      loanTitle,
+      interestRate,
+      description,
+      category,
+      maxLimit,
+      requiredDocs,
+      availableEMIPlans,
+      loanImage,
+      email,
+    };
+    axiosSecure
+      .post("/allLoan", newLoan)
+      .then((data) => {
+        // console.log(data.data);
+        if (data.data) {
+          Swal.fire({
+            title: "",
+            text: "Your Loan added successfully",
+            icon: "success",
+            confirmButtonText: "Close",
+          });
+          setLoading(false);
+          e.target.reset();
+        }
+      })
+      .catch((error) => {
+        console.error("Error adding transaction:", error);
+        setLoading(false);
+      });
   };
+  if (loading) {
+    return <Loader1></Loader1>;
+  }
 
   return (
     <div className="w-[95%] md:w-6/10 mx-auto p-3 md:p-6 rounded-2xl shadow bg-white my-10 text-gray-600">
@@ -30,7 +88,7 @@ const AddLoan = () => {
             <label>Interest Rate (%)</label>
             <input
               name="interestRate"
-              type="number"
+              type="text"
               placeholder="Enter Interest Rate"
               className="input w-full border border-[#2a6877] focus:outline-none focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-white rounded-md"
               required
@@ -90,6 +148,7 @@ const AddLoan = () => {
           <input
             name="emiPlans"
             type="text"
+            onChange={handleEMIInput}
             placeholder="Enter EMI Plans e.g., 6, 12, 24 months"
             className="input w-full border border-[#2a6877] focus:outline-none focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-white rounded-md"
           />
@@ -100,8 +159,7 @@ const AddLoan = () => {
           <label>Upload Images</label>
           <input
             name="images"
-            type="file"
-            multiple
+            type="text"
             className="input w-full border border-[#2a6877] focus:outline-none focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-white rounded-md"
           />
         </div>

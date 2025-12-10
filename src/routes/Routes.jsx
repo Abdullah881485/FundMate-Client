@@ -19,11 +19,13 @@ import ApprovedApplication from "../pages/Dashboard Pages/Approved Application/A
 import ManageLoans from "../pages/Dashboard Pages/Manage Loans/ManageLoans";
 import MyLoans from "../pages/Dashboard Pages/My Loans/MyLoans";
 import MyProfile from "../pages/Dashboard Pages/My Profile/MyProfile";
+import { Loader1 } from "../components/Loader/Loader";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     Component: Root,
+    hydrateFallbackElement: <Loader1></Loader1>,
     errorElement: <ErrorPage />,
     children: [
       {
@@ -53,7 +55,9 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: "/loan-details",
+        path: "/loan-details/:id",
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/loanDetails/${params.id}`),
         element: (
           <PrivateRoute>
             <LoanDetails></LoanDetails>
@@ -64,6 +68,7 @@ export const router = createBrowserRouter([
   },
   {
     path: "/dashboard-layout",
+    hydrateFallbackElement: <Loader1>s</Loader1>,
     element: (
       <PrivateRoute>
         <DashboardLayout></DashboardLayout>

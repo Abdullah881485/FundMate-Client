@@ -1,14 +1,17 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 
 export default function LoanDetails() {
+  const loanDetails = useLoaderData();
+  // console.log(loanDetails);
+
   return (
     <div className="min-h-screen w-[90%] mx-auto py-10">
       <div className="w-[95%] md:w-full mx-auto bg-white shadow-lg rounded-2xl overflow-hidden">
         {/* Loan Image */}
-        <div className="w-full h-64 bg-gray-200">
+        <div className="w-full h-74 bg-gray-200">
           <img
-            src="https://i.ibb.co.com/5gqcBCzj/Student-Loans-Guide-1024x768.jpg"
+            src={loanDetails?.loanImage}
             alt="Loan"
             className="w-full h-full object-cover"
           />
@@ -19,18 +22,16 @@ export default function LoanDetails() {
           {/* Title + Category */}
           <div className="mb-6">
             <h1 className="title-text text-2xl md:text-3xl font-bold text-gray-900 mb-2">
-              Personal Micro Loan
+              {loanDetails?.loanTitle}
             </h1>
             <p className="text-green-600 font-medium bg-blue-50 px-3 py-1 rounded-full inline-block">
-              Category: Personal Loan
+              Category: {loanDetails?.category}
             </p>
           </div>
 
           {/* Description */}
           <p className="text-gray-700 leading-relaxed mb-6">
-            This microloan is designed to support individuals who need a small,
-            fast, and flexible financial boost. Ideal for emergency expenses,
-            education, small businesses, and personal needs.
+            {loanDetails?.description}
           </p>
 
           {/* Loan Details Grid */}
@@ -39,14 +40,16 @@ export default function LoanDetails() {
               <h3 className="font-semibold text-gray-900 mb-1">
                 Interest Rate
               </h3>
-              <p className="text-gray-700">12% per year</p>
+              <p className="text-gray-700">
+                {loanDetails?.interestRate} per year
+              </p>
             </div>
 
             <div className="p-5 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200 bg-gray-50">
               <h3 className="font-semibold text-gray-900 mb-1">
                 Maximum Limit
               </h3>
-              <p className="text-gray-700">Up to 120,000 BDT</p>
+              <p className="text-gray-700">Up to {loanDetails?.maxLimit} BDT</p>
             </div>
 
             <div className="p-5 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200 bg-gray-50">
@@ -54,9 +57,9 @@ export default function LoanDetails() {
                 EMI Plans Available
               </h3>
               <ul className="text-gray-700 list-disc ml-5">
-                <li>3 Months</li>
-                <li>6 Months</li>
-                <li>12 Months</li>
+                {loanDetails.availableEMIPlans.map((emi) => (
+                  <li>{emi}</li>
+                ))}
               </ul>
             </div>
 

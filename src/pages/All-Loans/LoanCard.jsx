@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const LoanCard = ({ image, title, category, interest, maxLimit }) => {
+const LoanCard = ({ loan }) => {
   return (
     <div
       className="bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden flex flex-col 
@@ -9,14 +9,18 @@ const LoanCard = ({ image, title, category, interest, maxLimit }) => {
     >
       {/* Image + Badge */}
       <div className="relative">
-        <img src={image} alt={title} className="w-full h-52 object-cover" />
+        <img
+          src={loan?.loanImage}
+          alt={loan?.loanTitle}
+          className="w-full h-52 object-cover"
+        />
 
         {/* Glass Badge */}
         <span
           className="absolute top-4 left-4 backdrop-blur-md bg-white/40 border border-white/30 
         text-gray-900 text-xs font-medium px-3 py-1 rounded-full shadow-sm"
         >
-          {category}
+          {loan?.category}
         </span>
       </div>
 
@@ -24,21 +28,23 @@ const LoanCard = ({ image, title, category, interest, maxLimit }) => {
       <div className="p-5 flex flex-col grow">
         {/* Title */}
         <h3 className="text-xl font-semibold text-gray-900 mb-2 tracking-tight">
-          {title}
+          {loan?.loanTitle}
         </h3>
 
         {/* Interest */}
         <div className="flex items-center gap-2 mb-2">
           <span className="text-gray-500 text-sm">Interest:</span>
           <span className="text-sm font-semibold text-[#2a6877]">
-            {interest}
+            {loan?.interestRate}
           </span>
         </div>
 
         {/* Max Loan */}
         <div className="flex items-center gap-2 mb-4">
           <span className="text-gray-500 text-sm">Max Loan:</span>
-          <span className="text-lg font-bold text-green-600">{maxLimit}</span>
+          <span className="text-lg font-bold text-green-600">
+            {loan?.maxLimit} $
+          </span>
         </div>
 
         {/* Separator */}
@@ -46,7 +52,7 @@ const LoanCard = ({ image, title, category, interest, maxLimit }) => {
 
         {/* Button */}
         <Link
-          to="/loan-details"
+          to={`/loan-details/${loan._id}`}
           className="mt-auto text-center py-2.5 rounded-lg font-medium 
       bg-[#2a6877]
       text-white shadow-lg shadow-[#2a687722]
