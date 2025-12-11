@@ -1,13 +1,20 @@
 import React, { useRef, useState } from "react";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
+import Pagination from "../../../components/Pagignation/Pagignation";
 
 const ManageUsers = () => {
   const [selectedUser, setSelectedUser] = useState(null);
-  const usersData = [
-    { id: 1, name: "John Doe", email: "john@example.com", role: "Borrower" },
-    { id: 2, name: "Jane Smith", email: "jane@example.com", role: "Manager" },
-    { id: 3, name: "Alice Johnson", email: "alice@example.com", role: "Admin" },
-  ];
+  const axiosSecure = useAxiosSecure();
+  const [page, setPage] = useState(1);
 
+  const { data: usersData = { users: [] }, refetch } = useQuery({
+    queryKey: ["users", page],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/users?page=${page}&limit=10`);
+      return res.data;
+    },
+  });
   const userModalRef = useRef();
   const suspendModalRef = useRef();
   const userModalOpen = (user) => {
@@ -17,6 +24,26 @@ const ManageUsers = () => {
   const suspendModalOpen = () => {
     suspendModalRef.current.showModal();
   };
+
+  const handleRoleUpdate = (e) => {
+    e.preventDefault();
+
+    const form = e.target;
+    const role = form.role.value;
+
+    const updatedRole = {
+      role,
+    };
+    // console.log(updatedLoan);
+
+    axiosSecure.patch(`/users/${selectedUser._id}`, updatedRole).then((res) => {
+      const _data = res.data;
+      refetch();
+      userModalRef.current.close();
+    });
+  };
+  const totalPages = usersData.totalPages || 1;
+
   return (
     <div className="p-6 ">
       <h2 className="text-2xl font-bold mb-4 text-[#2a6877]">Manage Users</h2>
@@ -39,9 +66,11 @@ const ManageUsers = () => {
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200">
-            {usersData.map((user) => (
-              <tr key={user.id} className="hover:bg-gray-50">
-                <td className="px-6 py-4 whitespace-nowrap">{user.name}</td>
+            {usersData.users.map((user) => (
+              <tr key={user._id} className="hover:bg-gray-50">
+                <td className="px-6 py-4 whitespace-nowrap">
+                  {user.displayName}
+                </td>
                 <td className="px-6 py-4 whitespace-nowrap">{user.email}</td>
                 <td className="px-6 py-4 whitespace-nowrap">{user.role}</td>
                 <td className="px-6 py-4 whitespace-nowrap flex gap-2">
@@ -70,10 +99,11 @@ const ManageUsers = () => {
           <h3 className="font-bold text-lg">{selectedUser?.name}</h3>
           <p className="py-4">{selectedUser?.email}</p>
           <div>
-            <form>
+            <form key={selectedUser?._id} onSubmit={handleRoleUpdate}>
               <div className="flex flex-col gap-2 mb-4">
                 <label htmlFor="user"> Selected Role</label>
                 <select
+                  name="role"
                   defaultValue={selectedUser?.role}
                   className="select text-gray-600 w-full text-lg rounded-none border-transparent border-b border-b-[#2a6877] focus:outline-none focus:ring-0 focus:border-b-2 focus:border-b-[#2a6877]"
                 >
@@ -89,7 +119,10 @@ const ManageUsers = () => {
                 >
                   Close
                 </button>
-                <button className="btn rounded-xl bg-[#2a6877] px-6 py-2 w-fit font-semibold text-white hover:bg-[#24545c] transition duration-300">
+                <button
+                  type="submit"
+                  className="btn rounded-xl bg-[#2a6877] px-6 py-2 w-fit font-semibold text-white hover:bg-[#24545c] transition duration-300"
+                >
                   Update
                 </button>
               </div>
@@ -131,6 +164,7 @@ const ManageUsers = () => {
           </form>
         </div>
       </dialog>
+      <Pagination page={page} totalPages={totalPages} onPageChange={setPage} />
     </div>
   );
 };

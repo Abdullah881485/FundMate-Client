@@ -2,13 +2,17 @@ import React, { use } from "react";
 import { AuthContext } from "../../../Provider/AuthContext";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import useRole from "../../../Hooks/useRole";
+import { Loader1 } from "../../../components/Loader/Loader";
 
 const MyProfile = () => {
-  const { user, signOutUser } = use(AuthContext);
+  const { user, signOutUser, loading, setLoading } = use(AuthContext);
+  const { role, roleLoading } = useRole();
   // console.log(user);
-
   const navigate = useNavigate();
+
   const handleSignOut = () => {
+    setLoading(true);
     Swal.fire({
       title: "Are you sure?",
       text: "You'll be logged out of your account.",
@@ -28,14 +32,19 @@ const MyProfile = () => {
               timer: 1500,
               showConfirmButton: false,
             });
+            setLoading(false);
             navigate("/login");
           })
           .catch((err) => {
             console.log(err);
+            setLoading(false);
           });
       }
     });
   };
+  if (loading || roleLoading) {
+    return <Loader1></Loader1>;
+  }
   return (
     <div>
       <title>FinEase | My Profile</title>
@@ -57,7 +66,7 @@ const MyProfile = () => {
                 className="mt-2 inline-block px-4 py-1 rounded-full text-sm font-semibold
                bg-blue-100 text-[#2a6877]"
               >
-                {user?.role || "User"}
+                {role}
               </p>
             </div>
           </div>

@@ -7,6 +7,7 @@ import { Loader1 } from "../../../components/Loader/Loader";
 const AddLoan = () => {
   const axiosSecure = useAxiosSecure();
   const [loading, setLoading] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
   const [emiPlans, setEmiPlans] = useState([]);
 
   const handleEMIInput = (e) => {
@@ -16,50 +17,58 @@ const AddLoan = () => {
   };
 
   const { user } = use(AuthContext);
-  const handleAddTransaction = (e) => {
+  const handleAddTransaction = async (e) => {
     e.preventDefault();
-    const form = e.target;
-    const email = user.email;
-    const loanTitle = form.loanTitle.value;
-    const interestRate = form.interestRate.value;
-    const description = form.description.value;
-    const category = form.category.value;
-    const maxLimit = form.maxLoanLimit.value;
-    const requiredDocs = form.requiredDocs.value;
-    const availableEMIPlans = emiPlans;
-    const loanImage = form.images.value;
-    alert("Form submitted");
-    const newLoan = {
-      loanTitle,
-      interestRate,
-      description,
-      category,
-      maxLimit,
-      requiredDocs,
-      availableEMIPlans,
-      loanImage,
-      email,
-    };
-    axiosSecure
-      .post("/allLoan", newLoan)
-      .then((data) => {
-        // console.log(data.data);
-        if (data.data) {
-          Swal.fire({
-            title: "",
-            text: "Your Loan added successfully",
-            icon: "success",
-            confirmButtonText: "Close",
-          });
-          setLoading(false);
-          e.target.reset();
-        }
-      })
-      .catch((error) => {
-        console.error("Error adding transaction:", error);
-        setLoading(false);
-      });
+    setLoading(true);
+
+    try {
+      const form = e.target;
+
+      const createdBy = user?.email;
+      const loanTitle = form.loanTitle.value;
+      const interestRate = form.interestRate.value;
+      const description = form.description.value;
+      const category = form.category.value;
+      const maxLimit = form.maxLoanLimit.value;
+      const requiredDocs = form.requiredDocs.value;
+      const availableEMIPlans = emiPlans;
+      const loanImage = form.images.value;
+      const showOnHome = isChecked;
+
+      const newLoan = {
+        loanTitle,
+        interestRate,
+        description,
+        category,
+        maxLimit,
+        requiredDocs,
+        availableEMIPlans,
+        loanImage,
+        createdBy,
+        showOnHome,
+        createdAt: new Date(),
+      };
+
+      const res = await axiosSecure.post("/allLoan", newLoan);
+
+      if (res.data) {
+        Swal.fire({
+          text: "Loan added successfully!",
+          icon: "success",
+          confirmButtonText: "Close",
+        });
+
+        // form.reset();
+        setEmiPlans([]);
+      }
+    } catch (error) {
+      console.error("Error adding loan:", error);
+      Swal.fire("Error", "Something went wrong!", "error");
+    } finally {
+      setLoading(false);
+    }
   };
+
   if (loading) {
     return <Loader1></Loader1>;
   }
@@ -67,7 +76,18 @@ const AddLoan = () => {
   return (
     <div className="w-[95%] md:w-6/10 mx-auto p-3 md:p-6 rounded-2xl shadow bg-white my-10 text-gray-600">
       <title>FundMAte | Add Loan</title>
-      <h1 className="text-2xl font-bold mb-4 text-[#2a6877]">Add Loan</h1>
+      <div className="flex items-center justify-between">
+        <h1 className="text-2xl font-bold mb-4 text-[#2a6877]">Add Loan</h1>
+        <div className="flex items-center gap-2">
+          <p className="text-sm text-gray-500">Show on home</p>
+          <input
+            type="checkbox"
+            checked={isChecked}
+            onChange={(e) => setIsChecked(e.target.checked)}
+            className="toggle border-gray-500 checked:border-[#2a6877] checked:bg-[#2a6877] checked:text-white"
+          />
+        </div>
+      </div>
       <form
         onSubmit={handleAddTransaction}
         className="w-full max-w-3xl mx-auto"

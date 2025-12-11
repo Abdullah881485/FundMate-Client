@@ -46,6 +46,7 @@ const AllDisplayedLoans = () => {
       availableEMIPlans,
       loanImage,
     };
+    // console.log(updatedLoan);
 
     axiosSecure
       .patch(`/allLoan/${selectedLoan._id}`, updatedLoan)
@@ -64,6 +65,27 @@ const AllDisplayedLoans = () => {
         const _data = res.data;
         refetch();
       });
+  };
+
+  const handleDeleteLoan = (id, title) => {
+    Swal.fire({
+      title: `Delete ${title}?`,
+      text: "You cannot undo this action!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Delete",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        const res = await axiosSecure.delete(`/allLoan/${id}`);
+
+        if (res.data.deletedCount > 0) {
+          Swal.fire("Deleted!", `${title} has been deleted.`, "success");
+          refetch();
+        }
+      }
+    });
   };
 
   return (
@@ -132,7 +154,7 @@ const AllDisplayedLoans = () => {
                     </button>
                     <button
                       className="px-3 py-1 bg-red-600 text-white font-semibold cursor-pointer rounded-md hover:bg-red-700 transition"
-                      onClick={() => alert(`Delete ${loan.title}`)}
+                      onClick={() => handleDeleteLoan(loan._id, loan.loanTitle)}
                     >
                       Delete
                     </button>
@@ -150,6 +172,7 @@ const AllDisplayedLoans = () => {
           </h3>
 
           <form
+            key={selectedLoan?._id}
             onSubmit={handleUpdateLoan}
             className="py-4 flex flex-col gap-1 text-gray-600"
           >

@@ -75,6 +75,7 @@ export default function LoanDetails() {
           <div className="text-center">
             <Link
               to="/application"
+              state={{ loanDetails }}
               className="bg-[#2a6877]
       text-white shadow-lg shadow-[#2a687722] font-semibold
       hover:bg-[#24555e]  btn px-10 text-xs md:text-[16px] rounded-lg transition cursor-pointer"

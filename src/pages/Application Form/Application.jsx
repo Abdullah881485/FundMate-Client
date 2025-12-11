@@ -2,70 +2,87 @@ import React, { use, useState } from "react";
 import { AuthContext } from "../../Provider/AuthContext";
 import Swal from "sweetalert2";
 import { Loader1 } from "../../components/Loader/Loader";
+import { useLocation } from "react-router-dom";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const Application = () => {
+  const axiosSecure = useAxiosSecure();
+  const location = useLocation();
+  const { loanDetails } = location.state || {};
   const [loading, setLoading] = useState(false);
   const { user } = use(AuthContext);
 
-  const handleAddTransaction = (e) => {
+  const handleApplyLoan = async (e) => {
     e.preventDefault();
     setLoading(true);
-    // const form = e.target;
-    // const type = form.type.value;
-    // const category = form.category.value;
-    // const amount = form.amount.value;
-    // const description = form.description.value;
-    // const date = form.date.value;
-    // const email = form.email.value;
-    // const name = form.name.value;
 
-    // const _newTransaction = {
-    //   type,
-    //   category,
-    //   amount,
-    //   description,
-    //   date,
-    //   email,
-    //   name,
-    // };
-    // axiosInstance
-    //   .post("/myTransaction", newTransaction)
-    //   .then((data) => {
-    //     // console.log(data.data);
-    //     if (data.data) {
-    //       Swal.fire({
-    //         title: "",
-    //         text: "Your Transaction added successfully",
-    //         icon: "success",
-    //         confirmButtonText: "Close",
-    //       });
-    //       setLoading(false);
-    //       e.target.reset();
-    //     }
-    //   })
-    //   .catch((error) => {
-    //     console.error("Error adding transaction:", error);
-    //     setLoading(false);
-    //   });
+    const form = e.target;
 
-    // console.log({ type, category, amount, description, date, email, name });
+    const email = user?.email;
+    const loanTitle = form.loanTitle.value;
+    const category = loanDetails.category;
+    const interestRate = form.interestRate.value;
+
+    const firstName = form.firstName.value;
+    const lastName = form.lastName.value;
+    const contact = form.contact.value;
+    const nid = form.nid.value;
+    const incomeSource = form.incomeSource.value;
+    const monthlyIncome = form.monthlyIncome.value;
+    const loanAmount = form.loanAmount.value;
+    const loanReason = form.loanReason.value;
+    const address = form.address.value;
+    const extraNotes = form.extraNotes.value;
+
+    const newApplication = {
+      email,
+      loanTitle,
+      interestRate,
+      category,
+      firstName,
+      lastName,
+      contact,
+      nid,
+      incomeSource,
+      monthlyIncome,
+      loanAmount,
+      loanReason,
+      address,
+      extraNotes,
+      status: "pending",
+      createdAt: new Date(),
+      feeStatus: "unpaid",
+    };
+
+    try {
+      const res = await axiosSecure.post("/allApplication", newApplication);
+
+      if (res.data) {
+        Swal.fire({
+          text: "Your application was submitted successfully!",
+          icon: "success",
+          confirmButtonText: "Close",
+        });
+
+        form.reset();
+      }
+    } catch (err) {
+      console.error(err);
+      Swal.fire("Error", "Something went wrong!", "error");
+    } finally {
+      setLoading(false);
+    }
   };
+
   if (loading) {
     return <Loader1></Loader1>;
   }
   return (
     <div>
       <div className="w-[95%] md:w-6/10 mx-auto p-3 md:p-6  rounded-2xl shadow bg-white my-10 text-gray-600">
-        <title>FundMAte | Apply Loan</title>
-        <h1 className="text-2xl font-bold mb-4 text-[#2a6877]">
-          Add Transaction
-        </h1>
-        <form
-          onSubmit={handleAddTransaction}
-          className="w-full max-w-3xl mx-auto"
-        >
-          {/* FIXED FIELDS (Read Only) */}
-          {/* User Email */}
+        <title>FundMate | Apply Loan</title>
+        <h1 className="text-2xl font-bold mb-4 text-[#2a6877]">Apply Loan</h1>
+        <form onSubmit={handleApplyLoan} className="w-full max-w-3xl mx-auto">
           <div className="flex flex-col gap-2 mb-4">
             <label>User Email</label>
             <input
@@ -78,14 +95,13 @@ const Application = () => {
             />
           </div>
 
-          {/* Loan Title + Interest Rate */}
           <div className="flex flex-col md:flex-row items-center gap-1 md:gap-6">
             <div className="flex flex-col w-full gap-2 mb-4">
               <label>Loan Title</label>
               <input
-                name="loan_title"
+                name="loanTitle"
                 type="text"
-                // defaultValue={loan?.title}
+                defaultValue={loanDetails?.loanTitle}
                 readOnly
                 className="input w-full border border-[#2a6877] focus:outline-none focus:ring-0 
             focus:border-2 focus:border-b-[#2a6877] bg-white rounded-md"
@@ -95,9 +111,8 @@ const Application = () => {
             <div className="flex flex-col w-full gap-2 mb-4">
               <label>Interest Rate (%)</label>
               <input
-                name="interest"
-                type="number"
-                // defaultValue={loan?.interest}
+                name="interestRate"
+                defaultValue={loanDetails?.interestRate}
                 readOnly
                 className="input w-full border border-[#2a6877] focus:outline-none focus:ring-0 
             focus:border-2 focus:border-b-[#2a6877] bg-white rounded-md"
