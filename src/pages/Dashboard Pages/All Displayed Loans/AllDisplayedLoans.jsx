@@ -89,71 +89,86 @@ const AllDisplayedLoans = () => {
   };
 
   return (
-    <div className="p-6 ">
+    <div className="p-0 md:p-6 ">
       <h2 className="text-2xl font-bold mb-4 text-[#2a6877]">All Loans</h2>
       <div className="overflow-x-auto">
-        <table className="min-w-full divide-y divide-gray-200">
+        <table className="w-full min-w-max divide-y divide-gray-200">
           <thead className="bg-[#2a6877] text-white">
             <tr>
-              <th className="px-4 py-3 text-left text-sm font-medium uppercase">
+              <th className="px-2 md:px-4 py-2 md:py-3 text-left text-xs md:text-sm uppercase">
                 Image
               </th>
-              <th className="px-4 py-3 text-left text-sm font-medium uppercase">
+              <th className="px-2 md:px-4 py-2 md:py-3 text-left text-xs md:text-sm uppercase">
                 Title
               </th>
-              <th className="px-4 py-3 text-left text-sm font-medium uppercase">
+              <th className="px-2 md:px-4 py-2 md:py-3 text-left text-xs md:text-sm uppercase">
                 Interest
               </th>
-              <th className="px-4 py-3 text-left text-sm font-medium uppercase">
+              <th className="px-2 md:px-4 py-2 md:py-3 text-left text-xs md:text-sm uppercase">
                 Category
               </th>
-              <th className="px-4 py-3 text-left text-sm font-medium uppercase">
+              <th className="px-2 md:px-4 py-2 md:py-3 text-left text-xs md:text-sm uppercase">
                 Created By
               </th>
-              <th className="px-4 py-3 text-center text-sm font-medium uppercase">
+              <th className="px-2 md:px-4 py-2 md:py-3 text-center text-xs md:text-sm uppercase">
                 Show on Home
               </th>
-              <th className="px-4 py-3 text-left text-sm font-medium uppercase">
+              <th className="px-2 md:px-4 py-2 md:py-3 text-left text-xs md:text-sm uppercase">
                 Actions
               </th>
             </tr>
           </thead>
+
           <tbody className="divide-y divide-gray-200">
             {loans.map((loan) => (
               <tr key={loan._id} className="hover:bg-gray-50">
-                <td className="px-4 py-3">
+                {/* Image */}
+                <td className="px-2 md:px-4 py-2 md:py-3">
                   <img
                     src={loan.loanImage}
                     alt={loan.loanTitle}
-                    className="w-16 h-16 object-cover rounded-md"
+                    className="w-12 h-12 md:w-16 md:h-16 object-cover rounded-md"
                   />
                 </td>
-                <td className="px-4 py-3">{loan.loanTitle}</td>
-                <td className="px-4 py-3">{loan.interestRate}</td>
-                <td className="px-4 py-3">{loan.category}</td>
-                <td className="px-4 py-3">{loan.createdBy}</td>
-                <td className="px-4 py-3 text-center">
+
+                {/* Title */}
+                <td className="px-2 md:px-4 py-2 md:py-3">{loan.loanTitle}</td>
+
+                {/* Interest */}
+                <td className="px-2 md:px-4 py-2 md:py-3">
+                  {loan.interestRate}
+                </td>
+
+                {/* Category */}
+                <td className="px-2 md:px-4 py-2 md:py-3">{loan.category}</td>
+
+                {/* Creator */}
+                <td className="px-2 md:px-4 py-2 md:py-3">{loan.createdBy}</td>
+
+                {/* Checkbox */}
+                <td className="px-2 md:px-4 py-2 md:py-3 text-center">
                   <input
                     type="checkbox"
                     defaultChecked={loan.showOnHome}
                     onChange={(e) =>
                       handleToggleShowOnHome(loan._id, e.target.checked)
                     }
-                    className="w-5 h-5 text-[#2a6877] border-gray-300 rounded"
+                    className="w-4 h-4 md:w-5 md:h-5 text-[#2a6877] border-gray-300 rounded"
                   />
                 </td>
-                <td>
-                  <div className=" items-center flex gap-2">
+
+                {/* Actions */}
+                <td className="px-2 md:px-4 py-2 md:py-3">
+                  <div className="flex flex-col md:flex-row gap-2">
                     <button
-                      className="px-3 py-1 bg-[#2a6877]
-      text-white shadow-lg shadow-[#2a687722]
-      hover:bg-[#24555e] rounded-md font-semibold cursor-pointer transition"
+                      className="px-3 py-1 bg-[#2a6877] text-white shadow-md rounded-md font-semibold hover:bg-[#24555e] transition"
                       onClick={() => loanModalOpen(loan)}
                     >
                       Update
                     </button>
+
                     <button
-                      className="px-3 py-1 bg-red-600 text-white font-semibold cursor-pointer rounded-md hover:bg-red-700 transition"
+                      className="px-3 py-1 bg-red-600 text-white font-semibold rounded-md hover:bg-red-700 transition"
                       onClick={() => handleDeleteLoan(loan._id, loan.loanTitle)}
                     >
                       Delete
@@ -165,6 +180,7 @@ const AllDisplayedLoans = () => {
           </tbody>
         </table>
       </div>
+
       <dialog ref={loanModalRef} className="modal modal-bottom sm:modal-middle">
         <div className="modal-box">
           <h3 className="font-bold text-lg text-[#2a6877]">

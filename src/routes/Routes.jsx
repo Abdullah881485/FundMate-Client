@@ -23,6 +23,7 @@ import { Loader1 } from "../components/Loader/Loader";
 import AdminRoute from "./AdminRoute";
 import ManagerRoute from "./managerRoute";
 import Success from "../pages/Dashboard Pages/Payment Successful/Success";
+import DashboardHome from "../pages/Dashboard Pages/Dashboard Home/DashboardHome";
 
 export const router = createBrowserRouter([
   {
@@ -81,7 +82,7 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard-layout",
         index: true,
-        element: <ManageUsers></ManageUsers>,
+        element: <DashboardHome></DashboardHome>,
       },
       {
         path: "manage-users",

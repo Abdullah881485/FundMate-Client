@@ -78,7 +78,7 @@ const DashboardLayout = () => {
           />
         </nav>
         {/* Page content here */}
-        <main className="w-[95%] mx-auto my-10">
+        <main className="w-full md:w-[95%]  mx-auto my-10">
           <Outlet></Outlet>
         </main>
 

@@ -8,10 +8,10 @@ const Banner = () => {
       <div className="w-[90%] mx-auto px-4">
         <div className="flex items-center justify-between flex-col lg:flex-row">
           <div className="flex flex-1 flex-col gap-5">
-            <h1 className="title-text font-bold text-6xl">
+            <h1 className="title-text font-bold text-4xl md:text-6xl">
               Quick and Easy Loans for Your Financial Needs.
             </h1>
-            <p className="text-gray-500 text-lg">
+            <p className="text-gray-500 tex-[16px] md:text-lg">
               Our loan services offer a hassle-free and streamlined borrowing
               experience, providing you with the funds you need in a timely
               manner to meet your financial requirements.

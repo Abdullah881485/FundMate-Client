@@ -57,47 +57,92 @@ const Feedback = () => {
         Customer Feedback
       </h1>
 
-      <Swiper
-        effect={"coverflow"}
-        grabCursor={true}
-        centeredSlides={true}
-        slidesPerView={3}
-        loop={true}
-        autoplay={{
-          delay: 1200,
-          disableOnInteraction: false,
-        }}
-        coverflowEffect={{
-          rotate: 50,
-          stretch: 0,
-          depth: 100,
-          modifier: 1,
-          slideShadows: true,
-        }}
-        pagination={true}
-        modules={[EffectCoverflow, Pagination, Autoplay]}
-        className="mySwiper my-10"
-      >
-        {feedbacks.map((feedback) => (
-          <SwiperSlide>
-            <div
-              key={feedback.id}
-              className="bg-white rounded-lg shadow-md p-6 flex flex-col items-center text-center hover:shadow-lg transition-shadow duration-200"
-            >
-              <img
-                src={feedback.photo}
-                alt={feedback.name}
-                className="w-20 h-20 rounded-full mb-4 object-cover"
-              />
-              <p className="text-gray-700 mb-4">"{feedback.message}"</p>
-              <h3 className="text-lg font-semibold text-gray-900">
-                {feedback.name}
-              </h3>
-              <span className="text-sm text-gray-500">{feedback.role}</span>
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+      <div className="block md:hidden">
+        <Swiper
+          effect={"coverflow"}
+          grabCursor={true}
+          centeredSlides={true}
+          slidesPerView={1}
+          loop={true}
+          autoplay={{
+            delay: 1200,
+            disableOnInteraction: false,
+          }}
+          coverflowEffect={{
+            rotate: 50,
+            stretch: 0,
+            depth: 100,
+            modifier: 1,
+            slideShadows: true,
+          }}
+          pagination={true}
+          modules={[EffectCoverflow, Pagination, Autoplay]}
+          className="mySwiper my-10"
+        >
+          {feedbacks.map((feedback) => (
+            <SwiperSlide>
+              <div
+                key={feedback.id}
+                className="bg-white rounded-lg shadow-md p-6 flex flex-col items-center text-center hover:shadow-lg transition-shadow duration-200"
+              >
+                <img
+                  src={feedback.photo}
+                  alt={feedback.name}
+                  className="w-20 h-20 rounded-full mb-4 object-cover"
+                />
+                <p className="text-gray-700 mb-4">"{feedback.message}"</p>
+                <h3 className="text-lg font-semibold text-gray-900">
+                  {feedback.name}
+                </h3>
+                <span className="text-sm text-gray-500">{feedback.role}</span>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
+      <div className="hidden md:block">
+        <Swiper
+          effect={"coverflow"}
+          grabCursor={true}
+          centeredSlides={true}
+          slidesPerView={3}
+          loop={true}
+          autoplay={{
+            delay: 1200,
+            disableOnInteraction: false,
+          }}
+          coverflowEffect={{
+            rotate: 50,
+            stretch: 0,
+            depth: 100,
+            modifier: 1,
+            slideShadows: true,
+          }}
+          pagination={true}
+          modules={[EffectCoverflow, Pagination, Autoplay]}
+          className="mySwiper my-10 "
+        >
+          {feedbacks.map((feedback) => (
+            <SwiperSlide>
+              <div
+                key={feedback.id}
+                className="bg-white rounded-lg shadow-md p-6 flex flex-col items-center text-center hover:shadow-lg transition-shadow duration-200"
+              >
+                <img
+                  src={feedback.photo}
+                  alt={feedback.name}
+                  className="w-20 h-20 rounded-full mb-4 object-cover"
+                />
+                <p className="text-gray-700 mb-4">"{feedback.message}"</p>
+                <h3 className="text-lg font-semibold text-gray-900">
+                  {feedback.name}
+                </h3>
+                <span className="text-sm text-gray-500">{feedback.role}</span>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
     </div>
   );
 };

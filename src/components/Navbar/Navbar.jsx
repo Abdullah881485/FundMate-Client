@@ -1,6 +1,7 @@
 import React, { use, useEffect, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router";
 import { AuthContext } from "../../Provider/AuthContext";
+import { CiLogin } from "react-icons/ci";
 import Swal from "sweetalert2";
 // import Home from "../../pages/Home/Home";
 
@@ -17,7 +18,7 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const [theme, setTheme] = useState(
-    localStorage.getItem("theme") ? localStorage.getItem("theme") : "night"
+    localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
   );
 
   useEffect(() => {
@@ -91,8 +92,10 @@ const Navbar = () => {
       }
     });
   };
+  console.log(user);
+
   return (
-    <div className="w-[90%] mx-auto">
+    <div className="w-[98%] md:w-[90%] mx-auto">
       <div className="navbar mx-auto">
         <div className="navbar-start">
           <div className="dropdown">
@@ -127,7 +130,7 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <div className="mr-6">
+          <div className="mr-2 md:mr-6">
             <label className="toggle w-10 text-gray-600">
               <input
                 checked={theme === "night"}
@@ -136,21 +139,7 @@ const Navbar = () => {
                 value="light"
                 className="theme-controller"
               />
-              <svg
-                aria-label="moon"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-              >
-                <g
-                  strokeLinejoin="round"
-                  strokeLinecap="round"
-                  strokeWidth="2"
-                  fill="none"
-                  stroke="currentColor"
-                >
-                  <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
-                </g>
-              </svg>
+
               <svg
                 aria-label="sun"
                 xmlns="http://www.w3.org/2000/svg"
@@ -174,29 +163,57 @@ const Navbar = () => {
                   <path d="m19.07 4.93-1.41 1.41"></path>
                 </g>
               </svg>
+              <svg
+                aria-label="moon"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+              >
+                <g
+                  strokeLinejoin="round"
+                  strokeLinecap="round"
+                  strokeWidth="2"
+                  fill="none"
+                  stroke="currentColor"
+                >
+                  <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+                </g>
+              </svg>
             </label>
           </div>
           {user ? (
-            <div className="flex items-center gap-2">
-              <img className="w-10 rounded-full" src={user?.photoURL} alt="" />
+            <div className="flex items-center gap-2 ">
+              <div className="border border-gray-200 ">
+                <img
+                  className="w-8 md:w-10 rounded-full "
+                  src={
+                    user?.photoURL
+                      ? user?.photoURL
+                      : "https://i.ibb.co.com/67tscvBq/smiling-man-with-arms-crossed-on-transparent-background-png.png"
+                  }
+                  alt=""
+                />
+              </div>
               <button
                 onClick={handleSignOut}
-                className="btn rounded-2xl bg-[#2a6877] px-6 py-2 w-fit font-semibold text-white hover:bg-[#24545c] transition duration-300 "
+                className="btn hidden md:block rounded-2xl bg-[#2a6877]  w-fit font-semibold text-white hover:bg-[#24545c] transition duration-300 "
               >
                 Sign Out
               </button>
+              <button onClick={handleSignOut} className="text-[#2a6877]  ">
+                <CiLogin size={30} />
+              </button>
             </div>
           ) : (
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-1 md:gap-3">
               <Link
                 to="/login"
-                className="btn rounded-2xl bg-transparent border-2 border-[#2a6877] px-6 py-2 w-fit font-semibold text-[#2a6877] hover:bg-[#2a6877] hover:text-white transition duration-300 "
+                className="btn btn-sm md:btn-md rounded-2xl bg-transparent border-2 border-[#2a6877]  w-fit font-semibold text-[#2a6877] hover:bg-[#2a6877] hover:text-white transition duration-300 "
               >
                 Sign In
               </Link>
               <Link
                 to="/register"
-                className="btn rounded-2xl bg-[#2a6877] px-6 py-2 w-fit font-semibold text-white hover:bg-[#24545c] transition duration-300"
+                className="btn hidden md:block btn-xs md:btn-md rounded-2xl bg-[#2a6877]  w-fit font-semibold text-white hover:bg-[#24545c] transition duration-300"
               >
                 Sign Up
               </Link>

@@ -74,7 +74,7 @@ const AddLoan = () => {
   }
 
   return (
-    <div className="w-[95%] md:w-6/10 mx-auto p-3 md:p-6 rounded-2xl shadow bg-white my-10 text-gray-600">
+    <div className="w-[98%] md:w-6/10 mx-auto p-3 md:p-6 rounded-2xl shadow bg-white my-10 text-gray-600">
       <title>FundMAte | Add Loan</title>
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-bold mb-4 text-[#2a6877]">Add Loan</h1>

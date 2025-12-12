@@ -18,7 +18,7 @@ export default function LoanDetails() {
         </div>
 
         {/* Content */}
-        <div className="p-8">
+        <div className="p-3 md:p-8">
           {/* Title + Category */}
           <div className="mb-6">
             <h1 className="title-text text-2xl md:text-3xl font-bold text-gray-900 mb-2">

@@ -2,7 +2,7 @@ import React, { use, useState } from "react";
 import { AuthContext } from "../../Provider/AuthContext";
 import Swal from "sweetalert2";
 import { Loader1 } from "../../components/Loader/Loader";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const Application = () => {
@@ -276,14 +276,14 @@ const Application = () => {
 
           {/* BUTTONS */}
           <div className="flex items-center justify-center md:justify-between gap-5 mt-3">
-            <button
-              type="reset"
+            <Link
+              to="/"
               className="rounded-md text-xs md:text-sm cursor-pointer py-2.5 md:py-1.5
             px-1 md:px-12 bg-transparent border-2 border-[#2a6877] font-semibold text-[#2a6877] hover:bg-[#2a6877] hover:text-white  
-            w-full sm:w-auto transition-all duration-200 "
+            w-full sm:w-auto transition-all duration-200 text-center"
             >
-              Reset
-            </button>
+              Back
+            </Link>
 
             <button
               type="submit"

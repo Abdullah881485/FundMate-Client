@@ -29,7 +29,7 @@ const HowItWorks = () => {
           </p>
         </div>
       </div>
-      <div className="flex items-center justify-center flex-col md:flex-row">
+      <div className="flex items-center justify-center flex-col-reverse md:flex-row">
         <div className="flex-1 space-y-2">
           <h1 className="title-text text-2xl font-semibold">
             Documentation and Verification

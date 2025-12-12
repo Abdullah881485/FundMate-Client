@@ -25,7 +25,7 @@ const AllLoanApplication = () => {
       ? applications
       : applications.filter((app) => app.status === statusFilter);
   return (
-    <div className="p-6 rounded-md">
+    <div className="p-0 md:p-6 ">
       <h2 className="text-2xl font-bold mb-4 text-[#2a6877]">
         Loan Applications
       </h2>
@@ -39,32 +39,32 @@ const AllLoanApplication = () => {
           onChange={(e) => setStatusFilter(e.target.value)}
         >
           <option value="All">All</option>
-          <option value="Pending">Pending</option>
-          <option value="Approved">Approved</option>
-          <option value="Rejected">Rejected</option>
+          <option value="pending">Pending</option>
+          <option value="approved">Approved</option>
+          <option value="rejected">Rejected</option>
         </select>
       </div>
 
       <div className="overflow-x-auto">
-        <table className="w-full divide-y divide-gray-200">
+        <table className="w-full min-w-max divide-y divide-gray-200">
           <thead className="bg-[#2a6877] text-white">
             <tr>
-              <th className="px-4 py-3 text-left text-sm font-medium uppercase">
+              <th className="px-2 py-2 md:px-4 md:py-3 text-left text-sm font-medium uppercase">
                 Loan ID
               </th>
-              <th className="px-4 py-3 text-left text-sm font-medium uppercase">
+              <th className="px-2 py-2 md:px-4 md:py-3 text-left text-sm font-medium uppercase">
                 User
               </th>
-              <th className="px-4 py-3 text-left text-sm font-medium uppercase">
+              <th className="px-2 py-2 md:px-4 md:py-3 text-left text-sm font-medium uppercase">
                 Loan Category
               </th>
-              <th className="px-4 py-3 text-left text-sm font-medium uppercase">
+              <th className="px-2 py-2 md:px-4 md:py-3 text-left text-sm font-medium uppercase">
                 Amount
               </th>
-              <th className="px-4 py-3 text-left text-sm font-medium uppercase">
+              <th className="px-2 py-2 md:px-4 md:py-3 text-left text-sm font-medium uppercase">
                 Status
               </th>
-              <th className="px-4 py-3 text-left text-sm font-medium uppercase">
+              <th className="px-2 py-2 md:px-4 md:py-3 text-left text-sm font-medium uppercase">
                 Actions
               </th>
             </tr>

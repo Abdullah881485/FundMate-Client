@@ -45,49 +45,56 @@ const ManageUsers = () => {
   const totalPages = usersData.totalPages || 1;
 
   return (
-    <div className="p-6 ">
+    <div className="p-0 md:p-6">
       <h2 className="text-2xl font-bold mb-4 text-[#2a6877]">Manage Users</h2>
       <div className="overflow-x-auto">
-        <table className="min-w-full divide-y divide-gray-200">
+        <table className="w-full min-w-max divide-y divide-gray-200">
           <thead className="bg-[#2a6877] text-white">
             <tr>
-              <th className="px-6 py-3 text-left text-sm font-medium uppercase">
+              <th className="px-3 md:px-6 py-2 md:py-3 text-left text-xs md:text-sm uppercase">
                 Name
               </th>
-              <th className="px-6 py-3 text-left text-sm font-medium uppercase">
+              <th className="px-3 md:px-6 py-2 md:py-3 text-left text-xs md:text-sm uppercase">
                 Email
               </th>
-              <th className="px-6 py-3 text-left text-sm font-medium uppercase">
+              <th className="px-3 md:px-6 py-2 md:py-3 text-left text-xs md:text-sm uppercase">
                 Role
               </th>
-              <th className="px-6 py-3 text-left text-sm font-medium uppercase">
+              <th className="px-3 md:px-6 py-2 md:py-3 text-left text-xs md:text-sm uppercase">
                 Actions
               </th>
             </tr>
           </thead>
+
           <tbody className="divide-y divide-gray-200">
             {usersData.users.map((user) => (
               <tr key={user._id} className="hover:bg-gray-50">
-                <td className="px-6 py-4 whitespace-nowrap">
+                <td className="px-3 md:px-6 py-2 md:py-4 whitespace-nowrap">
                   {user.displayName}
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap">{user.email}</td>
-                <td className="px-6 py-4 whitespace-nowrap">{user.role}</td>
-                <td className="px-6 py-4 whitespace-nowrap flex gap-2">
-                  <button
-                    className="px-3 py-1 bg-[#2a6877]
-      text-white shadow-lg shadow-[#2a687722]
-      hover:bg-[#24555e] rounded-md font-semibold cursor-pointer transition"
-                    onClick={() => userModalOpen(user)}
-                  >
-                    Update
-                  </button>
-                  <button
-                    className="px-3 py-1 bg-red-600 text-white rounded-md font-semibold cursor-pointer hover:bg-red-700 transition"
-                    onClick={suspendModalOpen}
-                  >
-                    Suspend
-                  </button>
+                <td className="px-3 md:px-6 py-2 md:py-4 whitespace-nowrap">
+                  {user.email}
+                </td>
+                <td className="px-3 md:px-6 py-2 md:py-4 whitespace-nowrap">
+                  {user.role}
+                </td>
+
+                <td className="px-3 md:px-6 py-2 md:py-4 whitespace-nowrap">
+                  <div className="flex flex-col md:flex-row gap-2">
+                    <button
+                      className="px-3 py-1 bg-[#2a6877] text-white shadow-lg shadow-[#2a687722] hover:bg-[#24555e] rounded-md font-semibold transition"
+                      onClick={() => userModalOpen(user)}
+                    >
+                      Update
+                    </button>
+
+                    <button
+                      className="px-3 py-1 bg-red-600 text-white rounded-md font-semibold hover:bg-red-700 transition"
+                      onClick={suspendModalOpen}
+                    >
+                      Suspend
+                    </button>
+                  </div>
                 </td>
               </tr>
             ))}
