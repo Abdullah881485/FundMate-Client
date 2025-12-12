@@ -95,8 +95,8 @@ const Navbar = () => {
   console.log(user);
 
   return (
-    <div className="w-[98%] md:w-[90%] mx-auto">
-      <div className="navbar mx-auto">
+    <nav className=" sticky top-0 z-50 bg-white">
+      <div className="navbar mx-auto w-[98%] md:w-[90%]">
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -224,7 +224,7 @@ const Navbar = () => {
           )}
         </div>
       </div>
-    </div>
+    </nav>
   );
 };
 

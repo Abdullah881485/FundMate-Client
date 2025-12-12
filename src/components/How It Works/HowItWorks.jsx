@@ -53,7 +53,7 @@ const HowItWorks = () => {
       <div className="flex items-center justify-center flex-col md:flex-row">
         <div className="flex-1">
           <img
-            src="https://i.ibb.co.com/Qv5M1172/pngtree-approved-document-or-file-with-green-stamp-vector-png-image-14506567.png"
+            src="https://i.ibb.co.com/5gGKxZzg/pngtree-d-file-correct-paperwork-approved-document-with-a-green-check-mark-png-image-14532048.png"
             alt=""
             className="w-100"
           />
