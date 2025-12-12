@@ -1,4 +1,4 @@
-import React from "react";
+import React, { use } from "react";
 import { FaHome, FaUsers } from "react-icons/fa";
 import { FaMoneyCheckDollar } from "react-icons/fa6";
 import { GiReceiveMoney } from "react-icons/gi";
@@ -15,9 +15,11 @@ import { CgProfile } from "react-icons/cg";
 import Footer from "../../components/Footer/Footer";
 import useRole from "../../Hooks/useRole";
 import { Loader1 } from "../../components/Loader/Loader";
+import { AuthContext } from "../../Provider/AuthContext";
 const DashboardLayout = () => {
   const { role, roleLoading } = useRole();
-  console.log(role);
+  // console.log(role);
+  const { user } = use(AuthContext);
 
   const getLinkStyle = ({ isActive }) => {
     return {
@@ -67,7 +69,11 @@ const DashboardLayout = () => {
 
           <img
             className="object-cover rounded-full w-10 border"
-            src="https://i.ibb.co.com/67tscvBq/smiling-man-with-arms-crossed-on-transparent-background-png.png"
+            src={
+              user?.photoURL
+                ? user?.photoURL
+                : "https://i.ibb.co.com/67tscvBq/smiling-man-with-arms-crossed-on-transparent-background-png.png"
+            }
             alt=""
           />
         </nav>

@@ -94,31 +94,53 @@ const Application = () => {
           focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-white rounded-md"
             />
           </div>
-
-          <div className="flex flex-col md:flex-row items-center gap-1 md:gap-6">
-            <div className="flex flex-col w-full gap-2 mb-4">
-              <label>Loan Title</label>
-              <input
-                name="loanTitle"
-                type="text"
-                defaultValue={loanDetails?.loanTitle}
-                readOnly
-                className="input w-full border border-[#2a6877] focus:outline-none focus:ring-0 
+          {loanDetails ? (
+            <div className="flex flex-col md:flex-row items-center gap-1 md:gap-6">
+              <div className="flex flex-col w-full gap-2 mb-4">
+                <label>Loan Title</label>
+                <input
+                  name="loanTitle"
+                  type="text"
+                  defaultValue={loanDetails?.loanTitle}
+                  readOnly
+                  className="input w-full border border-[#2a6877] focus:outline-none focus:ring-0 
             focus:border-2 focus:border-b-[#2a6877] bg-white rounded-md"
-              />
-            </div>
+                />
+              </div>
 
-            <div className="flex flex-col w-full gap-2 mb-4">
-              <label>Interest Rate (%)</label>
-              <input
-                name="interestRate"
-                defaultValue={loanDetails?.interestRate}
-                readOnly
-                className="input w-full border border-[#2a6877] focus:outline-none focus:ring-0 
+              <div className="flex flex-col w-full gap-2 mb-4">
+                <label>Interest Rate (%)</label>
+                <input
+                  name="interestRate"
+                  defaultValue={loanDetails?.interestRate}
+                  readOnly
+                  className="input w-full border border-[#2a6877] focus:outline-none focus:ring-0 
             focus:border-2 focus:border-b-[#2a6877] bg-white rounded-md"
-              />
+                />
+              </div>
             </div>
-          </div>
+          ) : (
+            <div className="flex flex-col md:flex-row items-center gap-1 md:gap-6">
+              <div className="flex flex-col w-full gap-2 mb-4">
+                <label>Loan Title</label>
+                <input
+                  name="loanTitle"
+                  type="text"
+                  className="input w-full border border-[#2a6877] focus:outline-none focus:ring-0 
+            focus:border-2 focus:border-b-[#2a6877] bg-white rounded-md"
+                />
+              </div>
+
+              <div className="flex flex-col w-full gap-2 mb-4">
+                <label>Interest Rate (%)</label>
+                <input
+                  name="interestRate"
+                  className="input w-full border border-[#2a6877] focus:outline-none focus:ring-0 
+            focus:border-2 focus:border-b-[#2a6877] bg-white rounded-md"
+                />
+              </div>
+            </div>
+          )}
 
           {/* USER INPUT SECTION */}
           <h3 className="text-lg font-semibold mb-3 mt-4">

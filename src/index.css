@@ -1,6 +1,10 @@
 @import "tailwindcss";
 @plugin "daisyui";
 /* className="bg-linear-to-r from-[#C9E4DE] to-[#DFE3E7]" */
+@plugin "daisyui" {
+  themes: light --default, night --prefersdark;
+}
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 .title-text {
   color: #2a6877;
   font-weight: bold;

@@ -1,21 +1,33 @@
-import React, { use } from "react";
+import React, { use, useEffect, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router";
 import { AuthContext } from "../../Provider/AuthContext";
 import Swal from "sweetalert2";
 // import Home from "../../pages/Home/Home";
 
-
 const getLinkStyle = ({ isActive }) => {
   return {
     color: isActive ? "#2a6877" : "",
     borderBottom: isActive ? "2px solid #2a6877" : "none",
-    borderRadius: isActive ? "0" : "0", 
+    borderRadius: isActive ? "0" : "0",
   };
 };
 
 const Navbar = () => {
   const { user, signOutUser } = use(AuthContext);
   const navigate = useNavigate();
+
+  const [theme, setTheme] = useState(
+    localStorage.getItem("theme") ? localStorage.getItem("theme") : "night"
+  );
+
+  useEffect(() => {
+    const html = document.querySelector("html");
+    html.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+  const toggleTheme = (checked) => {
+    setTheme(checked ? "night" : "light");
+  };
   const links = (
     <>
       <li className=" hover:text-[#2a6877]">
@@ -115,13 +127,65 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
+          <div className="mr-6">
+            <label className="toggle w-10 text-gray-600">
+              <input
+                checked={theme === "night"}
+                onChange={(e) => toggleTheme(e.target.checked)}
+                type="checkbox"
+                value="light"
+                className="theme-controller"
+              />
+              <svg
+                aria-label="moon"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+              >
+                <g
+                  strokeLinejoin="round"
+                  strokeLinecap="round"
+                  strokeWidth="2"
+                  fill="none"
+                  stroke="currentColor"
+                >
+                  <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+                </g>
+              </svg>
+              <svg
+                aria-label="sun"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+              >
+                <g
+                  strokeLinejoin="round"
+                  strokeLinecap="round"
+                  strokeWidth="2"
+                  fill="none"
+                  stroke="currentColor"
+                >
+                  <circle cx="12" cy="12" r="4"></circle>
+                  <path d="M12 2v2"></path>
+                  <path d="M12 20v2"></path>
+                  <path d="m4.93 4.93 1.41 1.41"></path>
+                  <path d="m17.66 17.66 1.41 1.41"></path>
+                  <path d="M2 12h2"></path>
+                  <path d="M20 12h2"></path>
+                  <path d="m6.34 17.66-1.41 1.41"></path>
+                  <path d="m19.07 4.93-1.41 1.41"></path>
+                </g>
+              </svg>
+            </label>
+          </div>
           {user ? (
-            <button
-              onClick={handleSignOut}
-              className="btn rounded-2xl bg-[#2a6877] px-6 py-2 w-fit font-semibold text-white hover:bg-[#24545c] transition duration-300 "
-            >
-              Sign Out
-            </button>
+            <div className="flex items-center gap-2">
+              <img className="w-10 rounded-full" src={user?.photoURL} alt="" />
+              <button
+                onClick={handleSignOut}
+                className="btn rounded-2xl bg-[#2a6877] px-6 py-2 w-fit font-semibold text-white hover:bg-[#24545c] transition duration-300 "
+              >
+                Sign Out
+              </button>
+            </div>
           ) : (
             <div className="flex items-center gap-3">
               <Link

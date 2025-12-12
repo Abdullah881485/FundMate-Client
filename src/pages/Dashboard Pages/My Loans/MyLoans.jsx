@@ -8,7 +8,9 @@ const MyLoans = () => {
   const axiosSecure = useAxiosSecure();
   const { user } = use(AuthContext);
   const applicationModalRef = useRef();
+  const detailsModalRef = useRef();
   const [selectedApplication, setSelectedApplication] = useState(null);
+  const [selectedPayment, setSelectedPayment] = useState(null);
 
   const openApplicationModal = (loan) => {
     setSelectedApplication(loan);
@@ -24,6 +26,11 @@ const MyLoans = () => {
     },
   });
 
+  const handlePaymentDetails = async (loan) => {
+    const res = await axiosSecure.get(`/payment?id=${loan._id}`);
+    setSelectedPayment(res.data);
+    detailsModalRef.current.showModal();
+  };
   const handleDeleteLoan = (id, title) => {
     Swal.fire({
       title: `Delete ${title}?`,
@@ -43,6 +50,17 @@ const MyLoans = () => {
         }
       }
     });
+  };
+
+  const handlePayment = async (loan) => {
+    const paymentInfo = {
+      loanId: loan._id,
+      email: user.email,
+      loanTitle: loan.loanTitle,
+    };
+    const res = await axiosSecure.post("applicationFee", paymentInfo);
+    // console.log(res.data);
+    window.location.href = res.data.url;
   };
   return (
     <div className=" p-6">
@@ -78,7 +96,7 @@ const MyLoans = () => {
                     </div>
                   </td>
 
-                  <td className="px-4 py-3 text-green-600">
+                  <td className="px-4 py-3 font-medium text-green-600">
                     $ {loan.loanAmount}
                   </td>
 
@@ -119,13 +137,19 @@ const MyLoans = () => {
                     )}
 
                     {loan.feeStatus === "unpaid" ? (
-                      <button className="bg-teal-500 hover:bg-teal-600 text-white px-3 py-1 rounded-md text-sm font-semibold">
+                      <button
+                        onClick={() => handlePayment(loan)}
+                        className="bg-teal-500 hover:bg-teal-600 text-white px-3 py-1 rounded-md text-sm font-semibold"
+                      >
                         Pay Fee
                       </button>
                     ) : (
-                      <span className="bg-green-500 text-white px-3 py-1 rounded-md text-sm font-semibold">
+                      <button
+                        onClick={() => handlePaymentDetails(loan)}
+                        className="bg-green-500 text-white px-3 py-1 rounded-md text-sm font-semibold"
+                      >
                         Paid
-                      </span>
+                      </button>
                     )}
                   </td>
                 </tr>
@@ -222,6 +246,70 @@ const MyLoans = () => {
             <button
               className="btn rounded-xl bg-[#2a6877] px-6 py-2 font-semibold text-white hover:bg-[#24545c] transition duration-300"
               onClick={() => applicationModalRef.current.close()}
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </dialog>
+      <dialog
+        ref={detailsModalRef}
+        className="modal modal-bottom sm:modal-middle"
+      >
+        <div className="modal-box">
+          <h3 className="font-bold text-lg text-[#2a6877]">
+            Application Details
+          </h3>
+
+          <div className="py-4 flex flex-col gap-3 text-gray-700">
+            <div className="p-3 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200 bg-gray-50">
+              <h4 className="font-semibold text-[#2a6877]">
+                Borrower Information
+              </h4>
+
+              <p>
+                <span className="font-semibold">Email:</span>{" "}
+                {selectedPayment?.email}
+              </p>
+            </div>
+
+            <div className="p-3 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200 bg-gray-50">
+              <h4 className="font-semibold text-[#2a6877]">Loan Information</h4>
+              <p>
+                <span className="font-semibold">Loan Title:</span>{" "}
+                {selectedPayment?.loanTitle}
+              </p>
+              <p>
+                <span className="font-semibold">TransactionId:</span>{" "}
+                {selectedPayment?.transactionId}
+              </p>
+            </div>
+            <div className="p-3 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200 bg-gray-50">
+              <h4 className="font-semibold text-[#2a6877]">
+                Application Status
+              </h4>
+              <p>
+                <span className="font-semibold">Status:</span>{" "}
+                <span
+                  className={
+                    selectedPayment?.feeStatus === "paid"
+                      ? "text-green-600 font-bold"
+                      : selectedPayment?.feeStatus === "pending"
+                      ? "text-yellow-600 font-bold"
+                      : "text-red-600 font-bold"
+                  }
+                >
+                  {selectedPayment?.feeStatus}
+                </span>
+              </p>
+            </div>
+          </div>
+
+          {/* Close Button */}
+          <div className="modal-action">
+            <button
+              className="btn rounded-xl bg-[#2a6877] px-6 py-2 font-semibold text-white hover:bg-[#24545c] transition duration-300"
+              onClick={() => detailsModalRef.current.close()}
             >
               Close
             </button>

@@ -22,6 +22,7 @@ import MyProfile from "../pages/Dashboard Pages/My Profile/MyProfile";
 import { Loader1 } from "../components/Loader/Loader";
 import AdminRoute from "./AdminRoute";
 import ManagerRoute from "./managerRoute";
+import Success from "../pages/Dashboard Pages/Payment Successful/Success";
 
 export const router = createBrowserRouter([
   {
@@ -145,6 +146,10 @@ export const router = createBrowserRouter([
       {
         path: "myProfile",
         element: <MyProfile></MyProfile>,
+      },
+      {
+        path: "success",
+        element: <Success></Success>,
       },
     ],
   },
