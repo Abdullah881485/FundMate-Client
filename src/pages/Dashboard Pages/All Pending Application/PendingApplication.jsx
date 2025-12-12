@@ -74,13 +74,13 @@ const PendingApplication = () => {
     });
   };
   return (
-    <div className=" p-6">
-      <h1 className="text-2xl font-bold mb-6 text-[#2a6877]">
+    <div className="p-0 md:p-6">
+      <h1 className="text-lg md:text-2xl font-bold mb-6 text-[#2a6877]">
         Pending Loan Applications
       </h1>
 
       <div className="overflow-x-auto">
-        <table className="min-w-full divide-y divide-gray-200">
+        <table className="min-w-max w-full divide-y divide-gray-200">
           <thead className="bg-[#2a6877] text-white">
             <tr>
               <th className="px-4 py-2 text-left">Loan ID</th>
@@ -100,29 +100,33 @@ const PendingApplication = () => {
                     <span className="text-gray-500 text-sm">{loan?.email}</span>
                   </div>
                 </td>
-                <td className="px-4 py-3">{loan?.loanAmount}</td>
+                <td className="px-4 py-3 text-green-600">
+                  $ {loan?.loanAmount}
+                </td>
                 <td className="px-4 py-3">{loan?.createdAt}</td>
                 <td className="px-4 py-3 flex gap-2 justify-center">
-                  <button
-                    onClick={() => handleApproved(loan?._id)}
-                    className="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-md text-sm font-semibold"
-                  >
-                    Approve
-                  </button>
-                  <button
-                    onClick={() => handleRejected(loan?._id)}
-                    className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-md text-sm font-semibold"
-                  >
-                    Reject
-                  </button>
-                  <button
-                    onClick={() => openApplicationModal(loan)}
-                    className="bg-[#2a6877]
+                  <div className="flex items-center gap-2 ">
+                    <button
+                      onClick={() => handleApproved(loan?._id)}
+                      className="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-md text-sm font-semibold"
+                    >
+                      Approve
+                    </button>
+                    <button
+                      onClick={() => handleRejected(loan?._id)}
+                      className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-md text-sm font-semibold"
+                    >
+                      Reject
+                    </button>
+                    <button
+                      onClick={() => openApplicationModal(loan)}
+                      className="bg-[#2a6877]
       text-white shadow-lg shadow-[#2a687722]
       hover:bg-[#24555e] px-3 py-1 rounded-md text-sm font-semibold"
-                  >
-                    View
-                  </button>
+                    >
+                      View
+                    </button>
+                  </div>
                 </td>
               </tr>
             ))}

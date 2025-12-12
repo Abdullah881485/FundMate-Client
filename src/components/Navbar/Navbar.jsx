@@ -199,7 +199,10 @@ const Navbar = () => {
               >
                 Sign Out
               </button>
-              <button onClick={handleSignOut} className="text-[#2a6877]  ">
+              <button
+                onClick={handleSignOut}
+                className="text-[#2a6877] block md:hidden "
+              >
                 <CiLogin size={30} />
               </button>
             </div>

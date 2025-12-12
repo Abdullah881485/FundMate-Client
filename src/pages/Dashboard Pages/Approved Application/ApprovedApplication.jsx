@@ -19,13 +19,13 @@ const ApprovedApplication = () => {
     },
   });
   return (
-    <div className=" p-6">
+    <div className="p-0 md:p-6">
       <h1 className="text-2xl font-bold mb-6 text-[#2a6877]">
         Approved Loan Applications
       </h1>
 
       <div className="overflow-x-auto">
-        <table className="min-w-full divide-y divide-gray-200">
+        <table className="min-w-max w-full divide-y divide-gray-200">
           <thead className="bg-[#2a6877] text-white">
             <tr>
               <th className="px-4 py-2 text-left">Loan ID</th>
@@ -50,7 +50,9 @@ const ApprovedApplication = () => {
                   </div>
                 </td>
 
-                <td className="px-4 py-3">{loan?.loanAmount}</td>
+                <td className="px-4 py-3 text-green-600">
+                  $ {loan?.loanAmount}
+                </td>
                 <td className="px-4 py-3">{loan?.approvedAt}</td>
 
                 <td className="px-4 py-3 flex gap-2 justify-center">

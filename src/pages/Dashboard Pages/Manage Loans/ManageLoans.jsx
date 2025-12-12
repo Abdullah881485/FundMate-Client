@@ -77,10 +77,10 @@ const ManageLoans = () => {
     });
   };
   return (
-    <div className="p-6 ">
+    <div className="md:p-6 p-0 ">
       <h2 className="text-2xl font-bold mb-4 text-[#2a6877]">Manage Loans</h2>
       <div className="overflow-x-auto">
-        <table className="min-w-full divide-y divide-gray-200">
+        <table className="min-w-max w-full divide-y divide-gray-200">
           <thead className="bg-[#2a6877] text-white">
             <tr>
               <th className="px-4 py-3 text-left text-sm font-medium uppercase">

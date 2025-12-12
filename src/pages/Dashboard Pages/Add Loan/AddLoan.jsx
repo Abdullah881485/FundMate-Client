@@ -74,12 +74,12 @@ const AddLoan = () => {
   }
 
   return (
-    <div className="w-[98%] md:w-6/10 mx-auto p-3 md:p-6 rounded-2xl shadow bg-white my-10 text-gray-600">
+    <div className="w-[99%] md:w-6/10 mx-auto p-3 md:p-6 rounded-2xl shadow bg-white my-10 text-gray-600">
       <title>FundMAte | Add Loan</title>
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-bold mb-4 text-[#2a6877]">Add Loan</h1>
         <div className="flex items-center gap-2">
-          <p className="text-sm text-gray-500">Show on home</p>
+          <p className="text-sm text-gray-500 hidden md:block">Show on home</p>
           <input
             type="checkbox"
             checked={isChecked}
@@ -180,6 +180,7 @@ const AddLoan = () => {
           <input
             name="images"
             type="text"
+            placeholder="Upload a image url"
             className="input w-full border border-[#2a6877] focus:outline-none focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-white rounded-md"
           />
         </div>

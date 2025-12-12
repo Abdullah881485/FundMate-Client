@@ -49,8 +49,8 @@ const MyProfile = () => {
     <div>
       <title>FinEase | My Profile</title>
 
-      <div className="w-[95%] md:w-10/12 mx-auto my-10">
-        <div className="bg-white rounded-2xl shadow p-6">
+      <div className="w-[99%] md:w-10/12 mx-auto my-10">
+        <div className="bg-white rounded-2xl shadow p-2 md:p-6">
           <h1 className="text-2xl font-bold mb-6 text-[#2a6877]">My Profile</h1>
           <div className="flex flex-col md:flex-row items-center gap-6 mb-8">
             <img
