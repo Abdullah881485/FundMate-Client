@@ -53,7 +53,7 @@ const DashboardLayout = () => {
             <label
               htmlFor="my-drawer-4"
               aria-label="open sidebar"
-              className="btn btn-square btn-ghost"
+              className="btn btn-square btn-ghost text-gray-600"
             >
               {/* Sidebar toggle icon */}
               <svg

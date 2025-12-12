@@ -12,6 +12,7 @@ const AllDisplayedLoans = () => {
     const array = value.split(",").map((item) => item.trim());
     setEmiPlans(array);
   };
+  console.log(selectedLoan);
 
   const { data: loans = [], refetch } = useQuery({
     queryKey: ["allLoan"],
@@ -258,7 +259,7 @@ const AllDisplayedLoans = () => {
             <div className="flex flex-col gap-1">
               <label className="">Available EMI Plans (Comma Separated)</label>
               <input
-                defaultValue={selectedLoan?.emiPlans}
+                defaultValue={selectedLoan?.availableEMIPlans?.join(", ")}
                 type="text"
                 onChange={handleEMIInput}
                 name="availableEmiPlans"
@@ -272,8 +273,9 @@ const AllDisplayedLoans = () => {
               <label className="">Upload Images</label>
               <input
                 name="image"
+                placeholder="place a URL"
                 defaultValue={selectedLoan?.loanImage}
-                className="file-input input w-full border border-[#2a6877] focus:outline-none focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-white rounded-md"
+                className=" input w-full border border-[#2a6877] focus:outline-none focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-white rounded-md"
               />
             </div>
 

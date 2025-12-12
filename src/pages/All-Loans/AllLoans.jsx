@@ -10,6 +10,7 @@ const AllLoans = () => {
   const [totalPage, setTotalPage] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const limit = 6;
+  console.log(totalLoans);
 
   const { data: loans = [], refetch } = useQuery({
     queryKey: ["allLoan", currentPage],
@@ -47,8 +48,6 @@ const AllLoans = () => {
   return (
     <div className="w-[90%] mx-auto">
       <title>FundMate | All Loans</title>
-
-      <p>total : {totalLoans}</p>
 
       <h1 className="title-text text-center font-bold text-3xl my-5">
         All Available Loans

@@ -3,10 +3,11 @@ import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import { AuthContext } from "../../../Provider/AuthContext";
 import Swal from "sweetalert2";
+import { Loader1 } from "../../../components/Loader/Loader";
 
 const MyLoans = () => {
   const axiosSecure = useAxiosSecure();
-  const { user } = use(AuthContext);
+  const { user, loading } = use(AuthContext);
   const applicationModalRef = useRef();
   const detailsModalRef = useRef();
   const [selectedApplication, setSelectedApplication] = useState(null);
@@ -16,8 +17,13 @@ const MyLoans = () => {
     setSelectedApplication(loan);
     applicationModalRef.current.showModal();
   };
-  const { data: myLoans = [], refetch } = useQuery({
+  const {
+    data: myLoans = [],
+    refetch,
+    isLoading,
+  } = useQuery({
     queryKey: ["myLoanApplication", user?.email],
+    enabled: !loading && !!user?.email,
     queryFn: async () => {
       const res = await axiosSecure.get(
         `/myLoanApplication?email=${user?.email}`
@@ -62,6 +68,10 @@ const MyLoans = () => {
     // console.log(res.data);
     window.location.href = res.data.url;
   };
+
+  if (loading || isLoading) {
+    return <Loader1></Loader1>;
+  }
   return (
     <div className="p-0 md:p-6">
       <h1 className="text-2xl font-bold mb-6 text-[#2a6877]">My Loans</h1>

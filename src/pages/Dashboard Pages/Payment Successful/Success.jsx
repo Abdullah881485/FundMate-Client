@@ -25,7 +25,7 @@ const Success = () => {
         src="https://i.ibb.co.com/tpr3VcrS/free-payment-successful-3543010-2969397.png"
         alt=""
       />
-      <h1 className="font-bold text-2xl text-[#2a6877]">
+      <h1 className="font-bold text-xl text-center md:text-2xl text-[#2a6877]">
         Application Fee paid Successfully
       </h1>
       <Link

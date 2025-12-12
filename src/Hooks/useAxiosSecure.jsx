@@ -1,9 +1,26 @@
 import axios from "axios";
-import React from "react";
+import { use, useEffect } from "react";
+import { AuthContext } from "../Provider/AuthContext";
+
 const axiosSecure = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: "https://fundmate-server.vercel.app",
 });
+
 const useAxiosSecure = () => {
+  const { user } = use(AuthContext);
+  // console.log(user);
+  // console.log(user?.accessToken);
+
+  useEffect(() => {
+    axiosSecure.interceptors.request.use(
+      (config) => {
+        config.headers.Authorization = `Bearer ${user?.accessToken}`;
+        return config;
+      },
+      [user]
+    );
+  });
+
   return axiosSecure;
 };
 

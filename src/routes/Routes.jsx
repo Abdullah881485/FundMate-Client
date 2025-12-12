@@ -61,7 +61,7 @@ export const router = createBrowserRouter([
       {
         path: "/loan-details/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/loanDetails/${params.id}`),
+          fetch(`https://fundmate-server.vercel.app/loanDetails/${params.id}`),
         element: (
           <PrivateRoute>
             <LoanDetails></LoanDetails>

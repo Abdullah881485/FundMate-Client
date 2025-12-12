@@ -1,8 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
-import React, { use, useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { AuthContext } from "../../../Provider/AuthContext";
 import Swal from "sweetalert2";
+import { Loader1 } from "../../../components/Loader/Loader";
 
 const ManageLoans = () => {
   const [selectedLoan, setSelectedLoan] = useState(null);
@@ -10,9 +11,14 @@ const ManageLoans = () => {
   const [searchText, setSearchText] = useState("");
   const updateModalRef = useRef();
   const axiosSecure = useAxiosSecure();
-  const { user } = use(AuthContext);
-  const { data: loans = [], refetch } = useQuery({
+  const { user, loading } = useContext(AuthContext);
+  const {
+    data: loans = [],
+    refetch,
+    isLoading,
+  } = useQuery({
     queryKey: ["manageLoan", user?.email],
+    enabled: !loading && !!user?.email,
     queryFn: async () => {
       const res = await axiosSecure.get(`/manageLoan?email=${user?.email}`);
       return res.data;
@@ -77,6 +83,10 @@ const ManageLoans = () => {
       }
     });
   };
+
+  if (loading || isLoading) {
+    return <Loader1></Loader1>;
+  }
   return (
     <div className="md:p-6 p-0 ">
       <div className="flex flex-col my-2 md:flex-row justify-between">
@@ -113,8 +123,10 @@ const ManageLoans = () => {
           </thead>
           <tbody className="divide-y divide-gray-200">
             {loans
-              .filter((loan) =>
-                loan.loanTitle.toLowerCase().includes(searchText.toLowerCase())
+              .filter(
+                (loan) =>
+                  loan.loanTitle ||
+                  "".toLowerCase().includes(searchText.toLowerCase())
               )
               .map((loan) => (
                 <tr key={loan._id} className="hover:bg-gray-50">
@@ -202,8 +214,6 @@ const ManageLoans = () => {
                 required
               />
             </div>
-
-            {/* Category + Max Loan Limit */}
             <div className="flex flex-col md:flex-row gap-6 mb-4">
               <div className="flex flex-col flex-1 gap-2">
                 <label>Category</label>
@@ -233,7 +243,7 @@ const ManageLoans = () => {
             <div className="flex flex-col gap-1">
               <label className="">Available EMI Plans (Comma Separated)</label>
               <input
-                defaultValue={selectedLoan?.emiPlans}
+                defaultValue={selectedLoan?.availableEMIPlans?.join(", ")}
                 type="text"
                 onChange={handleEMIInput}
                 name="availableEmiPlans"
@@ -248,7 +258,7 @@ const ManageLoans = () => {
               <input
                 name="image"
                 defaultValue={selectedLoan?.loanImage}
-                className="file-input input w-full border border-[#2a6877] focus:outline-none focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-white rounded-md"
+                className=" input w-full border border-[#2a6877] focus:outline-none focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-white rounded-md"
               />
             </div>
 
