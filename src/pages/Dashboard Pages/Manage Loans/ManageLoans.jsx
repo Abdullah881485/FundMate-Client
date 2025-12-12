@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 const ManageLoans = () => {
   const [selectedLoan, setSelectedLoan] = useState(null);
   const [emiPlans, setEmiPlans] = useState([]);
+  const [searchText, setSearchText] = useState("");
   const updateModalRef = useRef();
   const axiosSecure = useAxiosSecure();
   const { user } = use(AuthContext);
@@ -78,7 +79,17 @@ const ManageLoans = () => {
   };
   return (
     <div className="md:p-6 p-0 ">
-      <h2 className="text-2xl font-bold mb-4 text-[#2a6877]">Manage Loans</h2>
+      <div className="flex flex-col my-2 md:flex-row justify-between">
+        <h2 className="text-2xl font-bold mb-4 text-[#2a6877]">Manage Loans</h2>
+        <input
+          type="text"
+          placeholder="Search by title..."
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)}
+          className="input input-bordered w-full md:w-1/4 border-gray-300 focus:border-[#2a6877]"
+        />
+      </div>
+
       <div className="overflow-x-auto">
         <table className="min-w-max w-full divide-y divide-gray-200">
           <thead className="bg-[#2a6877] text-white">
@@ -101,38 +112,44 @@ const ManageLoans = () => {
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200">
-            {loans.map((loan) => (
-              <tr key={loan._id} className="hover:bg-gray-50">
-                <td className="px-4 py-3">
-                  <img
-                    src={loan.loanImage}
-                    alt={loan.loanTitle}
-                    className="w-16 h-16 object-cover rounded-md"
-                  />
-                </td>
-                <td className="px-4 py-3">{loan.loanTitle}</td>
-                <td className="px-4 py-3">{loan.interestRate}</td>
-                <td className="px-4 py-3">{loan.category}</td>
-                <td>
-                  <div className=" items-center flex gap-2">
-                    <button
-                      className="px-3 py-1 bg-[#2a6877]
+            {loans
+              .filter((loan) =>
+                loan.loanTitle.toLowerCase().includes(searchText.toLowerCase())
+              )
+              .map((loan) => (
+                <tr key={loan._id} className="hover:bg-gray-50">
+                  <td className="px-4 py-3">
+                    <img
+                      src={loan.loanImage}
+                      alt={loan.loanTitle}
+                      className="w-16 h-16 object-cover rounded-md"
+                    />
+                  </td>
+                  <td className="px-4 py-3">{loan.loanTitle}</td>
+                  <td className="px-4 py-3">{loan.interestRate}</td>
+                  <td className="px-4 py-3">{loan.category}</td>
+                  <td>
+                    <div className=" items-center flex gap-2">
+                      <button
+                        className="px-3 py-1 bg-[#2a6877]
       text-white shadow-lg shadow-[#2a687722]
       hover:bg-[#24555e] rounded-md font-semibold cursor-pointer transition"
-                      onClick={() => loanModalOpen(loan)}
-                    >
-                      Update
-                    </button>
-                    <button
-                      className="px-3 py-1 bg-red-600 text-white font-semibold cursor-pointer rounded-md hover:bg-red-700 transition"
-                      onClick={() => handleDeleteLoan(loan._id, loan.loanTitle)}
-                    >
-                      Delete
-                    </button>
-                  </div>
-                </td>
-              </tr>
-            ))}
+                        onClick={() => loanModalOpen(loan)}
+                      >
+                        Update
+                      </button>
+                      <button
+                        className="px-3 py-1 bg-red-600 text-white font-semibold cursor-pointer rounded-md hover:bg-red-700 transition"
+                        onClick={() =>
+                          handleDeleteLoan(loan._id, loan.loanTitle)
+                        }
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
           </tbody>
         </table>
       </div>

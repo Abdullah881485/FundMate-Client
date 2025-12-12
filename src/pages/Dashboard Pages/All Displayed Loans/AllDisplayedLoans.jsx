@@ -17,7 +17,7 @@ const AllDisplayedLoans = () => {
     queryKey: ["allLoan"],
     queryFn: async () => {
       const res = await axiosSecure.get("/allLoan");
-      return res.data;
+      return res.data.result;
     },
   });
   const loanModalRef = useRef();

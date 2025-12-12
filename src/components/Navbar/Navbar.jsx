@@ -1,4 +1,4 @@
-import React, { use } from "react";
+import React, { use, useEffect, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router";
 import { AuthContext } from "../../Provider/AuthContext";
 import { CiLogin } from "react-icons/ci";
@@ -17,6 +17,18 @@ const Navbar = () => {
   const { user, signOutUser } = use(AuthContext);
   const navigate = useNavigate();
 
+  const [theme, setTheme] = useState(
+    localStorage.getItem("theme") ? localStorage.getItem("theme") : "night"
+  );
+
+  useEffect(() => {
+    const html = document.querySelector("html");
+    html.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+  const toggleTheme = (checked) => {
+    setTheme(checked ? "light" : "night");
+  };
   const links = (
     <>
       <li className=" hover:text-[#2a6877]">
@@ -26,7 +38,7 @@ const Navbar = () => {
       </li>
       <li className=" hover:text-[#2a6877]">
         <NavLink to="/all-loans" style={getLinkStyle}>
-          All-Loans
+          All Loans
         </NavLink>
       </li>
       {user ? (
@@ -121,13 +133,28 @@ const Navbar = () => {
           <div className="mr-2 md:mr-6">
             <label className="toggle w-10 text-gray-600">
               <input
-                // checked={theme === "night"}
-                // onChange={(e) => toggleTheme(e.target.checked)}
+                checked={theme === "light"}
+                onChange={(e) => toggleTheme(e.target.checked)}
                 type="checkbox"
                 value="light"
                 className="theme-controller"
               />
 
+              <svg
+                aria-label="moon"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+              >
+                <g
+                  strokeLinejoin="round"
+                  strokeLinecap="round"
+                  strokeWidth="2"
+                  fill="none"
+                  stroke="currentColor"
+                >
+                  <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+                </g>
+              </svg>
               <svg
                 aria-label="sun"
                 xmlns="http://www.w3.org/2000/svg"
@@ -151,26 +178,11 @@ const Navbar = () => {
                   <path d="m19.07 4.93-1.41 1.41"></path>
                 </g>
               </svg>
-              <svg
-                aria-label="moon"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-              >
-                <g
-                  strokeLinejoin="round"
-                  strokeLinecap="round"
-                  strokeWidth="2"
-                  fill="none"
-                  stroke="currentColor"
-                >
-                  <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
-                </g>
-              </svg>
             </label>
           </div>
           {user ? (
             <div className="flex items-center gap-2 ">
-              <div className="border border-gray-200 ">
+              <div className=" ">
                 <img
                   className="w-8 md:w-10 rounded-full "
                   src={

@@ -1,4 +1,4 @@
-import React, { use } from "react";
+import React, { use, useEffect, useState } from "react";
 import { FaHome, FaUsers } from "react-icons/fa";
 import { FaMoneyCheckDollar } from "react-icons/fa6";
 import { GiReceiveMoney } from "react-icons/gi";
@@ -20,7 +20,18 @@ const DashboardLayout = () => {
   const { role, roleLoading } = useRole();
   // console.log(role);
   const { user } = use(AuthContext);
+  const [theme, setTheme] = useState(
+    localStorage.getItem("theme") ? localStorage.getItem("theme") : "night"
+  );
 
+  useEffect(() => {
+    const html = document.querySelector("html");
+    html.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+  const toggleTheme = (checked) => {
+    setTheme(checked ? "light" : "night");
+  };
   const getLinkStyle = ({ isActive }) => {
     return {
       color: isActive ? "#2a6877" : "",
@@ -66,16 +77,67 @@ const DashboardLayout = () => {
               </h1>
             </div>
           </div>
+          <div className="flex gap-5 items-center">
+            <div className="">
+              <label className="toggle w-10 text-gray-600">
+                <input
+                  checked={theme === "light"}
+                  onChange={(e) => toggleTheme(e.target.checked)}
+                  type="checkbox"
+                  value="light"
+                  className="theme-controller"
+                />
 
-          <img
-            className="object-cover rounded-full w-10 border"
-            src={
-              user?.photoURL
-                ? user?.photoURL
-                : "https://i.ibb.co.com/67tscvBq/smiling-man-with-arms-crossed-on-transparent-background-png.png"
-            }
-            alt=""
-          />
+                <svg
+                  aria-label="moon"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                >
+                  <g
+                    strokeLinejoin="round"
+                    strokeLinecap="round"
+                    strokeWidth="2"
+                    fill="none"
+                    stroke="currentColor"
+                  >
+                    <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+                  </g>
+                </svg>
+                <svg
+                  aria-label="sun"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                >
+                  <g
+                    strokeLinejoin="round"
+                    strokeLinecap="round"
+                    strokeWidth="2"
+                    fill="none"
+                    stroke="currentColor"
+                  >
+                    <circle cx="12" cy="12" r="4"></circle>
+                    <path d="M12 2v2"></path>
+                    <path d="M12 20v2"></path>
+                    <path d="m4.93 4.93 1.41 1.41"></path>
+                    <path d="m17.66 17.66 1.41 1.41"></path>
+                    <path d="M2 12h2"></path>
+                    <path d="M20 12h2"></path>
+                    <path d="m6.34 17.66-1.41 1.41"></path>
+                    <path d="m19.07 4.93-1.41 1.41"></path>
+                  </g>
+                </svg>
+              </label>
+            </div>
+            <img
+              className="object-cover rounded-full w-10 border"
+              src={
+                user?.photoURL
+                  ? user?.photoURL
+                  : "https://i.ibb.co.com/67tscvBq/smiling-man-with-arms-crossed-on-transparent-background-png.png"
+              }
+              alt=""
+            />
+          </div>
         </nav>
         {/* Page content here */}
         <main className="w-full md:w-[95%]  mx-auto my-10">

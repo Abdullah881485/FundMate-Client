@@ -6,6 +6,8 @@ import Pagination from "../../../components/Pagignation/Pagignation";
 const ManageUsers = () => {
   const [selectedUser, setSelectedUser] = useState(null);
   const axiosSecure = useAxiosSecure();
+  const [searchText, setSearchText] = useState("");
+  const [roleFilter, setRoleFilter] = useState("All");
   const [page, setPage] = useState(1);
 
   const { data: usersData = { users: [] }, refetch } = useQuery({
@@ -47,6 +49,26 @@ const ManageUsers = () => {
   return (
     <div className="p-0 md:p-6">
       <h2 className="text-2xl font-bold mb-4 text-[#2a6877]">Manage Users</h2>
+      <div className="flex flex-col md:flex-row justify-between gap-4 mb-4">
+        <input
+          type="text"
+          placeholder="Search by name or email..."
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)}
+          className="input input-bordered w-full md:w-1/4 border-gray-300 focus:border-[#2a6877]"
+        />
+
+        <select
+          value={roleFilter}
+          onChange={(e) => setRoleFilter(e.target.value)}
+          className="select w-full md:w-40 border-gray-300 focus:border-[#2a6877]"
+        >
+          <option>All</option>
+          <option>Borrower</option>
+          <option>Manager</option>
+          <option>Admin</option>
+        </select>
+      </div>
       <div className="overflow-x-auto">
         <table className="w-full min-w-max divide-y divide-gray-200">
           <thead className="bg-[#2a6877] text-white">
@@ -67,37 +89,50 @@ const ManageUsers = () => {
           </thead>
 
           <tbody className="divide-y divide-gray-200">
-            {usersData.users.map((user) => (
-              <tr key={user._id} className="hover:bg-gray-50">
-                <td className="px-3 md:px-6 py-2 md:py-4 whitespace-nowrap">
-                  {user.displayName}
-                </td>
-                <td className="px-3 md:px-6 py-2 md:py-4 whitespace-nowrap">
-                  {user.email}
-                </td>
-                <td className="px-3 md:px-6 py-2 md:py-4 whitespace-nowrap">
-                  {user.role}
-                </td>
+            {usersData.users
+              .filter((user) => {
+                const matchesSearch =
+                  user.displayName
+                    .toLowerCase()
+                    .includes(searchText.toLowerCase()) ||
+                  user.email.toLowerCase().includes(searchText.toLowerCase());
 
-                <td className="px-3 md:px-6 py-2 md:py-4 whitespace-nowrap">
-                  <div className="flex flex-col md:flex-row gap-2">
-                    <button
-                      className="px-3 py-1 bg-[#2a6877] text-white shadow-lg shadow-[#2a687722] hover:bg-[#24555e] rounded-md font-semibold transition"
-                      onClick={() => userModalOpen(user)}
-                    >
-                      Update
-                    </button>
+                const matchesRole =
+                  roleFilter === "All" ? true : user.role === roleFilter;
 
-                    <button
-                      className="px-3 py-1 bg-red-600 text-white rounded-md font-semibold hover:bg-red-700 transition"
-                      onClick={suspendModalOpen}
-                    >
-                      Suspend
-                    </button>
-                  </div>
-                </td>
-              </tr>
-            ))}
+                return matchesSearch && matchesRole;
+              })
+              .map((user) => (
+                <tr key={user._id} className="hover:bg-gray-50">
+                  <td className="px-3 md:px-6 py-2 md:py-4 whitespace-nowrap">
+                    {user.displayName}
+                  </td>
+                  <td className="px-3 md:px-6 py-2 md:py-4 whitespace-nowrap">
+                    {user.email}
+                  </td>
+                  <td className="px-3 md:px-6 py-2 md:py-4 whitespace-nowrap">
+                    {user.role}
+                  </td>
+
+                  <td className="px-3 md:px-6 py-2 md:py-4 whitespace-nowrap">
+                    <div className="flex flex-col md:flex-row gap-2">
+                      <button
+                        className="px-3 py-1 bg-[#2a6877] text-white shadow-lg shadow-[#2a687722] hover:bg-[#24555e] rounded-md font-semibold transition"
+                        onClick={() => userModalOpen(user)}
+                      >
+                        Update
+                      </button>
+
+                      <button
+                        className="px-3 py-1 bg-red-600 text-white rounded-md font-semibold hover:bg-red-700 transition"
+                        onClick={suspendModalOpen}
+                      >
+                        Suspend
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
           </tbody>
         </table>
       </div>
