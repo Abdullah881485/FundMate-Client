@@ -17,7 +17,10 @@ const Success = () => {
   }, [sessionId, axiosSecure]);
 
   return (
-    <div className="w-9/10 mx-auto flex justify-center items-center flex-col my-20">
+    <div
+      data-aos="fade-up"
+      className="w-9/10 mx-auto flex justify-center items-center flex-col my-20"
+    >
       <img
         className="w-70"
         src="https://i.ibb.co.com/tpr3VcrS/free-payment-successful-3543010-2969397.png"

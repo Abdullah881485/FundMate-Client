@@ -2,11 +2,13 @@ import React from "react";
 
 const Contact = () => {
   return (
-    <div className="w-[90%] md:w-4/5 lg:w-3/5 mx-auto my-16 text-gray-700">
+    <div
+      data-aos="fade-up"
+      className="w-[90%] md:w-4/5 lg:w-3/5 mx-auto my-16 text-gray-700"
+    >
       <title>FundMate | Contact</title>
 
       <div className="rounded-2xl bg-white shadow-lg p-10 space-y-10">
-        {/* Header */}
         <div className="text-center">
           <h1 className="text-3xl font-bold text-[#2a6877]">Contact Us</h1>
           <p className="mt-2 text-gray-500">
@@ -14,9 +16,7 @@ const Contact = () => {
           </p>
         </div>
 
-        {/* Content */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-          {/* Contact Info */}
           <div className="space-y-6">
             <div>
               <h2 className="text-xl font-semibold text-[#2a6877]">
@@ -45,7 +45,6 @@ const Contact = () => {
             </div>
           </div>
 
-          {/* Contact Form */}
           <form className="space-y-6">
             <div className="flex flex-col gap-2">
               <label className="text-gray-700 font-medium">Your Name</label>

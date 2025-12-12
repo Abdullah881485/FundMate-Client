@@ -2,12 +2,13 @@ import React from "react";
 
 const About = () => {
   return (
-    <div className="w-[90%] md:w-4/5 lg:w-3/5 mx-auto my-16 text-gray-700">
+    <div
+      data-aos="fade-up"
+      className="w-[90%] md:w-4/5 lg:w-3/5 mx-auto my-16 text-gray-700"
+    >
       <title>FundMate | About Us</title>
 
-      {/* Main Container */}
       <div className="rounded-2xl bg-white shadow-lg p-10 space-y-12">
-        {/* Header Section */}
         <div className="text-center max-w-2xl mx-auto">
           <h1 className="text-3xl font-bold text-[#2a6877]">About FundMate</h1>
           <p className="text-gray-600 mt-3">
@@ -16,7 +17,6 @@ const About = () => {
           </p>
         </div>
 
-        {/* Mission Section */}
         <div className="space-y-4">
           <h2 className="text-xl font-semibold text-[#2a6877]">Our Mission</h2>
           <p className="text-gray-600 leading-relaxed">
@@ -27,7 +27,6 @@ const About = () => {
           </p>
         </div>
 
-        {/* Vision Section */}
         <div className="space-y-4">
           <h2 className="text-xl font-semibold text-[#2a6877]">Our Vision</h2>
           <p className="text-gray-600 leading-relaxed">
@@ -37,7 +36,6 @@ const About = () => {
           </p>
         </div>
 
-        {/* Features Section */}
         <div className="space-y-6">
           <h2 className="text-xl font-semibold text-[#2a6877]">
             What We Offer
@@ -66,7 +64,6 @@ const About = () => {
           </ul>
         </div>
 
-        {/* Team Section */}
         <div className="space-y-4">
           <h2 className="text-xl font-semibold text-[#2a6877]">Who We Are</h2>
           <p className="text-gray-600 leading-relaxed">
@@ -77,7 +74,6 @@ const About = () => {
           </p>
         </div>
 
-        {/* Quote Section */}
         <div className="bg-[#2a6877] text-white p-6 rounded-xl shadow-md">
           <p className="text-center italic leading-relaxed">
             “Financial management doesn’t have to be complicated. With the right

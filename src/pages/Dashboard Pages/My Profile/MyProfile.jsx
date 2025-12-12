@@ -3,7 +3,7 @@ import { AuthContext } from "../../../Provider/AuthContext";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import useRole from "../../../Hooks/useRole";
-import  Loader1  from "../../../components/Loader/Loader";
+import Loader1 from "../../../components/Loader/Loader";
 
 const MyProfile = () => {
   const { user, signOutUser, loading, setLoading } = use(AuthContext);
@@ -49,7 +49,7 @@ const MyProfile = () => {
     <div>
       <title>FinEase | My Profile</title>
 
-      <div className="w-[99%] md:w-10/12 mx-auto my-10">
+      <div data-aos="fade-up" className="w-[99%] md:w-10/12 mx-auto my-10">
         <div className="bg-white rounded-2xl shadow p-2 md:p-6">
           <h1 className="text-2xl font-bold mb-6 text-[#2a6877]">My Profile</h1>
           <div className="flex flex-col md:flex-row items-center gap-6 mb-8">

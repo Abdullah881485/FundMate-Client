@@ -7,7 +7,7 @@ const Footer = () => {
     <footer className="mt-16 ">
       <div className="w-[90%] mx-auto py-12 flex flex-col gap-5 md:flex-row justify-around items-start md:items-center text-gray-600">
         <div>
-          <h2 className="text-3xl font-bold text-gray-700">
+          <h2 className="text-3xl font-bold text-gray-700 logo">
             Fund<span className="text-[#2a6877]">Mate</span>
           </h2>
           <p className="mt-4 text-sm leading-6 w-80">
@@ -16,13 +16,22 @@ const Footer = () => {
           </p>
 
           <div className="flex items-center gap-4 mt-5">
-            <a className="text-gray-500 hover:text-[#2a6877] text-xl" href="#">
+            <a
+              className="text-gray-500 hover:text-[#2a6877] text-xl"
+              href="https://facebook.com"
+            >
               <FaFacebook />
             </a>
-            <a className="text-gray-500 hover:text-[#2a6877] text-xl" href="#">
+            <a
+              className="text-gray-500 hover:text-[#2a6877] text-xl"
+              href="https://instagram.com"
+            >
               <FaInstagram />
             </a>
-            <a className="text-gray-500 hover:text-[#2a6877] text-xl" href="#">
+            <a
+              className="text-gray-500 hover:text-[#2a6877] text-xl"
+              href="https://linkedin.com"
+            >
               <FaLinkedin />
             </a>
           </div>

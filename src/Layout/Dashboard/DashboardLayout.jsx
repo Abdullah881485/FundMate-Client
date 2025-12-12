@@ -153,7 +153,7 @@ const DashboardLayout = () => {
           aria-label="close sidebar"
           className="drawer-overlay"
         ></label>
-        <div className="flex min-h-full py-20 flex-col items-start is-drawer-close:w-14 is-drawer-open:w-64 ">
+        <div className="flex min-h-full py-20 flex-col items-start is-drawer-close:w-14 is-drawer-open:w-64  ">
           {/* Sidebar content here */}
           <ul className="menu w-full grow space-y-2 text-gray-500 font-normal">
             {/* List item */}

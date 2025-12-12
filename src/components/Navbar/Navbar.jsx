@@ -96,7 +96,7 @@ const Navbar = () => {
 
   return (
     <nav className=" sticky top-0 z-50 glass-bg">
-      <div className="navbar mx-auto w-[98%] md:w-[90%]">
+      <div className="navbar mx-auto w-[99%] md:w-[90%]">
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -120,7 +120,7 @@ const Navbar = () => {
               {links}
             </ul>
           </div>
-          <a className=" font-bold text-2xl text-gray-700">
+          <a className=" font-bold text-2xl md:text-3xl text-gray-700 logo">
             Fund<span className="text-[#2a6877]">Mate</span>
           </a>
         </div>
