@@ -1,4 +1,4 @@
-import React, { use, useEffect, useState } from "react";
+import React, { use } from "react";
 import { Link, NavLink, useNavigate } from "react-router";
 import { AuthContext } from "../../Provider/AuthContext";
 import { CiLogin } from "react-icons/ci";
@@ -17,18 +17,6 @@ const Navbar = () => {
   const { user, signOutUser } = use(AuthContext);
   const navigate = useNavigate();
 
-  const [theme, setTheme] = useState(
-    localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
-  );
-
-  useEffect(() => {
-    const html = document.querySelector("html");
-    html.setAttribute("data-theme", theme);
-    localStorage.setItem("theme", theme);
-  }, [theme]);
-  const toggleTheme = (checked) => {
-    setTheme(checked ? "night" : "light");
-  };
   const links = (
     <>
       <li className=" hover:text-[#2a6877]">
@@ -133,8 +121,8 @@ const Navbar = () => {
           <div className="mr-2 md:mr-6">
             <label className="toggle w-10 text-gray-600">
               <input
-                checked={theme === "night"}
-                onChange={(e) => toggleTheme(e.target.checked)}
+                // checked={theme === "night"}
+                // onChange={(e) => toggleTheme(e.target.checked)}
                 type="checkbox"
                 value="light"
                 className="theme-controller"
