@@ -3,6 +3,7 @@ import LoanCard from "./LoanCard";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
+import Loader1 from "../../components/Loader/Loader";
 
 const AllLoans = () => {
   const axiosSecure = useAxiosSecure();
@@ -12,7 +13,11 @@ const AllLoans = () => {
   const limit = 6;
   console.log(totalLoans);
 
-  const { data: loans = [], refetch } = useQuery({
+  const {
+    data: loans = [],
+    refetch,
+    isLoading,
+  } = useQuery({
     queryKey: ["allLoan", currentPage],
     queryFn: async () => {
       const skip = (currentPage - 1) * limit;
@@ -25,7 +30,9 @@ const AllLoans = () => {
       return res.data.result;
     },
   });
-
+  if (isLoading) {
+    return <Loader1></Loader1>;
+  }
   const handlePageClick = (page) => {
     setCurrentPage(page);
     refetch();

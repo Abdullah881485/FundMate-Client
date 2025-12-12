@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import Pagination from "../../../components/Pagignation/Pagignation";
+import Loader1 from "../../../components/Loader/Loader";
 
 const ManageUsers = () => {
   const [selectedUser, setSelectedUser] = useState(null);
@@ -10,7 +11,11 @@ const ManageUsers = () => {
   const [roleFilter, setRoleFilter] = useState("All");
   const [page, setPage] = useState(1);
 
-  const { data: usersData = { users: [] }, refetch } = useQuery({
+  const {
+    data: usersData = { users: [] },
+    refetch,
+    isLoading,
+  } = useQuery({
     queryKey: ["users", page],
     queryFn: async () => {
       const res = await axiosSecure.get(`/users?page=${page}&limit=10`);
@@ -46,6 +51,9 @@ const ManageUsers = () => {
   };
   const totalPages = usersData.totalPages || 1;
 
+  if (isLoading) {
+    return <Loader1></Loader1>;
+  }
   return (
     <div className="p-0 md:p-6">
       <h2 className="text-2xl font-bold mb-4 text-[#2a6877]">Manage Users</h2>

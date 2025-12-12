@@ -34,7 +34,7 @@ const partners = [
 
 const Partners = () => {
   return (
-    <div className="py-12 w-[90%] mx-auto">
+    <div data-aos="fade-up" className="py-12 w-[90%] mx-auto">
       <h2 className="text-3xl font-bold text-center mb-10 title-text">
         Our Partners
       </h2>

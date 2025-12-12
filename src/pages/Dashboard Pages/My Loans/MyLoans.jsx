@@ -1,13 +1,13 @@
-import React, { use, useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import { AuthContext } from "../../../Provider/AuthContext";
 import Swal from "sweetalert2";
-import { Loader1 } from "../../../components/Loader/Loader";
+import Loader1 from "../../../components/Loader/Loader";
 
 const MyLoans = () => {
   const axiosSecure = useAxiosSecure();
-  const { user, loading } = use(AuthContext);
+  const { user, loading } = useContext(AuthContext);
   const applicationModalRef = useRef();
   const detailsModalRef = useRef();
   const [selectedApplication, setSelectedApplication] = useState(null);

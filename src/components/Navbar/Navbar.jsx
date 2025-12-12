@@ -50,7 +50,7 @@ const Navbar = () => {
       ) : (
         <div className="flex flex-col md:flex-row md:items-center gap-0 md:gap-12">
           <li className=" hover:text-[#2a6877]">
-            <NavLink to="/about-us" style={getLinkStyle}>
+            <NavLink to="/about" style={getLinkStyle}>
               About Us
             </NavLink>
           </li>
@@ -95,7 +95,7 @@ const Navbar = () => {
   console.log(user);
 
   return (
-    <nav className=" sticky top-0 z-50 bg-white">
+    <nav className=" sticky top-0 z-50 glass-bg">
       <div className="navbar mx-auto w-[98%] md:w-[90%]">
         <div className="navbar-start">
           <div className="dropdown">
@@ -184,7 +184,7 @@ const Navbar = () => {
             <div className="flex items-center gap-2 ">
               <div className=" ">
                 <img
-                  className="w-8 md:w-10 rounded-full "
+                  className="w-8 h-10 md:w-10 rounded-full object-cover"
                   src={
                     user?.photoURL
                       ? user?.photoURL
@@ -216,7 +216,7 @@ const Navbar = () => {
               </Link>
               <Link
                 to="/register"
-                className="btn hidden md:block btn-xs md:btn-md rounded-2xl bg-[#2a6877]  w-fit font-semibold text-white hover:bg-[#24545c] transition duration-300"
+                className="btn hidden md:flex btn-xs md:btn-md rounded-2xl bg-[#2a6877]  items-center  w-fit font-semibold text-white hover:bg-[#24545c] transition duration-300"
               >
                 Sign Up
               </Link>

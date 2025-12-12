@@ -43,6 +43,7 @@ const Statistics = () => {
       <div className=" grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
         {stats.map((stat) => (
           <div
+            data-aos="fade-up"
             key={stat.id}
             className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-200 flex flex-col items-center"
           >

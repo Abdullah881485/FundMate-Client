@@ -11,6 +11,7 @@ import {
 } from "firebase/auth";
 import { auth } from "../Firebase/firebase.config";
 import { AuthContext } from "./AuthContext";
+import Loader1 from "../components/Loader/Loader";
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -59,6 +60,9 @@ const AuthProvider = ({ children }) => {
     signInUser,
     updateUser,
   };
+  if (loading) {
+    return <Loader1></Loader1>;
+  }
   return <AuthContext value={authData}>{children}</AuthContext>;
 };
 

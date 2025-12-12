@@ -6,7 +6,7 @@ export default function LoanDetails() {
   // console.log(loanDetails);
 
   return (
-    <div className="min-h-screen w-[90%] mx-auto py-10">
+    <div data-aos="fade-up" className="min-h-screen w-[90%] mx-auto py-10">
       <div className="w-[95%] md:w-full mx-auto bg-white shadow-lg rounded-2xl overflow-hidden">
         {/* Loan Image */}
         <div className="w-full h-74 bg-gray-200">

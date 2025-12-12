@@ -3,17 +3,21 @@ import React from "react";
 import { Link } from "react-router-dom";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import Card from "../Card/Card";
+import Loader1 from "../Loader/Loader";
 
 const AvailableLoans = () => {
   const axiosSecure = useAxiosSecure();
 
-  const { data: loans = [] } = useQuery({
+  const { data: loans = [], isLoading } = useQuery({
     queryKey: ["allLoan"],
     queryFn: async () => {
       const res = await axiosSecure.get("/availableLoan");
       return res.data;
     },
   });
+  if (isLoading) {
+    return <Loader1></Loader1>;
+  }
   return (
     <div className="w-[90%] mx-auto">
       <h1 className="title-text text-center font-bold text-3xl">

@@ -5,7 +5,19 @@
   themes: light --default, night --prefersdark;
 }
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+html {
+  scroll-behavior: smooth;
+}
 .title-text {
   color: #2a6877;
   font-weight: bold;
+}
+.glass-bg {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.2),
+    rgba(255, 255, 255, 0.05)
+  );
+  backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
 }

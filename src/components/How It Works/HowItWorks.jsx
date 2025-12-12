@@ -11,7 +11,10 @@ const HowItWorks = () => {
           This is a process, how you can get loan for your self.
         </p>
       </div>
-      <div className="flex items-center justify-center flex-col md:flex-row">
+      <div
+        data-aos="fade-left"
+        className="flex items-center justify-center flex-col md:flex-row"
+      >
         <div className="flex-1">
           <img
             src="https://i.ibb.co.com/qSJLgX3/1000x2-Suivi-Formation.png"
@@ -29,7 +32,10 @@ const HowItWorks = () => {
           </p>
         </div>
       </div>
-      <div className="flex items-center justify-center flex-col-reverse md:flex-row">
+      <div
+        data-aos="fade-right"
+        className="flex items-center justify-center flex-col-reverse md:flex-row"
+      >
         <div className="flex-1 space-y-2">
           <h1 className="title-text text-2xl font-semibold">
             Documentation and Verification
@@ -50,7 +56,10 @@ const HowItWorks = () => {
           />
         </div>
       </div>
-      <div className="flex items-center justify-center flex-col md:flex-row">
+      <div
+        data-aos="fade-left"
+        className="flex items-center justify-center flex-col md:flex-row"
+      >
         <div className="flex-1">
           <img
             src="https://i.ibb.co.com/35CprD4s/document-tick-file-page-1024.png"

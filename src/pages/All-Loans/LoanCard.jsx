@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 const LoanCard = ({ loan }) => {
   return (
     <div
+      data-aos="fade-up"
       className="bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden flex flex-col 
     hover:shadow-2xl  hover:border-gray-200 transition-all duration-300"
     >

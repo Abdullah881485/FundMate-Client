@@ -52,7 +52,7 @@ const Feedback = () => {
     },
   ];
   return (
-    <div className="w-[90%] mx-auto ">
+    <div data-aos="fade-up" className="w-[90%] mx-auto ">
       <h1 className="title-text text-center font-bold text-3xl my-5">
         Customer Feedback
       </h1>

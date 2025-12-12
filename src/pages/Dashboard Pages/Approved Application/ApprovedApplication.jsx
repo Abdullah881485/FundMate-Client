@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useRef, useState } from "react";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import Loader1 from "../../../components/Loader/Loader";
 
 const ApprovedApplication = () => {
   const applicationModalRef = useRef();
@@ -11,13 +12,16 @@ const ApprovedApplication = () => {
     applicationModalRef.current.showModal();
   };
   const axiosSecure = useAxiosSecure();
-  const { data: loans = [] } = useQuery({
+  const { data: loans = [], isLoading } = useQuery({
     queryKey: ["manageLoan"],
     queryFn: async () => {
       const res = await axiosSecure.get(`/statusByApplication?status=approved`);
       return res.data;
     },
   });
+  if (isLoading) {
+    return <Loader1></Loader1>;
+  }
   return (
     <div className="p-0 md:p-6">
       <h1 className="text-2xl font-bold mb-6 text-[#2a6877]">

@@ -2,7 +2,7 @@ import React, { use, useState } from "react";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { AuthContext } from "../../../Provider/AuthContext";
 import Swal from "sweetalert2";
-import { Loader1 } from "../../../components/Loader/Loader";
+import Loader1 from "../../../components/Loader/Loader";
 
 const AddLoan = () => {
   const axiosSecure = useAxiosSecure();

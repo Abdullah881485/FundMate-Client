@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
+import Loader1 from "../../../components/Loader/Loader";
 
 const PendingApplication = () => {
   const axiosSecure = useAxiosSecure();
@@ -12,7 +13,11 @@ const PendingApplication = () => {
     setSelectedApplication(loan);
     applicationModalRef.current.showModal();
   };
-  const { data: loans = [], refetch } = useQuery({
+  const {
+    data: loans = [],
+    refetch,
+    isLoading,
+  } = useQuery({
     queryKey: ["manageLoan"],
     queryFn: async () => {
       const res = await axiosSecure.get(`/statusByApplication?status=pending`);
@@ -42,6 +47,9 @@ const PendingApplication = () => {
         });
       });
   };
+  if (isLoading) {
+    return <Loader1></Loader1>;
+  }
   const handleRejected = (id) => {
     const status = "rejected";
     const rejectedAt = new Date();

@@ -1,7 +1,7 @@
 import React, { use, useState } from "react";
 import { AuthContext } from "../../Provider/AuthContext";
 import Swal from "sweetalert2";
-import { Loader1 } from "../../components/Loader/Loader";
+import Loader1 from "../../components/Loader/Loader";
 import { Link, useLocation } from "react-router-dom";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
@@ -79,7 +79,10 @@ const Application = () => {
   }
   return (
     <div>
-      <div className="w-[95%] md:w-6/10 mx-auto p-3 md:p-6  rounded-2xl shadow bg-white my-10 text-gray-600">
+      <div
+        data-aos="fade-up"
+        className="w-[95%] md:w-6/10 mx-auto p-3 md:p-6  rounded-2xl shadow bg-white my-10 text-gray-600"
+      >
         <title>FundMate | Apply Loan</title>
         <h1 className="text-2xl font-bold mb-4 text-[#2a6877]">Apply Loan</h1>
         <form onSubmit={handleApplyLoan} className="w-full max-w-3xl mx-auto">

@@ -3,7 +3,7 @@ import React, { useContext, useRef, useState } from "react";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { AuthContext } from "../../../Provider/AuthContext";
 import Swal from "sweetalert2";
-import { Loader1 } from "../../../components/Loader/Loader";
+import Loader1 from "../../../components/Loader/Loader";
 
 const ManageLoans = () => {
   const [selectedLoan, setSelectedLoan] = useState(null);
@@ -18,7 +18,8 @@ const ManageLoans = () => {
     isLoading,
   } = useQuery({
     queryKey: ["manageLoan", user?.email],
-    enabled: !loading && !!user?.email,
+    enabled: !!user?.email,
+    placeholderData: [],
     queryFn: async () => {
       const res = await axiosSecure.get(`/manageLoan?email=${user?.email}`);
       return res.data;
@@ -125,8 +126,10 @@ const ManageLoans = () => {
             {loans
               .filter(
                 (loan) =>
-                  loan.loanTitle ||
-                  "".toLowerCase().includes(searchText.toLowerCase())
+                  searchText === "" ||
+                  loan.loanTitle
+                    .toLowerCase()
+                    .includes(searchText.toLowerCase())
               )
               .map((loan) => (
                 <tr key={loan._id} className="hover:bg-gray-50">

@@ -19,11 +19,13 @@ import ApprovedApplication from "../pages/Dashboard Pages/Approved Application/A
 import ManageLoans from "../pages/Dashboard Pages/Manage Loans/ManageLoans";
 import MyLoans from "../pages/Dashboard Pages/My Loans/MyLoans";
 import MyProfile from "../pages/Dashboard Pages/My Profile/MyProfile";
-import { Loader1 } from "../components/Loader/Loader";
+import  Loader1  from "../components/Loader/Loader";
 import AdminRoute from "./AdminRoute";
 import ManagerRoute from "./managerRoute";
 import Success from "../pages/Dashboard Pages/Payment Successful/Success";
 import DashboardHome from "../pages/Dashboard Pages/Dashboard Home/DashboardHome";
+import Contact from "../pages/Contact/Contact";
+import About from "../pages/About Us/about";
 
 export const router = createBrowserRouter([
   {
@@ -40,6 +42,14 @@ export const router = createBrowserRouter([
       {
         path: "/all-loans",
         Component: AllLoans,
+      },
+      {
+        path: "/contact",
+        Component: Contact,
+      },
+      {
+        path: "/about",
+        Component: About,
       },
 
       {

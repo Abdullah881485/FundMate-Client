@@ -3,7 +3,10 @@ import { Link } from "react-router-dom";
 
 const Card = ({ loan }) => {
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden flex flex-col hover:shadow-lg transition-shadow duration-200 ">
+    <div
+      data-aos="fade-up"
+      className="bg-white rounded-lg shadow-md overflow-hidden flex flex-col hover:shadow-lg transition-shadow duration-200 "
+    >
       <img
         src={loan?.loanImage}
         alt="Student Loan"

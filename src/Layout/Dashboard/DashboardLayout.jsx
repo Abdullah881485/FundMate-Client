@@ -14,7 +14,7 @@ import { CgProfile } from "react-icons/cg";
 
 import Footer from "../../components/Footer/Footer";
 import useRole from "../../Hooks/useRole";
-import { Loader1 } from "../../components/Loader/Loader";
+import Loader1 from "../../components/Loader/Loader";
 import { AuthContext } from "../../Provider/AuthContext";
 const DashboardLayout = () => {
   const { role, roleLoading } = useRole();
@@ -129,7 +129,7 @@ const DashboardLayout = () => {
               </label>
             </div>
             <img
-              className="object-cover rounded-full w-10 border"
+              className="object-cover rounded-full w-8 h-10"
               src={
                 user?.photoURL
                   ? user?.photoURL
@@ -153,7 +153,7 @@ const DashboardLayout = () => {
           aria-label="close sidebar"
           className="drawer-overlay"
         ></label>
-        <div className="flex min-h-full py-20 flex-col items-start is-drawer-close:w-14 is-drawer-open:w-64 bg-white">
+        <div className="flex min-h-full py-20 flex-col items-start is-drawer-close:w-14 is-drawer-open:w-64 ">
           {/* Sidebar content here */}
           <ul className="menu w-full grow space-y-2 text-gray-500 font-normal">
             {/* List item */}

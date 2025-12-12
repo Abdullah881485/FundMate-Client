@@ -3,7 +3,7 @@ import { AuthContext } from "../../../Provider/AuthContext";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import useRole from "../../../Hooks/useRole";
-import { Loader1 } from "../../../components/Loader/Loader";
+import  Loader1  from "../../../components/Loader/Loader";
 
 const MyProfile = () => {
   const { user, signOutUser, loading, setLoading } = use(AuthContext);
@@ -56,7 +56,7 @@ const MyProfile = () => {
             <img
               src={user?.photoURL}
               alt="Profile"
-              className="w-28 h-28 rounded-full border-4 border-[#2a6877]"
+              className="w-28 h-28 rounded-full border-4 border-[#2a6877] object-cover"
             />
 
             <div>

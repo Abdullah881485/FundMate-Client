@@ -1,6 +1,9 @@
 import React, { useRef, useState } from "react";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
+import { motion } from "framer-motion";
+
+import Loader1 from "../../../components/Loader/Loader";
 
 const AllLoanApplication = () => {
   const [statusFilter, setStatusFilter] = useState("All");
@@ -12,13 +15,16 @@ const AllLoanApplication = () => {
     applicationModalRef.current.showModal();
   };
   const axiosSecure = useAxiosSecure();
-  const { data: applications = [] } = useQuery({
+  const { data: applications = [], isLoading } = useQuery({
     queryKey: ["allApplication"],
     queryFn: async () => {
       const res = await axiosSecure.get("/allApplication");
       return res.data;
     },
   });
+  if (isLoading) {
+    return <Loader1></Loader1>;
+  }
   // Filter applications based on status
   const filteredApplications =
     statusFilter === "All"
@@ -26,9 +32,14 @@ const AllLoanApplication = () => {
       : applications.filter((app) => app.status === statusFilter);
   return (
     <div className="p-0 md:p-6 ">
-      <h2 className="text-2xl font-bold mb-4 text-[#2a6877]">
+      <motion.h2
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="text-2xl font-bold mb-4 text-[#2a6877]"
+      >
         Loan Applications
-      </h2>
+      </motion.h2>
 
       {/* Filter */}
       <div className="mb-4 flex items-center gap-4">
@@ -45,7 +56,12 @@ const AllLoanApplication = () => {
         </select>
       </div>
 
-      <div className="overflow-x-auto">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.4, delay: 0.3 }}
+        className="overflow-x-auto"
+      >
         <table className="w-full min-w-max divide-y divide-gray-200">
           <thead className="bg-[#2a6877] text-white">
             <tr>
@@ -106,7 +122,7 @@ const AllLoanApplication = () => {
             ))}
           </tbody>
         </table>
-      </div>
+      </motion.div>
       <dialog
         ref={applicationModalRef}
         className="modal modal-bottom sm:modal-middle"

@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
+import Loader1 from "../../../components/Loader/Loader";
 
 const AllDisplayedLoans = () => {
   const [selectedLoan, setSelectedLoan] = useState(null);
@@ -14,7 +15,11 @@ const AllDisplayedLoans = () => {
   };
   console.log(selectedLoan);
 
-  const { data: loans = [], refetch } = useQuery({
+  const {
+    data: loans = [],
+    refetch,
+    isLoading,
+  } = useQuery({
     queryKey: ["allLoan"],
     queryFn: async () => {
       const res = await axiosSecure.get("/allLoan");
@@ -88,7 +93,9 @@ const AllDisplayedLoans = () => {
       }
     });
   };
-
+  if (isLoading) {
+    return <Loader1></Loader1>;
+  }
   return (
     <div className="p-0 md:p-6 ">
       <h2 className="text-2xl font-bold mb-4 text-[#2a6877]">All Loans</h2>
