@@ -13,7 +13,7 @@ const AllDisplayedLoans = () => {
     const array = value.split(",").map((item) => item.trim());
     setEmiPlans(array);
   };
-  console.log(selectedLoan);
+  // console.log(selectedLoan);
 
   const {
     data: loans = [],

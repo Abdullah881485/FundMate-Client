@@ -92,7 +92,7 @@ const Navbar = () => {
       }
     });
   };
-  console.log(user);
+  // console.log(user);
 
   return (
     <nav className=" sticky top-0 z-50 glass-bg">

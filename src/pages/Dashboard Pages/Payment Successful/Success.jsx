@@ -5,16 +5,14 @@ import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 const Success = () => {
   const [searchParams] = useSearchParams();
   const sessionId = searchParams.get("session_id");
-  console.log(sessionId);
+  // console.log(sessionId);
   const axiosSecure = useAxiosSecure();
 
   useEffect(() => {
     if (sessionId) {
-      axiosSecure
-        .patch(`/paymentSuccess?session_id=${sessionId}`)
-        .then((res) => {
-          console.log(res.data);
-        });
+      axiosSecure.patch(`/paymentSuccess?session_id=${sessionId}`).then(() => {
+        // console.log(res.data);
+      });
     }
   }, [sessionId, axiosSecure]);
 
