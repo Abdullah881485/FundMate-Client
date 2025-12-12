@@ -57,7 +57,9 @@ const ApprovedApplication = () => {
                 <td className="px-4 py-3 text-green-600">
                   $ {loan?.loanAmount}
                 </td>
-                <td className="px-4 py-3">{loan?.approvedAt}</td>
+                <td className="px-4 py-3">
+                  {new Date(loan?.approvedAt).toLocaleDateString()}
+                </td>
 
                 <td className="px-4 py-3 flex gap-2 justify-center">
                   <button

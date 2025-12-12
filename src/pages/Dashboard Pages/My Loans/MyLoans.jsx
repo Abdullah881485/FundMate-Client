@@ -246,7 +246,7 @@ const MyLoans = () => {
               </p>
               <p>
                 <span className="font-semibold">Applied On:</span>{" "}
-                {selectedApplication?.createdAt}
+                {new Date(selectedApplication?.createdAt).toLocaleDateString()}
               </p>
             </div>
           </div>

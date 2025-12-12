@@ -18,7 +18,7 @@ const Success = () => {
 
   return (
     <div
-      data-aos="fade-up"
+      
       className="w-9/10 mx-auto flex justify-center items-center flex-col my-20"
     >
       <img
