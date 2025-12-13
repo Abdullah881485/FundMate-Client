@@ -81,10 +81,10 @@ const Application = () => {
     <div>
       <div
         data-aos="fade-up"
-        className="w-[95%] md:w-6/10 mx-auto p-3 md:p-6  rounded-2xl shadow bg-white my-10 text-gray-600"
+        className="w-[95%] md:w-6/10 mx-auto p-3 md:p-6  rounded-2xl shadow bg-base-100 my-10 text-base-content/80"
       >
         <title>FundMate | Apply Loan</title>
-        <h1 className="text-2xl font-bold mb-4 text-[#2a6877]">Apply Loan</h1>
+        <h1 className="text-2xl font-bold mb-4 text-(--brand)">Apply Loan</h1>
         <form onSubmit={handleApplyLoan} className="w-full max-w-3xl mx-auto">
           <div className="flex flex-col gap-2 mb-4">
             <label>User Email</label>
@@ -94,7 +94,7 @@ const Application = () => {
               defaultValue={user?.email}
               readOnly
               className="input w-full border border-[#2a6877] focus:outline-none
-          focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-white rounded-md"
+          focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-base-100 rounded-md"
             />
           </div>
           {loanDetails ? (
@@ -107,7 +107,7 @@ const Application = () => {
                   defaultValue={loanDetails?.loanTitle}
                   readOnly
                   className="input w-full border border-[#2a6877] focus:outline-none focus:ring-0 
-            focus:border-2 focus:border-b-[#2a6877] bg-white rounded-md"
+            focus:border-2 focus:border-b-[#2a6877] bg-base-100 rounded-md"
                 />
               </div>
 
@@ -118,7 +118,7 @@ const Application = () => {
                   defaultValue={loanDetails?.interestRate}
                   readOnly
                   className="input w-full border border-[#2a6877] focus:outline-none focus:ring-0 
-            focus:border-2 focus:border-b-[#2a6877] bg-white rounded-md"
+            focus:border-2 focus:border-b-[#2a6877] bg-base-100 rounded-md"
                 />
               </div>
             </div>
@@ -130,7 +130,7 @@ const Application = () => {
                   name="loanTitle"
                   type="text"
                   className="input w-full border border-[#2a6877] focus:outline-none focus:ring-0 
-            focus:border-2 focus:border-b-[#2a6877] bg-white rounded-md"
+            focus:border-2 focus:border-b-[#2a6877] bg-base-100 rounded-md"
                 />
               </div>
 
@@ -139,7 +139,7 @@ const Application = () => {
                 <input
                   name="interestRate"
                   className="input w-full border border-[#2a6877] focus:outline-none focus:ring-0 
-            focus:border-2 focus:border-b-[#2a6877] bg-white rounded-md"
+            focus:border-2 focus:border-b-[#2a6877] bg-base-100 rounded-md"
                 />
               </div>
             </div>
@@ -160,7 +160,7 @@ const Application = () => {
                 placeholder="Enter first name"
                 required
                 className="input w-full border border-[#2a6877] focus:outline-none 
-            focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-white rounded-md"
+            focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-base-100 rounded-md"
               />
             </div>
 
@@ -172,7 +172,7 @@ const Application = () => {
                 placeholder="Enter last name"
                 required
                 className="input w-full border border-[#2a6877] focus:outline-none 
-            focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-white rounded-md"
+            focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-base-100 rounded-md"
               />
             </div>
           </div>
@@ -186,7 +186,7 @@ const Application = () => {
               placeholder="Enter phone number"
               required
               className="input w-full border border-[#2a6877] focus:outline-none
-          focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-white rounded-md"
+          focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-base-100 rounded-md"
             />
           </div>
 
@@ -199,7 +199,7 @@ const Application = () => {
               placeholder="Enter your NID / Passport ID"
               required
               className="input w-full border border-[#2a6877] focus:outline-none
-          focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-white rounded-md"
+          focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-base-100 rounded-md"
             />
           </div>
 
@@ -212,7 +212,7 @@ const Application = () => {
               placeholder="Job, Business, Student, etc."
               required
               className="input w-full border border-[#2a6877] focus:outline-none
-          focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-white rounded-md"
+          focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-base-100 rounded-md"
             />
           </div>
 
@@ -225,7 +225,7 @@ const Application = () => {
               placeholder="Enter monthly income"
               required
               className="input w-full border border-[#2a6877] focus:outline-none
-          focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-white rounded-md"
+          focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-base-100 rounded-md"
             />
           </div>
 
@@ -238,7 +238,7 @@ const Application = () => {
               placeholder="Enter desired loan amount"
               required
               className="input w-full border border-[#2a6877] focus:outline-none
-          focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-white rounded-md"
+          focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-base-100 rounded-md"
             />
           </div>
 
@@ -250,7 +250,7 @@ const Application = () => {
               placeholder="Why do you need this loan?"
               required
               className="textarea w-full border border-[#2a6877] focus:outline-none
-          focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-white rounded-md"
+          focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-base-100 rounded-md"
             ></textarea>
           </div>
 
@@ -262,7 +262,7 @@ const Application = () => {
               placeholder="Full address"
               required
               className="textarea w-full border border-[#2a6877] focus:outline-none
-          focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-white rounded-md"
+          focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-base-100 rounded-md"
             ></textarea>
           </div>
 
@@ -273,7 +273,7 @@ const Application = () => {
               name="extraNotes"
               placeholder="Any additional info (optional)"
               className="textarea w-full border border-[#2a6877] focus:outline-none
-          focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-white rounded-md"
+          focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-base-100 rounded-md"
             ></textarea>
           </div>
 
@@ -282,7 +282,7 @@ const Application = () => {
             <Link
               to="/"
               className="rounded-md text-xs md:text-sm cursor-pointer py-2.5 md:py-1.5
-            px-1 md:px-12 bg-transparent border-2 border-[#2a6877] font-semibold text-[#2a6877] hover:bg-[#2a6877] hover:text-white  
+            px-1 md:px-12 bg-transparent border-2 border-[#2a6877] font-semibold text-(--brand) hover:bg-[#2a6877] hover:text-white  
             w-full sm:w-auto transition-all duration-200 text-center"
             >
               Back

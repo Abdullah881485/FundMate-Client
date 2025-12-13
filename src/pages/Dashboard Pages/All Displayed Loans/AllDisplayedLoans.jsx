@@ -98,7 +98,7 @@ const AllDisplayedLoans = () => {
   }
   return (
     <div className="p-0 md:p-6 ">
-      <h2 className="text-2xl font-bold mb-4 text-[#2a6877]">All Loans</h2>
+      <h2 className="text-2xl font-bold mb-4 text-(--brand)">All Loans</h2>
       <div className="overflow-x-auto">
         <table className="w-full min-w-max divide-y divide-gray-200">
           <thead className="bg-[#2a6877] text-white">
@@ -161,7 +161,7 @@ const AllDisplayedLoans = () => {
                     onChange={(e) =>
                       handleToggleShowOnHome(loan._id, e.target.checked)
                     }
-                    className="w-4 h-4 md:w-5 md:h-5 text-[#2a6877] border-gray-300 rounded"
+                    className="w-4 h-4 md:w-5 md:h-5 text-(--brand) border-gray-300 rounded"
                   />
                 </td>
 
@@ -191,14 +191,14 @@ const AllDisplayedLoans = () => {
 
       <dialog ref={loanModalRef} className="modal modal-bottom sm:modal-middle">
         <div className="modal-box">
-          <h3 className="font-bold text-lg text-[#2a6877]">
+          <h3 className="font-bold text-lg text-(--brand)">
             Update Loan Information
           </h3>
 
           <form
             key={selectedLoan?._id}
             onSubmit={handleUpdateLoan}
-            className="py-4 flex flex-col gap-1 text-gray-600"
+            className="py-4 flex flex-col gap-1 text-base-content/80"
           >
             <div className="flex flex-col md:flex-row gap-6 mb-4">
               <div className="flex flex-col flex-1 gap-2">
@@ -208,7 +208,7 @@ const AllDisplayedLoans = () => {
                   type="text"
                   placeholder="Enter Loan Title"
                   defaultValue={selectedLoan?.loanTitle}
-                  className="input w-full border border-[#2a6877] focus:outline-none focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-white rounded-md"
+                  className="input w-full border border-[#2a6877] focus:outline-none focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-base-100 rounded-md"
                   required
                 />
               </div>
@@ -218,7 +218,7 @@ const AllDisplayedLoans = () => {
                   name="interestRate"
                   defaultValue={selectedLoan?.interestRate}
                   placeholder="Enter Interest Rate"
-                  className="input w-full border border-[#2a6877] focus:outline-none focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-white rounded-md"
+                  className="input w-full border border-[#2a6877] focus:outline-none focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-base-100 rounded-md"
                   required
                 />
               </div>
@@ -231,7 +231,7 @@ const AllDisplayedLoans = () => {
                 name="description"
                 defaultValue={selectedLoan?.description}
                 placeholder="Enter Loan Description"
-                className="textarea w-full border border-[#2a6877] focus:outline-none focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-white rounded-md"
+                className="textarea w-full border border-[#2a6877] focus:outline-none focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-base-100 rounded-md"
                 required
               />
             </div>
@@ -245,7 +245,7 @@ const AllDisplayedLoans = () => {
                   type="text"
                   defaultValue={selectedLoan?.category}
                   placeholder="Loan Category"
-                  className="input w-full border border-[#2a6877] focus:outline-none focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-white rounded-md"
+                  className="input w-full border border-[#2a6877] focus:outline-none focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-base-100 rounded-md"
                   required
                 />
               </div>
@@ -256,7 +256,7 @@ const AllDisplayedLoans = () => {
                   defaultValue={selectedLoan?.maxLimit}
                   type="number"
                   placeholder="Enter Max Loan Limit"
-                  className="input w-full border border-[#2a6877] focus:outline-none focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-white rounded-md"
+                  className="input w-full border border-[#2a6877] focus:outline-none focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-base-100 rounded-md"
                   required
                 />
               </div>
@@ -271,7 +271,7 @@ const AllDisplayedLoans = () => {
                 onChange={handleEMIInput}
                 name="availableEmiPlans"
                 placeholder="e.g., 3 months, 6 months, 12 months"
-                className="input w-full border border-[#2a6877] focus:outline-none focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-white rounded-md"
+                className="input w-full border border-[#2a6877] focus:outline-none focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-base-100 rounded-md"
               />
             </div>
 
@@ -282,7 +282,7 @@ const AllDisplayedLoans = () => {
                 name="image"
                 placeholder="place a URL"
                 defaultValue={selectedLoan?.loanImage}
-                className=" input w-full border border-[#2a6877] focus:outline-none focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-white rounded-md"
+                className=" input w-full border border-[#2a6877] focus:outline-none focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-base-100 rounded-md"
               />
             </div>
 
@@ -290,7 +290,7 @@ const AllDisplayedLoans = () => {
             <div className="flex items-center justify-end gap-3 mt-4">
               <button
                 type="button"
-                className="btn rounded-xl bg-transparent border-2 border-[#2a6877] px-6 py-2 font-semibold text-[#2a6877] hover:bg-[#2a6877] hover:text-white transition duration-300"
+                className="btn rounded-xl bg-transparent border-2 border-[#2a6877] px-6 py-2 font-semibold text-(--brand) hover:bg-[#2a6877] hover:text-white transition duration-300"
                 onClick={() => loanModalRef.current.close()}
               >
                 Close

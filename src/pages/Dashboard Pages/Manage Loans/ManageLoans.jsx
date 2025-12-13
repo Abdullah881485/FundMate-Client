@@ -91,7 +91,7 @@ const ManageLoans = () => {
   return (
     <div className="md:p-6 p-0 ">
       <div className="flex flex-col my-2 md:flex-row justify-between">
-        <h2 className="text-2xl font-bold mb-4 text-[#2a6877]">Manage Loans</h2>
+        <h2 className="text-2xl font-bold mb-4 text-(--brand)">Manage Loans</h2>
         <input
           type="text"
           placeholder="Search by title..."
@@ -173,14 +173,14 @@ const ManageLoans = () => {
         className="modal modal-bottom sm:modal-middle"
       >
         <div className="modal-box">
-          <h3 className="font-bold text-lg text-[#2a6877]">
+          <h3 className="font-bold text-lg text-(--brand)">
             Update Loan Information
           </h3>
 
           <form
             key={selectedLoan?._id}
             onSubmit={handleUpdateLoan}
-            className="py-4 flex flex-col gap-1 text-gray-600"
+            className="py-4 flex flex-col gap-1 text-base-content/80"
           >
             <div className="flex flex-col md:flex-row gap-6 mb-4">
               <div className="flex flex-col flex-1 gap-2">
@@ -190,7 +190,7 @@ const ManageLoans = () => {
                   type="text"
                   placeholder="Enter Loan Title"
                   defaultValue={selectedLoan?.loanTitle}
-                  className="input w-full border border-[#2a6877] focus:outline-none focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-white rounded-md"
+                  className="input w-full border border-[#2a6877] focus:outline-none focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-base-100 rounded-md"
                   required
                 />
               </div>
@@ -200,7 +200,7 @@ const ManageLoans = () => {
                   name="interestRate"
                   defaultValue={selectedLoan?.interestRate}
                   placeholder="Enter Interest Rate"
-                  className="input w-full border border-[#2a6877] focus:outline-none focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-white rounded-md"
+                  className="input w-full border border-[#2a6877] focus:outline-none focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-base-100 rounded-md"
                   required
                 />
               </div>
@@ -213,7 +213,7 @@ const ManageLoans = () => {
                 name="description"
                 defaultValue={selectedLoan?.description}
                 placeholder="Enter Loan Description"
-                className="textarea w-full border border-[#2a6877] focus:outline-none focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-white rounded-md"
+                className="textarea w-full border border-[#2a6877] focus:outline-none focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-base-100 rounded-md"
                 required
               />
             </div>
@@ -225,7 +225,7 @@ const ManageLoans = () => {
                   type="text"
                   defaultValue={selectedLoan?.category}
                   placeholder="Loan Category"
-                  className="input w-full border border-[#2a6877] focus:outline-none focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-white rounded-md"
+                  className="input w-full border border-[#2a6877] focus:outline-none focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-base-100 rounded-md"
                   required
                 />
               </div>
@@ -236,7 +236,7 @@ const ManageLoans = () => {
                   defaultValue={selectedLoan?.maxLimit}
                   type="number"
                   placeholder="Enter Max Loan Limit"
-                  className="input w-full border border-[#2a6877] focus:outline-none focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-white rounded-md"
+                  className="input w-full border border-[#2a6877] focus:outline-none focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-base-100 rounded-md"
                   required
                 />
               </div>
@@ -251,7 +251,7 @@ const ManageLoans = () => {
                 onChange={handleEMIInput}
                 name="availableEmiPlans"
                 placeholder="e.g., 3 months, 6 months, 12 months"
-                className="input w-full border border-[#2a6877] focus:outline-none focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-white rounded-md"
+                className="input w-full border border-[#2a6877] focus:outline-none focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-base-100 rounded-md"
               />
             </div>
 
@@ -261,7 +261,7 @@ const ManageLoans = () => {
               <input
                 name="image"
                 defaultValue={selectedLoan?.loanImage}
-                className=" input w-full border border-[#2a6877] focus:outline-none focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-white rounded-md"
+                className=" input w-full border border-[#2a6877] focus:outline-none focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-base-100 rounded-md"
               />
             </div>
 
@@ -269,7 +269,7 @@ const ManageLoans = () => {
             <div className="flex items-center justify-end gap-3 mt-4">
               <button
                 type="button"
-                className="btn rounded-xl bg-transparent border-2 border-[#2a6877] px-6 py-2 font-semibold text-[#2a6877] hover:bg-[#2a6877] hover:text-white transition duration-300"
+                className="btn rounded-xl bg-transparent border-2 border-[#2a6877] px-6 py-2 font-semibold text-(--brand) hover:bg-[#2a6877] hover:text-white transition duration-300"
                 onClick={() => updateModalRef.current.close()}
               >
                 Close

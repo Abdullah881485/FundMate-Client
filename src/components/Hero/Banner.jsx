@@ -1,20 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import LoanLottie from "../LottieImage/LottieImage1";
 
 const Banner = () => {
   return (
-    <section className="w-full my-20">
-      <div className="w-[98%] md:w-[90%] mx-auto px-4">
-        <div className="flex items-center justify-between flex-col lg:flex-row gap-5">
+    <section className="w-full md:w-[90%] mx-auto mt-10 mb-10">
+      <div className=" ">
+        <div className="flex items-center justify-around flex-col lg:flex-row ">
           <motion.div
-            className="flex flex-col gap-5"
+            className="flex flex-col w-full md:w-1/2  gap-5 px-4 text-start"
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
             <motion.h1
-              className="title-text font-bold text-4xl md:text-6xl"
+              className="title-text font-bold text-3xl md:text-6xl"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.8 }}
@@ -23,7 +24,7 @@ const Banner = () => {
             </motion.h1>
 
             <motion.p
-              className="text-gray-500 text-[16px] md:text-lg"
+              className="text-base-content/60 text-[16px] md:text-lg"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.35, duration: 0.8 }}
@@ -40,7 +41,7 @@ const Banner = () => {
             >
               <Link
                 to="/application"
-                className="btn rounded-2xl bg-transparent border-2 border-[#2a6877] px-6 py-2 w-fit font-semibold text-[#2a6877] hover:bg-[#2a6877] hover:text-white transition duration-300"
+                className="btn rounded-2xl bg-transparent border-2 border-[#2a6877] px-6 py-2 w-fit font-semibold text-(--brand) hover:bg-[#2a6877] hover:text-white transition duration-300"
               >
                 Apply Now
               </Link>
@@ -54,9 +55,9 @@ const Banner = () => {
             transition={{ delay: 0.6, duration: 0.8, ease: "easeOut" }}
           >
             <img
-              src="https://i.ibb.co.com/JFd5bJXv/home-loan-emi-084305895-16x9-0.jpg"
+              src="https://i.ibb.co.com/vvgtp1TS/man-getting-loan-from-bank-5776760-4833683.png"
               alt="Bank illustration"
-              className="w-full object-contain rounded-2xl"
+              className="w-full  object-contain "
             />
           </motion.div>
         </div>

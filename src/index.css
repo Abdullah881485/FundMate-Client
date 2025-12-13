@@ -6,12 +6,24 @@
 @plugin "daisyui" {
   themes: light --default, night --prefersdark;
 }
-@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+@custom-variant dark (&:where([data-theme=night], [data-theme=night] *));
+
+:root {
+  --brand: #2a6877;
+  --brand-soft: #e6f2f5;
+}
+
+[data-theme="night"] {
+  --brand: #6fc3d4;
+  --brand-soft: #0f2e35;
+}
+
 html {
   scroll-behavior: smooth;
 }
 body {
   font-family: "Manrope", sans-serif;
+  overflow-x: hidden;
 }
 .title-text {
   color: #2a6877;
@@ -31,5 +43,4 @@ h1 {
     rgba(255, 255, 255, 0.05)
   );
   backdrop-filter: blur(18px);
-  border: 1px solid rgba(255, 255, 255, 0.25);
 }

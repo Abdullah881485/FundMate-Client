@@ -83,7 +83,7 @@ const PendingApplication = () => {
   };
   return (
     <div className="p-0 md:p-6">
-      <h1 className="text-lg md:text-2xl font-bold mb-6 text-[#2a6877]">
+      <h1 className="text-lg md:text-2xl font-bold mb-6 text-(--brand)">
         Pending Loan Applications
       </h1>
 
@@ -105,13 +105,17 @@ const PendingApplication = () => {
                 <td className="px-4 py-3">
                   <div className="flex flex-col">
                     <span className="font-semibold">{loan?.firstName}</span>
-                    <span className="text-gray-500 text-sm">{loan?.email}</span>
+                    <span className="text-base-content/60 text-sm">
+                      {loan?.email}
+                    </span>
                   </div>
                 </td>
                 <td className="px-4 py-3 text-green-600">
                   $ {loan?.loanAmount}
                 </td>
-                <td className="px-4 py-3">{loan?.createdAt}</td>
+                <td className="px-4 py-3">
+                  {new Date(loan?.createdAt).toLocaleDateString()}
+                </td>
                 <td className="px-4 py-3 flex gap-2 justify-center">
                   <div className="flex items-center gap-2 ">
                     <button
@@ -146,13 +150,13 @@ const PendingApplication = () => {
         className="modal modal-bottom sm:modal-middle"
       >
         <div className="modal-box">
-          <h3 className="font-bold text-lg text-[#2a6877]">
+          <h3 className="font-bold text-lg text-(--brand)">
             Application Details
           </h3>
 
-          <div className="py-4 flex flex-col gap-3 text-gray-700">
+          <div className="py-4 flex flex-col gap-3 text-base-content/70">
             <div className="p-3 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200 bg-gray-50">
-              <h4 className="font-semibold text-[#2a6877]">
+              <h4 className="font-semibold text-(--brand)">
                 Borrower Information
               </h4>
               <p>
@@ -170,7 +174,7 @@ const PendingApplication = () => {
             </div>
 
             <div className="p-3 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200 bg-gray-50">
-              <h4 className="font-semibold text-[#2a6877]">Loan Information</h4>
+              <h4 className="font-semibold text-(--brand)">Loan Information</h4>
               <p>
                 <span className="font-semibold">Loan Title:</span>{" "}
                 {selectedApplication?.loanTitle}
@@ -186,7 +190,7 @@ const PendingApplication = () => {
             </div>
 
             <div className="p-3 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200 bg-gray-50">
-              <h4 className="font-semibold text-[#2a6877]">
+              <h4 className="font-semibold text-(--brand)">
                 Financial Details
               </h4>
               <p>
@@ -200,7 +204,7 @@ const PendingApplication = () => {
             </div>
 
             <div className="p-3 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200 bg-gray-50">
-              <h4 className="font-semibold text-[#2a6877]">
+              <h4 className="font-semibold text-(--brand)">
                 Application Status
               </h4>
               <p>

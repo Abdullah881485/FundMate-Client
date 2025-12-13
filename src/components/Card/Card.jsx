@@ -5,7 +5,7 @@ const Card = ({ loan }) => {
   return (
     <div
       data-aos="fade-up"
-      className="bg-white rounded-lg shadow-md overflow-hidden flex flex-col hover:shadow-lg transition-shadow duration-200 "
+      className="bg-base-100 rounded-lg shadow-md overflow-hidden flex flex-col hover:shadow-lg transition-shadow duration-200 "
     >
       <img
         src={loan?.loanImage}
@@ -13,13 +13,13 @@ const Card = ({ loan }) => {
         className="w-full h-45 object-cover"
       />
       <div className="p-4 flex flex-col grow">
-        <h3 className="text-lg font-semibold text-gray-800 mb-2">
+        <h3 className="text-lg font-semibold text-(--brand) mb-2">
           {loan?.loanTitle}
         </h3>
-        <p className="text-gray-600 text-sm mb-3 line-clamp-2">
+        <p className="text-base-content/60 text-sm mb-3 line-clamp-2">
           {loan?.description}
         </p>
-        <div className="font-bold text-gray-900 mb-4">
+        <div className="font-semibold text-base-content/60 mb-4">
           Max Loan: <span className="text-green-600">${loan?.maxLimit}</span>
         </div>
         <Link

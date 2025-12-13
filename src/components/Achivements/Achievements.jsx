@@ -45,11 +45,11 @@ const Statistics = () => {
           <div
             data-aos="fade-up"
             key={stat.id}
-            className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-200 flex flex-col items-center"
+            className="bg-base-100 rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-200 flex flex-col items-center"
           >
             {stat.icon}
             <h3 className="text-2xl font-bold mb-1">{stat.number}</h3>
-            <p className="text-gray-600">{stat.label}</p>
+            <p className="text-base-content/80">{stat.label}</p>
           </div>
         ))}
       </div>

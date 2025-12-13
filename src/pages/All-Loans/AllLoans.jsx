@@ -60,7 +60,7 @@ const AllLoans = () => {
         All Available Loans
       </h1>
 
-      <p className="text-gray-500 text-center text-sm md:text-lg">
+      <p className="text-base-content/60 text-center text-sm md:text-lg">
         Here you will find detailed information on all loan applications handled
         by the platform.
       </p>

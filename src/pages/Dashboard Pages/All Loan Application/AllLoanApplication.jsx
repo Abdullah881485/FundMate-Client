@@ -36,7 +36,7 @@ const AllLoanApplication = () => {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="text-2xl font-bold mb-4 text-[#2a6877]"
+        className="text-2xl font-bold mb-4 text-(--brand)"
       >
         Loan Applications
       </motion.h2>
@@ -91,7 +91,9 @@ const AllLoanApplication = () => {
                 <td className="px-4 py-3">{app._id}</td>
                 <td className="px-4 py-3">
                   {app.firstName} {app.lastName} <br />{" "}
-                  <span className="text-gray-500 text-sm">{app.email}</span>
+                  <span className="text-base-content/60 text-sm">
+                    {app.email}
+                  </span>
                 </td>
                 <td className="px-4 py-3">{app.category}</td>
                 <td className="px-4 py-3">${app.loanAmount}</td>
@@ -128,13 +130,13 @@ const AllLoanApplication = () => {
         className="modal modal-bottom sm:modal-middle"
       >
         <div className="modal-box">
-          <h3 className="font-bold text-lg text-[#2a6877]">
+          <h3 className="font-bold text-lg text-(--brand)">
             Application Details
           </h3>
 
-          <div className="py-4 flex flex-col gap-3 text-gray-700">
+          <div className="py-4 flex flex-col gap-3 text-base-content/70">
             <div className="p-3 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200 bg-gray-50">
-              <h4 className="font-semibold text-[#2a6877]">
+              <h4 className="font-semibold text-(--brand)">
                 Borrower Information
               </h4>
               <p>
@@ -152,7 +154,7 @@ const AllLoanApplication = () => {
             </div>
 
             <div className="p-3 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200 bg-gray-50">
-              <h4 className="font-semibold text-[#2a6877]">Loan Information</h4>
+              <h4 className="font-semibold text-(--brand)">Loan Information</h4>
               <p>
                 <span className="font-semibold">Loan Title:</span>{" "}
                 {selectedApplication?.loanTitle}
@@ -168,7 +170,7 @@ const AllLoanApplication = () => {
             </div>
 
             <div className="p-3 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200 bg-gray-50">
-              <h4 className="font-semibold text-[#2a6877]">
+              <h4 className="font-semibold text-(--brand)">
                 Financial Details
               </h4>
               <p>
@@ -182,7 +184,7 @@ const AllLoanApplication = () => {
             </div>
 
             <div className="p-3 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200 bg-gray-50">
-              <h4 className="font-semibold text-[#2a6877]">
+              <h4 className="font-semibold text-(--brand)">
                 Application Status
               </h4>
               <p>

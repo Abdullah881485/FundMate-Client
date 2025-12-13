@@ -124,9 +124,9 @@ const Register = () => {
       .finally(() => setLoading(false));
   };
   return (
-    <div className="w-[90%] md:w-4/5 lg:w-3/5 xl:3/6 mx-auto text-gray-600 ">
+    <div className="w-[90%] md:w-4/5 lg:w-3/5 xl:3/6 mx-auto text-base-content/80 ">
       <title>FinEase | Register</title>
-      <div className="rounded-2xl shadow bg-white my-20 flex flex-col md:flex-row items-stretch overflow-hidden">
+      <div className="rounded-2xl shadow bg-base-100 my-20 flex flex-col md:flex-row items-stretch overflow-hidden">
         <div className="hidden md:block md:w-1/2">
           <img
             className="h-full w-full object-cover"
@@ -135,7 +135,7 @@ const Register = () => {
           />
         </div>
         <div className="p-8 md:w-1/2 flex flex-col justify-center">
-          <h1 className="text-2xl font-bold mb-10 text-center text-[#2a6877]">
+          <h1 className="text-2xl font-bold mb-10 text-center text-(--brand)">
             Create An Account
           </h1>
           <form onSubmit={handleCreateUser}>
@@ -171,7 +171,7 @@ const Register = () => {
               <select
                 name="role"
                 defaultValue="Borrower"
-                className="select text-gray-600 w-full text-lg rounded-none border-transparent border-b border-b-[#2a6877] focus:outline-none focus:ring-0 focus:border-b-2 focus:border-b-[#2a6877]"
+                className="select text-base-content/80 w-full text-lg rounded-none border-transparent border-b border-b-[#2a6877] focus:outline-none focus:ring-0 focus:border-b-2 focus:border-b-[#2a6877]"
               >
                 <option>Borrower</option>
                 <option>Manager</option>

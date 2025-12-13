@@ -79,9 +79,9 @@ const Login = () => {
     return <Loader1></Loader1>;
   }
   return (
-    <div className="w-[90%] md:w-4/5 lg:w-3/5 xl:3/6 mx-auto text-gray-600">
+    <div className="w-[90%] md:w-4/5 lg:w-3/5 xl:3/6 mx-auto text-base-content/80">
       <title>FundMate | Login</title>
-      <div className="rounded-2xl bg-white shadow-lg  my-20 flex flex-col md:flex-row items-stretch overflow-hidden">
+      <div className="rounded-2xl bg-base-100 shadow-lg  my-20 flex flex-col md:flex-row items-stretch overflow-hidden">
         <div className="hidden md:block md:w-1/2">
           <img
             className="h-full w-full object-cover"
@@ -91,7 +91,7 @@ const Login = () => {
         </div>
 
         <div className="p-8 md:w-1/2 flex flex-col justify-center">
-          <h1 className="text-2xl font-bold mb-6 text-center text-[#2a6877]">
+          <h1 className="text-2xl font-bold mb-6 text-center text-(--brand)">
             Login to FundMate
           </h1>
           <form onSubmit={handleSignIn}>

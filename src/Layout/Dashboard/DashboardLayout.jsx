@@ -21,7 +21,7 @@ const DashboardLayout = () => {
   // console.log(role);
   const { user } = use(AuthContext);
   const [theme, setTheme] = useState(
-    localStorage.getItem("theme") ? localStorage.getItem("theme") : "night"
+    localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
   );
 
   useEffect(() => {
@@ -30,7 +30,7 @@ const DashboardLayout = () => {
     localStorage.setItem("theme", theme);
   }, [theme]);
   const toggleTheme = (checked) => {
-    setTheme(checked ? "light" : "night");
+    setTheme(checked ? "night" : "light");
   };
   const getLinkStyle = ({ isActive }) => {
     return {
@@ -53,9 +53,8 @@ const DashboardLayout = () => {
             <label
               htmlFor="my-drawer-4"
               aria-label="open sidebar"
-              className="btn btn-square btn-ghost text-gray-600"
+              className="btn btn-square btn-ghost text-base-content/80"
             >
-              {/* Sidebar toggle icon */}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -72,37 +71,22 @@ const DashboardLayout = () => {
               </svg>
             </label>
             <div className="px-4">
-              <h1 className=" font-bold text-2xl text-gray-700">
-                Fund<span className="text-[#2a6877]">Mate</span>
+              <h1 className=" font-bold text-2xl text-base-content/70">
+                Fund<span className="text-(--brand)">Mate</span>
               </h1>
             </div>
           </div>
           <div className="flex gap-5 items-center">
             <div className="">
-              <label className="toggle w-10 text-gray-600">
+              <label className="toggle w-10 text-base-content/80">
                 <input
-                  checked={theme === "light"}
+                  checked={theme === "night"}
                   onChange={(e) => toggleTheme(e.target.checked)}
                   type="checkbox"
-                  value="light"
+                  value="night"
                   className="theme-controller"
                 />
 
-                <svg
-                  aria-label="moon"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                >
-                  <g
-                    strokeLinejoin="round"
-                    strokeLinecap="round"
-                    strokeWidth="2"
-                    fill="none"
-                    stroke="currentColor"
-                  >
-                    <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
-                  </g>
-                </svg>
                 <svg
                   aria-label="sun"
                   xmlns="http://www.w3.org/2000/svg"
@@ -124,6 +108,21 @@ const DashboardLayout = () => {
                     <path d="M20 12h2"></path>
                     <path d="m6.34 17.66-1.41 1.41"></path>
                     <path d="m19.07 4.93-1.41 1.41"></path>
+                  </g>
+                </svg>
+                <svg
+                  aria-label="moon"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                >
+                  <g
+                    strokeLinejoin="round"
+                    strokeLinecap="round"
+                    strokeWidth="2"
+                    fill="none"
+                    stroke="currentColor"
+                  >
+                    <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
                   </g>
                 </svg>
               </label>
@@ -153,10 +152,8 @@ const DashboardLayout = () => {
           aria-label="close sidebar"
           className="drawer-overlay"
         ></label>
-        <div className="flex min-h-full py-20 flex-col items-start is-drawer-close:w-14 is-drawer-open:w-64  ">
-          {/* Sidebar content here */}
-          <ul className="menu w-full grow space-y-2 text-gray-500 font-normal">
-            {/* List item */}
+        <div className="flex min-h-full py-20 flex-col items-start is-drawer-close:w-14 is-drawer-open:w-64 bg-base-100 ">
+          <ul className="menu w-full grow space-y-2 text-base-content/80 font-normal">
             <li>
               <NavLink
                 style={getLinkStyle}

@@ -56,7 +56,7 @@ const ManageUsers = () => {
   }
   return (
     <div className="p-0 md:p-6">
-      <h2 className="text-2xl font-bold mb-4 text-[#2a6877]">Manage Users</h2>
+      <h2 className="text-2xl font-bold mb-4 text-(--brand)">Manage Users</h2>
       <div className="flex flex-col md:flex-row justify-between gap-4 mb-4">
         <input
           type="text"
@@ -155,7 +155,7 @@ const ManageUsers = () => {
                 <select
                   name="role"
                   defaultValue={selectedUser?.role}
-                  className="select text-gray-600 w-full text-lg rounded-none border-transparent border-b border-b-[#2a6877] focus:outline-none focus:ring-0 focus:border-b-2 focus:border-b-[#2a6877]"
+                  className="select text-base-content/800 w-full text-lg rounded-none border-transparent border-b border-b-[#2a6877] focus:outline-none focus:ring-0 focus:border-b-2 focus:border-b-[#2a6877]"
                 >
                   <option>Borrower</option>
                   <option>Manager</option>
@@ -165,7 +165,7 @@ const ManageUsers = () => {
               <div className="flex items-center gap-3">
                 <button
                   onClick={() => userModalRef.current.close()}
-                  className="btn rounded-xl bg-transparent border-2 border-[#2a6877] px-6 py-2 w-fit font-semibold text-[#2a6877] hover:bg-[#2a6877] hover:text-white transition duration-300 "
+                  className="btn rounded-xl bg-transparent border-2 border-[#2a6877] px-6 py-2 w-fit font-semibold text-(--brand) hover:bg-[#2a6877] hover:text-white transition duration-300 "
                 >
                   Close
                 </button>
@@ -193,7 +193,7 @@ const ManageUsers = () => {
                 placeholder="Suspend Reason"
                 required
                 className="input w-full border border-[#2a6877] focus:outline-none
-          focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-white rounded-md"
+          focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-base-100 rounded-md"
               />
             </div>
             <div className="flex flex-col gap-2 mb-4">
@@ -203,7 +203,7 @@ const ManageUsers = () => {
                 placeholder="Why you suspended this user?"
                 required
                 className="textarea w-full border border-[#2a6877] focus:outline-none
-          focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-white rounded-md"
+          focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-base-100 rounded-md"
               ></textarea>
             </div>
             <div className="modal-action">

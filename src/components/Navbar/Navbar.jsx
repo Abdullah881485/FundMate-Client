@@ -18,7 +18,7 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const [theme, setTheme] = useState(
-    localStorage.getItem("theme") ? localStorage.getItem("theme") : "night"
+    localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
   );
 
   useEffect(() => {
@@ -27,7 +27,7 @@ const Navbar = () => {
     localStorage.setItem("theme", theme);
   }, [theme]);
   const toggleTheme = (checked) => {
-    setTheme(checked ? "light" : "night");
+    setTheme(checked ? "night" : "light");
   };
   const links = (
     <>
@@ -120,41 +120,26 @@ const Navbar = () => {
               {links}
             </ul>
           </div>
-          <a className=" font-bold text-2xl md:text-3xl text-gray-700 logo">
-            Fund<span className="text-[#2a6877]">Mate</span>
+          <a className=" font-bold text-2xl md:text-3xl text-base-content/70 logo">
+            Fund<span className="text-(--brand)">Mate</span>
           </a>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="flex items-center px-1 gap-12 text-gray-500  text-[16px] font-medium">
+          <ul className="flex items-center px-1 gap-12 text-base-content/60  text-[16px] font-medium">
             {links}
           </ul>
         </div>
         <div className="navbar-end">
           <div className="mr-2 md:mr-6">
-            <label className="toggle w-10 text-gray-600">
+            <label className="toggle w-10 text-base-content/80">
               <input
-                checked={theme === "light"}
+                checked={theme === "night"}
                 onChange={(e) => toggleTheme(e.target.checked)}
                 type="checkbox"
-                value="light"
+                value="night"
                 className="theme-controller"
               />
 
-              <svg
-                aria-label="moon"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-              >
-                <g
-                  strokeLinejoin="round"
-                  strokeLinecap="round"
-                  strokeWidth="2"
-                  fill="none"
-                  stroke="currentColor"
-                >
-                  <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
-                </g>
-              </svg>
               <svg
                 aria-label="sun"
                 xmlns="http://www.w3.org/2000/svg"
@@ -176,6 +161,21 @@ const Navbar = () => {
                   <path d="M20 12h2"></path>
                   <path d="m6.34 17.66-1.41 1.41"></path>
                   <path d="m19.07 4.93-1.41 1.41"></path>
+                </g>
+              </svg>
+              <svg
+                aria-label="moon"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+              >
+                <g
+                  strokeLinejoin="round"
+                  strokeLinecap="round"
+                  strokeWidth="2"
+                  fill="none"
+                  stroke="currentColor"
+                >
+                  <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
                 </g>
               </svg>
             </label>

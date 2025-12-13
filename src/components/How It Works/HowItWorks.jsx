@@ -7,7 +7,7 @@ const HowItWorks = () => {
         <h2 className="text-3xl font-bold text-center title-text">
           How It Works
         </h2>
-        <p className="text-gray-500 text-center">
+        <p className="text-base-content/60 text-center">
           This is a process, how you can get loan for your self.
         </p>
       </div>
@@ -15,7 +15,7 @@ const HowItWorks = () => {
         data-aos="fade-left"
         className="flex items-center justify-center flex-col md:flex-row"
       >
-        <div className="flex-1">
+        <div className="flex-1 flex justify-center">
           <img
             src="https://i.ibb.co.com/qSJLgX3/1000x2-Suivi-Formation.png"
             alt=""
@@ -24,7 +24,7 @@ const HowItWorks = () => {
         </div>
         <div className="flex-1 space-y-2">
           <h1 className="title-text text-2xl font-semibold">Application</h1>
-          <p className="text-gray-500">
+          <p className="text-base-content/60">
             The borrower submits a loan application to the bank, either in
             person, online, or through other channels. The application includes
             personal and financial information, such as income, employment
@@ -34,13 +34,13 @@ const HowItWorks = () => {
       </div>
       <div
         data-aos="fade-right"
-        className="flex items-center justify-center flex-col-reverse md:flex-row"
+        className="flex items-center justify-between flex-col-reverse md:flex-row"
       >
         <div className="flex-1 space-y-2">
           <h1 className="title-text text-2xl font-semibold">
             Documentation and Verification
           </h1>
-          <p className="text-gray-500">
+          <p className="text-base-content/60">
             The bank requests supporting documents from the borrower, such as
             identification proof, income statements, bank statements, and
             collateral details (if applicable). The bank verifies the
@@ -48,9 +48,9 @@ const HowItWorks = () => {
             eligibility for the loan.
           </p>
         </div>
-        <div className="flex-1">
+        <div className="flex-1 flex justify-center">
           <img
-            src="https://i.ibb.co.com/7xcnvFhN/password-verification-user-authorization-smartphone-with-a-login-screen-illustration-free-png.png"
+            src="https://i.ibb.co.com/k2tDZpMg/5145110.png"
             alt=""
             className="w-100"
           />
@@ -58,18 +58,18 @@ const HowItWorks = () => {
       </div>
       <div
         data-aos="fade-left"
-        className="flex items-center justify-center flex-col md:flex-row"
+        className="flex items-center justify-between flex-col md:flex-row"
       >
-        <div className="flex-1">
+        <div className="flex-1 flex justify-center">
           <img
-            src="https://i.ibb.co.com/35CprD4s/document-tick-file-page-1024.png"
+            src="https://i.ibb.co.com/JjHXPjtg/ill-succes.png"
             alt=""
             className="w-100"
           />
         </div>
         <div className="flex-1 space-y-2">
           <h1 className="title-text text-2xl font-semibold">Loan Approval</h1>
-          <p className="text-gray-500">
+          <p className="text-base-content/60">
             If the borrower meets the bank's lending criteria and passes the
             credit assessment, the loan is approved. The bank determines the
             loan amount, interest rate, repayment term, and any associated fees.

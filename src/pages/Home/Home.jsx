@@ -8,7 +8,7 @@ import Partners from "../../components/Partners/Partners";
 
 const Home = () => {
   return (
-    <div className="space-y-30">
+    <div className="space-y-30 ">
       <Banner></Banner>
       <AvailableLoans></AvailableLoans>
       <HowItWorks></HowItWorks>

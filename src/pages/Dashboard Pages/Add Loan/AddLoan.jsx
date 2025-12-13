@@ -74,12 +74,14 @@ const AddLoan = () => {
   }
 
   return (
-    <div className="w-[99%] md:w-6/10 mx-auto p-3 md:p-6 rounded-2xl shadow bg-white my-10 text-gray-600">
+    <div className="w-[99%] md:w-6/10 mx-auto p-3 md:p-6 rounded-2xl shadow bg-base-100 my-10 text-base-content/70">
       <title>FundMAte | Add Loan</title>
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold mb-4 text-[#2a6877]">Add Loan</h1>
+        <h1 className="text-2xl font-bold mb-4 text-(--brand)">Add Loan</h1>
         <div className="flex items-center gap-2">
-          <p className="text-sm text-gray-500 hidden md:block">Show on home</p>
+          <p className="text-sm text-base-content/60 hidden md:block">
+            Show on home
+          </p>
           <input
             type="checkbox"
             checked={isChecked}
@@ -100,7 +102,7 @@ const AddLoan = () => {
               name="loanTitle"
               type="text"
               placeholder="Enter Loan Title"
-              className="input w-full border border-[#2a6877] focus:outline-none focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-white rounded-md"
+              className="input w-full border border-[#2a6877] focus:outline-none focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-base-100 rounded-md"
               required
             />
           </div>
@@ -110,7 +112,7 @@ const AddLoan = () => {
               name="interestRate"
               type="text"
               placeholder="Enter Interest Rate"
-              className="input w-full border border-[#2a6877] focus:outline-none focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-white rounded-md"
+              className="input w-full border border-[#2a6877] focus:outline-none focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-base-100 rounded-md"
               required
             />
           </div>
@@ -122,7 +124,7 @@ const AddLoan = () => {
           <textarea
             name="description"
             placeholder="Enter Loan Description"
-            className="textarea w-full border border-[#2a6877] focus:outline-none focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-white rounded-md"
+            className="textarea w-full border border-[#2a6877] focus:outline-none focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-base-100 rounded-md"
             required
           />
         </div>
@@ -135,7 +137,7 @@ const AddLoan = () => {
               name="category"
               type="text"
               placeholder="Loan Category"
-              className="input w-full border border-[#2a6877] focus:outline-none focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-white rounded-md"
+              className="input w-full border border-[#2a6877] focus:outline-none focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-base-100 rounded-md"
               required
             />
           </div>
@@ -145,7 +147,7 @@ const AddLoan = () => {
               name="maxLoanLimit"
               type="number"
               placeholder="Enter Max Loan Limit"
-              className="input w-full border border-[#2a6877] focus:outline-none focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-white rounded-md"
+              className="input w-full border border-[#2a6877] focus:outline-none focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-base-100 rounded-md"
               required
             />
           </div>
@@ -158,7 +160,7 @@ const AddLoan = () => {
             name="requiredDocs"
             type="text"
             placeholder="e.g., ID, Income Proof"
-            className="input w-full border border-[#2a6877] focus:outline-none focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-white rounded-md"
+            className="input w-full border border-[#2a6877] focus:outline-none focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-base-100 rounded-md"
           />
         </div>
 
@@ -170,7 +172,7 @@ const AddLoan = () => {
             type="text"
             onChange={handleEMIInput}
             placeholder="Enter EMI Plans e.g., 6, 12, 24 months"
-            className="input w-full border border-[#2a6877] focus:outline-none focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-white rounded-md"
+            className="input w-full border border-[#2a6877] focus:outline-none focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-base-100 rounded-md"
           />
         </div>
 
@@ -181,7 +183,7 @@ const AddLoan = () => {
             name="images"
             type="text"
             placeholder="Upload a image url"
-            className="input w-full border border-[#2a6877] focus:outline-none focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-white rounded-md"
+            className="input w-full border border-[#2a6877] focus:outline-none focus:ring-0 focus:border-2 focus:border-b-[#2a6877] bg-base-100 rounded-md"
           />
         </div>
 
@@ -189,7 +191,7 @@ const AddLoan = () => {
         <div className="flex flex-col sm:flex-row items-center justify-between gap-5 mt-3">
           <button
             type="reset"
-            className="rounded-md text-xs md:text-sm cursor-pointer py-2.5 md:py-1.5 px-1 md:px-12 bg-transparent border-2 border-[#2a6877] font-semibold text-[#2a6877] hover:bg-[#2a6877] hover:text-white w-full sm:w-auto transition-all duration-200"
+            className="rounded-md text-xs md:text-sm cursor-pointer py-2.5 md:py-1.5 px-1 md:px-12 bg-transparent border-2 border-[#2a6877] font-semibold text-(--brand) hover:bg-[#2a6877] hover:text-white w-full sm:w-auto transition-all duration-200"
           >
             Reset
           </button>

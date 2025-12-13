@@ -17,16 +17,13 @@ const Success = () => {
   }, [sessionId, axiosSecure]);
 
   return (
-    <div
-      
-      className="w-9/10 mx-auto flex justify-center items-center flex-col my-20"
-    >
+    <div className="w-9/10 mx-auto flex justify-center items-center flex-col my-20">
       <img
         className="w-70"
         src="https://i.ibb.co.com/tpr3VcrS/free-payment-successful-3543010-2969397.png"
         alt=""
       />
-      <h1 className="font-bold text-xl text-center md:text-2xl text-[#2a6877]">
+      <h1 className="font-bold text-xl text-center md:text-2xl text-(--brand)">
         Application Fee paid Successfully
       </h1>
       <Link
