@@ -69,7 +69,7 @@ const MyLoans = () => {
     window.location.href = res.data.url;
   };
 
-  if (loading || isLoading) {
+  if (loading || !user || isLoading) {
     return <Loader1></Loader1>;
   }
   return (

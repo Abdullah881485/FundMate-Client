@@ -184,7 +184,7 @@ const Navbar = () => {
             <div className="flex items-center gap-2 ">
               <div className=" ">
                 <img
-                  className="w-8 h-10 md:w-10 rounded-full object-cover"
+                  className="w-8 h-8 md:h-10 md:w-10 rounded-full object-cover"
                   src={
                     user?.photoURL
                       ? user?.photoURL

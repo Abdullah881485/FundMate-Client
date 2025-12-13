@@ -128,7 +128,7 @@ const DashboardLayout = () => {
               </label>
             </div>
             <img
-              className="object-cover rounded-full w-8 h-10"
+              className="object-cover rounded-full w-8 h-8 md:h-10 md:w-10"
               src={
                 user?.photoURL
                   ? user?.photoURL
