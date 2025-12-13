@@ -5,13 +5,16 @@ import Swal from "sweetalert2";
 import { FcGoogle } from "react-icons/fc";
 import { AuthContext } from "../../Provider/AuthContext";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import Loader1 from "../../components/Loader/Loader";
 
 const Login = () => {
-  const { signInUser, signInWithGoogle, setUser } = use(AuthContext);
+  const { signInUser, signInWithGoogle, setUser, setLoading, loading } =
+    use(AuthContext);
   const axiosSecure = useAxiosSecure();
   const location = useLocation();
   const navigate = useNavigate();
   const handleSignIn = (e) => {
+    setLoading(true);
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
@@ -27,6 +30,7 @@ const Login = () => {
         });
         setUser(user);
         navigate(`${location.state ? location.state : "/"}`);
+        setLoading(false);
       })
       .catch((error) => {
         console.log(error);
@@ -36,9 +40,11 @@ const Login = () => {
           icon: "error",
           confirmButtonText: "Close",
         });
+        setLoading(false);
       });
   };
   const handleGoogleSignIn = () => {
+    setLoading(true);
     signInWithGoogle()
       .then((result) => {
         const user = result.user;
@@ -62,11 +68,16 @@ const Login = () => {
         });
         navigate(`${location.state ? location.state : "/"}`);
         // console.log(result);
+        setLoading(false);
       })
       .catch((error) => {
         console.log(error);
+        setLoading(false);
       });
   };
+  if (loading) {
+    return <Loader1></Loader1>;
+  }
   return (
     <div className="w-[90%] md:w-4/5 lg:w-3/5 xl:3/6 mx-auto text-gray-600">
       <title>FundMate | Login</title>

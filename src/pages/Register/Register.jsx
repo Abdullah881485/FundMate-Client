@@ -76,7 +76,6 @@ const Register = () => {
           icon: "success",
           confirmButtonText: "Close",
         });
-
         // console.log(result.user);
       })
       .catch((err) => {
