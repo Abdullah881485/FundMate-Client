@@ -9,7 +9,7 @@ const Banner = () => {
       <div className=" ">
         <div className="flex items-center justify-around flex-col lg:flex-row ">
           <motion.div
-            className="flex flex-col w-full md:w-1/2  gap-5 px-4 text-start"
+            className="flex flex-col w-full lg:w-1/2  gap-5 px-4 text-start"
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
