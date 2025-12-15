@@ -47,7 +47,6 @@ const DashboardLayout = () => {
     <div className="w-[85%] py-5 mx-auto drawer lg:drawer-open">
       <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content">
-        {/* Navbar */}
         <nav className=" w-[95%] mx-auto flex justify-between">
           <div className="flex items-center">
             <label
@@ -71,7 +70,7 @@ const DashboardLayout = () => {
               </svg>
             </label>
             <div className="px-4">
-              <h1 className=" font-bold text-2xl text-base-content/70">
+              <h1 className=" font-bold text-2xl text-base-content/70 logo">
                 Fund<span className="text-(--brand)">Mate</span>
               </h1>
             </div>
@@ -138,7 +137,7 @@ const DashboardLayout = () => {
             />
           </div>
         </nav>
-        {/* Page content here */}
+
         <main className="w-full md:w-[95%]  mx-auto my-10">
           <Outlet></Outlet>
         </main>
@@ -146,14 +145,14 @@ const DashboardLayout = () => {
         <Footer></Footer>
       </div>
 
-      <div className="drawer-side is-drawer-close:overflow-visible shadow-md">
+      <div className="drawer-side is-drawer-close:overflow-visible shadow-md rounded-xl">
         <label
           htmlFor="my-drawer-4"
           aria-label="close sidebar"
           className="drawer-overlay"
         ></label>
-        <div className="flex min-h-full py-20 flex-col items-start is-drawer-close:w-14 is-drawer-open:w-64 bg-base-100 ">
-          <ul className="menu w-full grow space-y-2 text-base-content/80 font-normal">
+        <div className="flex min-h-full py-18 flex-col items-start is-drawer-close:w-14 is-drawer-open:w-64 bg-base-100 rounded-2xl">
+          <ul className="menu w-full grow space-y-2 text-base-content/70 font-medium">
             <li>
               <NavLink
                 style={getLinkStyle}

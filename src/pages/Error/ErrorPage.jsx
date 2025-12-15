@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const ErrorPage = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+    <div className="min-h-screen flex items-center justify-center bg-base-100">
       <div className="text-center space-y-6">
         <h1 className="text-9xl font-bold text-base-content/80">404</h1>
         <div className="space-y-2">

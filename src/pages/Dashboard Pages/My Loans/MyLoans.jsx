@@ -178,7 +178,7 @@ const MyLoans = () => {
           </h3>
 
           <div className="py-4 flex flex-col gap-3 text-base-content/70">
-            <div className="p-3 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200 bg-gray-50">
+            <div className="p-3 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200 bg-base-100">
               <h4 className="font-semibold text-(--brand)">
                 Borrower Information
               </h4>

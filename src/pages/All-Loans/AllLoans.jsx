@@ -79,7 +79,7 @@ const AllLoans = () => {
             ${
               currentPage === 1
                 ? " text-gray-400 cursor-not-allowed"
-                : " hover:bg-gray-200"
+                : " hover:bg-base-200"
             }`}
         >
           <IoIosArrowBack />
@@ -94,8 +94,8 @@ const AllLoans = () => {
               className={`px-4 py-2 rounded border transition 
                 ${
                   currentPage === page
-                    ? "bg-[#2a6877] text-white border-[#2a6877]"
-                    : "bg-gray-100 hover:bg-gray-200"
+                    ? "bg-[#2a6877] text-base-content border-[#2a6877]"
+                    : "bg-gray-100 hover:bg-base-200"
                 }`}
             >
               {page}
@@ -110,7 +110,7 @@ const AllLoans = () => {
             ${
               currentPage === totalPage
                 ? " text-gray-400 cursor-not-allowed"
-                : " hover:bg-gray-200"
+                : " hover:bg-base-200"
             }`}
         >
           <IoIosArrowForward />

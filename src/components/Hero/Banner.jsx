@@ -5,8 +5,8 @@ import LoanLottie from "../LottieImage/LottieImage1";
 
 const Banner = () => {
   return (
-    <section className="w-full md:w-[90%] mx-auto mt-10 mb-10">
-      <div className=" ">
+    <section className="max-w-full  my-10">
+      <div className="w-full md:w-[90%] mx-auto">
         <div className="flex items-center justify-around flex-col lg:flex-row ">
           <motion.div
             className="flex flex-col w-full lg:w-1/2  gap-5 px-4 text-start"
