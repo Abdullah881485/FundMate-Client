@@ -82,7 +82,7 @@ export const router = createBrowserRouter([
   },
   {
     path: "/dashboard-layout",
-    hydrateFallbackElement: <Loader1>s</Loader1>,
+    hydrateFallbackElement: <Loader1></Loader1>,
     element: (
       <PrivateRoute>
         <DashboardLayout></DashboardLayout>

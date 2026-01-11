@@ -2,6 +2,7 @@ import React, { use, useEffect, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router";
 import { AuthContext } from "../../Provider/AuthContext";
 import { CiLogin } from "react-icons/ci";
+import { RiAccountCircle2Fill } from "react-icons/ri";
 import Swal from "sweetalert2";
 // import Home from "../../pages/Home/Home";
 
@@ -41,26 +42,23 @@ const Navbar = () => {
           All Loans
         </NavLink>
       </li>
-      {user ? (
+      {user && (
         <li className=" hover:text-[#2a6877]">
           <NavLink to="/dashboard-layout" style={getLinkStyle}>
             Dashboard
           </NavLink>
         </li>
-      ) : (
-        <div className="flex flex-col md:flex-row md:items-center gap-0 md:gap-12">
-          <li className=" hover:text-[#2a6877]">
-            <NavLink to="/about" style={getLinkStyle}>
-              About Us
-            </NavLink>
-          </li>
-          <li className=" hover:text-[#2a6877]">
-            <NavLink to="/contact" style={getLinkStyle}>
-              Contact
-            </NavLink>
-          </li>
-        </div>
       )}
+      <li className=" hover:text-[#2a6877]">
+        <NavLink to="/about" style={getLinkStyle}>
+          About Us
+        </NavLink>
+      </li>
+      <li className=" hover:text-[#2a6877]">
+        <NavLink to="/contact" style={getLinkStyle}>
+          Contact
+        </NavLink>
+      </li>
     </>
   );
 
@@ -96,7 +94,7 @@ const Navbar = () => {
 
   return (
     <nav className=" sticky top-0 z-50 glass-bg">
-      <div className="navbar mx-auto w-[99%] md:w-[90%]">
+      <div className="navbar mx-auto w-[99%] md:w-[91%]">
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-xs btn-ghost lg:hidden">
@@ -182,29 +180,56 @@ const Navbar = () => {
           </div>
           {user ? (
             <div className="flex items-center gap-2 ">
-              <div className=" ">
-                <img
-                  className="w-8 h-8 md:h-10 md:w-10 rounded-full object-cover"
-                  src={
-                    user?.photoURL
-                      ? user?.photoURL
-                      : "https://i.ibb.co.com/67tscvBq/smiling-man-with-arms-crossed-on-transparent-background-png.png"
-                  }
-                  alt=""
-                />
+              <div className="dropdown dropdown-end">
+                <div tabIndex={0} role="button" className="m-1 cursor-pointer">
+                  <img
+                    className=" md:w-10 w-8 md:h-10 h-8 object-cover rounded-full"
+                    src={
+                      user?.photoURL ||
+                      "https://i.ibb.co/HT6sMcVr/2015-10-06-FB-person.webp"
+                    }
+                    alt=" not found"
+                  />
+                </div>
+                <div
+                  tabIndex={0}
+                  className="dropdown-content card card-sm bg-base-300 z-1 shadow-md  p-2 w-70"
+                >
+                  <div className="card-body  text-base-400 ">
+                    <h1 className="text-[15px] font-bold">
+                      {user.displayName ? user.displayName : "Anonymous"}
+                    </h1>
+                    <p className="text-xs font-semibold">{user.email}</p>
+                    <div className="pt-2  border-t-2 border-gray-800 space-y-2">
+                      <Link
+                        to="/dashboard-layout/myProfile"
+                        className=" btn btn-sm rounded-xl bg-transparent border-2 border-[#2a6877]  w-full font-semibold text-[#2a6877] hover:bg-[#2a6877] hover:text-white transition duration-300"
+                      >
+                        <RiAccountCircle2Fill size={20} />
+                        Profile
+                      </Link>
+                      <button
+                        onClick={handleSignOut}
+                        className="btn btn-sm rounded-xl bg-[#2a6877] w-full font-semibold text-white hover:bg-[#24545c] transition duration-300 "
+                      >
+                        Log Out
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <button
+              {/* <button
                 onClick={handleSignOut}
                 className="btn hidden md:block rounded-2xl bg-[#2a6877]  w-fit font-semibold text-white hover:bg-[#24545c] transition duration-300 "
               >
                 Sign Out
-              </button>
-              <button
+              </button> */}
+              {/* <button
                 onClick={handleSignOut}
                 className="text-[#2a6877] block md:hidden "
               >
                 <CiLogin size={30} />
-              </button>
+              </button> */}
             </div>
           ) : (
             <div className="flex items-center gap-1 md:gap-3">
