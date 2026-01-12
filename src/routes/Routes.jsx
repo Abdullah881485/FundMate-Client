@@ -19,7 +19,7 @@ import ApprovedApplication from "../pages/Dashboard Pages/Approved Application/A
 import ManageLoans from "../pages/Dashboard Pages/Manage Loans/ManageLoans";
 import MyLoans from "../pages/Dashboard Pages/My Loans/MyLoans";
 import MyProfile from "../pages/Dashboard Pages/My Profile/MyProfile";
-import  Loader1  from "../components/Loader/Loader";
+import Loader1 from "../components/Loader/Loader";
 import AdminRoute from "./AdminRoute";
 import ManagerRoute from "./managerRoute";
 import Success from "../pages/Dashboard Pages/Payment Successful/Success";
@@ -72,11 +72,7 @@ export const router = createBrowserRouter([
         path: "/loan-details/:id",
         loader: ({ params }) =>
           fetch(`https://fundmate-server.vercel.app/loanDetails/${params.id}`),
-        element: (
-          <PrivateRoute>
-            <LoanDetails></LoanDetails>
-          </PrivateRoute>
-        ),
+        element: <LoanDetails></LoanDetails>,
       },
     ],
   },
@@ -158,6 +154,11 @@ export const router = createBrowserRouter([
         path: "myProfile",
         element: <MyProfile></MyProfile>,
       },
+      {
+        path: "dashboard-home",
+        element: <DashboardHome></DashboardHome>,
+      },
+
       {
         path: "success",
         element: <Success></Success>,

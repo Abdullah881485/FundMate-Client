@@ -10,7 +10,7 @@ const AllLoans = () => {
   const [totalLoans, setTotalLoans] = useState(0);
   const [totalPage, setTotalPage] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
-  const limit = 6;
+  const limit = 8;
   console.log(totalLoans);
 
   const {
@@ -65,7 +65,7 @@ const AllLoans = () => {
         by the platform.
       </p>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 my-8">
         {loans.map((loan) => (
           <LoanCard key={loan._id} loan={loan} />
         ))}

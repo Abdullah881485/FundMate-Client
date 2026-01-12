@@ -4,6 +4,7 @@ import { FaMoneyCheckDollar } from "react-icons/fa6";
 import { GiReceiveMoney } from "react-icons/gi";
 import { MdPendingActions } from "react-icons/md";
 import { NavLink, Outlet } from "react-router-dom";
+import { LuLayoutDashboard } from "react-icons/lu";
 import { AiOutlineFileAdd } from "react-icons/ai";
 import {
   GrDocumentConfig,
@@ -272,6 +273,19 @@ const DashboardLayout = () => {
             )}
             {role === "Borrower" && (
               <>
+                <li>
+                  <NavLink
+                    style={getLinkStyle}
+                    to="/dashboard-layout/dashboard-home"
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="Dashboard Home"
+                  >
+                    <LuLayoutDashboard size={20} />
+                    <span className="is-drawer-close:hidden">
+                      Dashboard Home
+                    </span>
+                  </NavLink>
+                </li>
                 <li>
                   <NavLink
                     style={getLinkStyle}

@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { use } from "react";
+import { AuthContext } from "../../Provider/AuthContext";
 
 const CallToAction = () => {
+  const { user } = use(AuthContext);
   return (
     <section className="w-[90%] mx-auto my-20">
       <motion.div
@@ -32,12 +35,14 @@ const CallToAction = () => {
             >
               Apply for Loan
             </Link>
-            <Link
-              to="/register"
-              className="btn rounded-2xl bg-transparent border-2 border-(--brand) text-(--brand) hover:bg-(--brand) hover:text-white transition"
-            >
-              Create Free Account
-            </Link>
+            {!user && (
+              <Link
+                to="/register"
+                className="btn rounded-2xl bg-transparent border-2 border-(--brand) text-(--brand) hover:bg-(--brand) hover:text-white transition"
+              >
+                Create Free Account
+              </Link>
+            )}
           </div>
         </div>
       </motion.div>

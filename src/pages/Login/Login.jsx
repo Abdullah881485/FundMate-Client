@@ -1,4 +1,4 @@
-import { use } from "react";
+import { use, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 
 import Swal from "sweetalert2";
@@ -8,41 +8,46 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import Loader1 from "../../components/Loader/Loader";
 
 const Login = () => {
+  const DEMO_USER = {
+    email: "asdf@asdf8.com",
+    password: "Asdf123",
+  };
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   const { signInUser, signInWithGoogle, setUser, setLoading, loading } =
     use(AuthContext);
   const axiosSecure = useAxiosSecure();
   const location = useLocation();
   const navigate = useNavigate();
   const handleSignIn = (e) => {
-    setLoading(true);
     e.preventDefault();
-    const email = e.target.email.value;
-    const password = e.target.password.value;
+    setLoading(true);
+
     signInUser(email, password)
       .then((result) => {
-        const user = result.user;
-        // console.log(result.user);
         Swal.fire({
-          title: "",
-          text: "You logged in Successfully",
           icon: "success",
-          confirmButtonText: "Close",
+          text: "Logged in successfully 🎉",
+          confirmButtonColor: "#2a6877",
         });
-        setUser(user);
-        navigate(`${location.state ? location.state : "/"}`);
+
+        setUser(result.user);
+        navigate(location.state || "/");
         setLoading(false);
       })
-      .catch((error) => {
-        console.log(error);
+      .catch(() => {
         Swal.fire({
-          title: "Warning",
-          text: "Account Not Found, Please Register",
           icon: "error",
-          confirmButtonText: "Close",
+          title: "Login Failed",
+          text: "Invalid credentials",
+          confirmButtonColor: "#2a6877",
         });
         setLoading(false);
       });
   };
+
   const handleGoogleSignIn = () => {
     setLoading(true);
     signInWithGoogle()
@@ -94,6 +99,34 @@ const Login = () => {
           <h1 className="text-2xl font-bold mb-6 text-center text-(--brand)">
             Login to FundMate
           </h1>
+          <button
+            type="button"
+            onClick={() => {
+              setEmail(DEMO_USER.email);
+              setPassword(DEMO_USER.password);
+
+              Swal.fire({
+                icon: "info",
+                title: "Demo Account Ready 🚀",
+                text: "Credentials auto-filled. Click Login to continue.",
+                confirmButtonColor: "#2a6877",
+              });
+            }}
+            className="
+    w-full mb-6
+    flex items-center justify-center gap-2
+    border border-dashed border-(--brand)
+    text-(--brand) font-semibold text-sm
+    py-2.5 rounded-lg
+    hover:bg-(--brand)
+    hover:text-white
+    transition duration-300
+    cursor-pointer
+  "
+          >
+            🚀 Try Demo Account
+          </button>
+
           <form onSubmit={handleSignIn}>
             <div className="flex flex-col gap-2 mb-4">
               <label htmlFor="user">Email</label>
@@ -101,6 +134,8 @@ const Login = () => {
                 required
                 name="email"
                 type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className="input w-full text-lg rounded-none bg-transparent border-transparent border-b border-b-[#2a6877] focus:outline-none focus:ring-0 focus:border-b-2 focus:border-b-[#2a6877]  "
               />
             </div>
@@ -110,6 +145,8 @@ const Login = () => {
                 required
                 name="password"
                 type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 className="input w-full text-lg rounded-none bg-transparent border-transparent border-b border-b-[#2a6877] focus:outline-none focus:ring-0 focus:border-b-2 focus:border-b-[#2a6877]"
               />
             </div>
